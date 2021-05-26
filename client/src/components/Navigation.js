@@ -34,45 +34,9 @@ export default class Navigation extends Component {
     })
   }
 
-  componentWillMount () {
-    console.log(`**(Nav) Checking local storage...`)
-    if (localStorage.getItem('user')) {
-      const user = JSON.parse(localStorage.getItem('user'))
-      console.log(`**(Nav) User found in local storage...`)
-      this.setState({
-        firstName: user.firstName || user.email,
-        lastName: user.lastName,
-        loginName: user.email
-      })
-    } else {
-      console.log(
-        `**(Nav) User not found in local storage. Checking if user is logged in...`
-      )
-      axios
-        .get(config.apiUrl + '/api/profile')
-        .then(response => {
-          console.log(`**(Nav) User is logged...`)
-          const { firstName, lastName, email } = response.data.user
-          localStorage.setItem('user', JSON.stringify(response.data.user))
-          this.setState({
-            firstName: firstName || email,
-            lastName: lastName,
-            loginName: email
-          })
-          window.location.href = '/npt/'
-        })
-        .catch(err => {
-          console.log(
-            `**(Nav) User is not logged. Redirecting to login page...`
-          )
-          console.log(err)
-          window.location.href = '/auth/login-adfs'
-        })
-    }
-  }
-
   render () {
-    if (this.state.firstName) {
+    {console.log(localStorage)}
+    if (localStorage.getItem('userEmail')) {
       return this.renderFull()
     } else {
       return this.renderLogin()
@@ -81,16 +45,19 @@ export default class Navigation extends Component {
 
   renderFull () {
     return (
-      <Navbar color="faded" className="navbar-expand-lg navbar-light bg-light">
+      <Navbar className="navbar" expand="sm">
         <Container>
           <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand href="/">
+          <NavbarBrand href="/npt/#/schedule">
             {/* <MdHome className="icon-position-fix" />  */}
             Home Page
           </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
               <NavLink href="/npt/#/page1">
+                {/* <MdPage className="icon-position-fix" /> Page 1 */}
+              </NavLink>
+              <NavLink href="/npt/#/schedule">
                 {/* <MdPage className="icon-position-fix" /> Page 1 */}
               </NavLink>
               <NavLink href="/#/page2">
@@ -105,7 +72,8 @@ export default class Navigation extends Component {
             <Nav navbar>
               <NavItem>
                 <NavLink href="/npt/#/profile">
-                  {this.state.firstName} {this.state.lastName}
+                  {console.log(localStorage.getItem('userEmail'))}
+                  {localStorage.getItem('userEmail')} {this.state.lastName}
                 </NavLink>
               </NavItem>
             </Nav>

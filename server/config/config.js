@@ -1,4 +1,5 @@
 const hostUrl = require('../../client/src/config/config').apiUrl
+const Sequelize = require("sequelize");
 /* 
  * create a `.env` file with environment variables in order to laod at runtime.
 */
@@ -16,7 +17,17 @@ var config = {
   cookieSettings: {
     maxAge: 360000
   },
-  serverPort: process.env.PORT || 8080
+  serverPort: process.env.PORT || 8080,
+  db: new Sequelize("npt", "postgres", "fJdyP2Dyj@&6v!5hMM#VD", {
+    host: "10.129.210.150",
+    dialect: "postgres",
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
+  }),
 }
 
 module.exports = config

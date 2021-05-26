@@ -14,7 +14,7 @@ module.exports = {
   entry: path.resolve(__dirname, "client/src/index.tsx"),
   // devtool: "inline-source-map",
   output: {
-    path: path.join(__dirname, '/server/static/'),
+    path: path.join(__dirname, '/client/public/dist/'),
     filename: 'main.js',
     publicPath: "/npt",
   },

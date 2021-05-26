@@ -30,8 +30,10 @@
     "mini-css-extract-plugin": "^1.6.0",
     "moment": "^2.29.1",
     "morgan": "^1.10.0",
+    "nodemailer": "^6.6.1",
     "passport": "^0.4.1",
     "passport-azure-ad-oauth2": "0.0.4",
+    "pg": "^8.6.0",
     "react": "16.14.0",
     "react-big-scheduler": "^0.2.7",
     "react-bootstrap": "^1.6.0",
@@ -45,6 +47,7 @@
     "reactstrap": "^8.9.0",
     "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
+    "sequelize": "^6.6.2",
     "style-loader": "^2.0.0",
     "webpack-bundle-analyzer": "^4.4.2",
     "webpack-manifest-plugin": "^3.1.1",
@@ -85,10 +88,10 @@
     "webpack-dev-server": "^3.11.2"
   },
   "scripts": {
-    "bundle": "npx cross-env NODE_ENV=development webpack",
-    "deploy": "npm cross-env NODE_ENV=production webpack",
+    "bundle": "cross-env NODE_ENV=development webpack",
+    "deploy": "npx cross-env NODE_ENV=production webpack",
     "start-dev": "npm nodemon server",
-    "start": "npx concurrently \"npm run bundle\" \"npx nodemon server\"",
+    "start": "concurrently \"npm run bundle\" \"nodemon server\"",
     "start-strict": "npm nodemon --use_strict server"
   }
 }

@@ -1,6 +1,5 @@
 // export const config.baseURL = `${window.location.origin}/npt`;
 // export const config.baseURL = "http://localhost:5000/npt";
-export const baseLOCATION = "/npt";
 
 
 const prod = {

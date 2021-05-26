@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation.js'
 
 export default class Page1 extends Component {
   render () {
+    console.log('page1')
     return (
       <div>
         <Navigation />
