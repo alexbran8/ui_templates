@@ -13,14 +13,14 @@ router.get('/logout', (req, res) => {
     if (err) {
       console.error(`failed to /logout and destroy ${err.message}`)
     }
-    res.redirect('/')
+    res.redirect('/npt/')
   })
 })
 
 router.get('/login-adfs', passport.authenticate('adfs', { session: false }))
 
 router.get('/cbAdfs', passport.authenticate('adfs'), (req, res) => {
-  res.redirect('/')
+  res.redirect('/npt/')
 })
 
 module.exports = router

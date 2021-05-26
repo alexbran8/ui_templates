@@ -59,7 +59,7 @@ export default class Navigation extends Component {
             lastName: lastName,
             loginName: email
           })
-          window.location.href = '/'
+          window.location.href = '/npt/'
         })
         .catch(err => {
           console.log(
@@ -90,7 +90,7 @@ export default class Navigation extends Component {
           </NavbarBrand>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar>
-              <NavLink href="/#/page1">
+              <NavLink href="/npt/#/page1">
                 {/* <MdPage className="icon-position-fix" /> Page 1 */}
               </NavLink>
               <NavLink href="/#/page2">
@@ -104,7 +104,7 @@ export default class Navigation extends Component {
           <div className="navbar-text">
             <Nav navbar>
               <NavItem>
-                <NavLink href="http://localhost:8080/profile">
+                <NavLink href="/npt/#/profile">
                   {this.state.firstName} {this.state.lastName}
                 </NavLink>
               </NavItem>
@@ -120,7 +120,7 @@ export default class Navigation extends Component {
       <Navbar color="faded" className="navbar-expand-lg navbar-light bg-light">
         <Container>
           <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand href="/">
+          <NavbarBrand href="/npt">
             {/* <MdHome className="icon-position-fix" />  */}
             Home Page
           </NavbarBrand>

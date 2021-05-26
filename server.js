@@ -23,11 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-// app.use("/npt/",  express.static(path.join(__dirname, './server/static/')))
+app.use("/npt",  express.static(path.join(__dirname, './client/public/dist/')))
 
-app.use(express.static('./client/public/dist/'))
-
-console.log(path.join(__dirname, './public/dist/'))
+console.log(path.join(__dirname, './client/public/dist/'))
 require('./server/passport/passport')(passport)
 
 app.use(passport.initialize())
