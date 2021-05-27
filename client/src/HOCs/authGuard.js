@@ -40,7 +40,7 @@ export default OriginalComponent => {
                 `**(Nav) User is not logged. Redirecting to login page...`
               )
               console.log(err)
-              window.location.href = '/auth/login-adfs'
+              window.location.href = '/npt/auth/login-adfs'
             })
         }
       }
