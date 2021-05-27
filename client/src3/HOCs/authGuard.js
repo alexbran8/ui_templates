@@ -5,7 +5,7 @@ export default OriginalComponent => {
   class MixedComponent extends Component {
     checkAuth() {
       if (!this.props.isAuth && !this.props.jwtToken) {
-        this.props.history.push('/npt/')
+        this.props.history.push('/nptbeta/')
       }
     }
     componentDidMount() {

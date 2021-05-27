@@ -1,16 +1,16 @@
-// export const config.baseURL = `${window.location.origin}/npt`;
-// export const config.baseURL = "http://localhost:5000/npt";
-export const baseLOCATION = "/npt";
+// export const config.baseURL = `${window.location.origin}/nptbeta`;
+// export const config.baseURL = "http://localhost:5000/nptbeta";
+export const baseLOCATION = "/nptbeta";
 
 
 const prod = {
     baseURL: `${window.location.origin}`,
-    baseLOCATION: "/npt",
+    baseLOCATION: "/nptbeta",
   };
   
   const dev = {
     baseURL: "http://localhost:5000",
-    baseLOCATION: "/npt",
+    baseLOCATION: "/nptbeta",
   };
   
  export const config = process.env.NODE_ENV === `development` ? dev : prod;

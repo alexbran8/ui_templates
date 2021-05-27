@@ -20,7 +20,7 @@ class SignIn extends Component {
     await this.props.SignIn(formData);
     
     if (!this.props.errorMessage) {
-      this.props.history.push(`/npt/`);
+      this.props.history.push(`/nptbeta/`);
     }
   }
 
@@ -72,7 +72,7 @@ class SignIn extends Component {
             </form>
           </div>
         ) : (
-          this.props.history.push("/npt/schedule")
+          this.props.history.push("/nptbeta/schedule")
         )}
       </div>
     );

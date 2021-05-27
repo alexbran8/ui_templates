@@ -59,12 +59,12 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
         <App>
-          <Route  path="/npt/schedule" component={authGuard(Calendar)} />
-          <Route  path="/npt/profile" component={Profile} />
-          <Route  path="/npt/page1" component={Page1} />
-          <Route  path="/npt/page2" component={Page2} />
+          <Route  path="/nptbeta/schedule" component={authGuard(Calendar)} />
+          <Route  path="/nptbeta/profile" component={Profile} />
+          <Route  path="/nptbeta/page1" component={Page1} />
+          <Route  path="/nptbeta/page2" component={Page2} />
           <Route  path="/login" component={Login} />
-          <Route exact path="/npt/" component={Home} />
+          <Route exact path="/nptbeta/" component={Home} />
           {/* <Route component={NotFound} /> */}
           </App>
         </Switch>

@@ -289,7 +289,7 @@ class Main extends Component {
             )}
           </>
         ) : (
-          this.props.history.push("/npt")
+          this.props.history.push("/nptbeta")
         )}
       </div>
     );

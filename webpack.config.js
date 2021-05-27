@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/client/public/dist/'),
     filename: 'main.js',
-    publicPath: "/npt",
+    publicPath: "/nptbeta",
   },
   devServer: {
     compress: true,
