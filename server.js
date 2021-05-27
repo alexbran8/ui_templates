@@ -48,10 +48,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const authRoutes = require('./server/routes/auth')
-app.use('/auth', authRoutes)
+app.use('/npt/auth', authRoutes)
 
 const apiRoutes = require('./server/routes/api')
-app.use('/api', apiRoutes)
+app.use('/npt/api', apiRoutes)
 
 app.use(errorHandlingMiddleware())
 
