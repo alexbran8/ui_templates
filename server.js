@@ -36,6 +36,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
 app.use("/npt/",  express.static(path.join(__dirname, './client/public/dist/')))
+// app.get('*', function(req, res) {
+//   res.redirect('/');
+// });
 
 app.use("/npt/schedule", require("./server/controllers/schedule"));
 app.use("/npt/usersPrivate", require("./server/controllers/usersPrivate"));
