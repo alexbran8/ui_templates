@@ -11,7 +11,7 @@ WORKDIR /opt/app/
 # RUN rm package-lock.json
 RUN rm -rf node_modules
 RUN npm install -g npm@latest
-RUN npm install
+RUN npm ci
 RUN npm run deploy
 # RUN cd client
 # RUN npm build
