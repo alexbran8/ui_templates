@@ -5,6 +5,7 @@ function authCheckMiddleware () {
     } else {
       next({
         status: 401,
+        req: req,
         message: 'Error: User not logged in.'
       })
     }
