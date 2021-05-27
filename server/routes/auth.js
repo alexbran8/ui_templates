@@ -4,7 +4,7 @@ const passport = require('passport')
 
 // const authCheckMiddleware = require("../middleware/auth-check")
 
-router.get('/login', (req, res) => {
+router.get('login', (req, res) => {
   res.json({ message: 'Request login' })
 })
 
@@ -13,13 +13,14 @@ router.get('/logout', (req, res) => {
     if (err) {
       console.error(`failed to /logout and destroy ${err.message}`)
     }
+    res.redirect('/')
   })
 })
 
-router.get('/login-adfs', passport.authenticate('adfs', { session: false }) )
+router.get('/login-adfs', passport.authenticate('adfs', { session: false }))
 
-router.get('/cbAdfs', passport.authenticate('adfs',{ session: false }), (req, res) => {
-  res.redirect('/nptbeta/')
+router.get('/cbAdfs', passport.authenticate('adfs'), (req, res) => {
+  res.redirect('/nptbeta')
 })
 
 module.exports = router
