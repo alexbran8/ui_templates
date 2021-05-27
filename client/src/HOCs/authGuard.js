@@ -26,6 +26,7 @@ export default OriginalComponent => {
             .get(config.apiUrl + '/api/profile')
             .then(response => {
               console.log(`**(Nav) User is logged...`)
+              console.log(response)
               const { firstName, lastName, email } = response.data.user
               localStorage.setItem('userEmail', email)
               this.setState({
