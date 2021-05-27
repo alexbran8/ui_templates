@@ -21,7 +21,6 @@ export default class Login extends Component {
   render () {
     return (
       <div>
-        <Navigation />
         <Container className="login-box">
           <Button
             color="secondary"

@@ -6,17 +6,17 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
   Container
 } from 'reactstrap'
 
+import { config } from "../config"
+import { appversion } from "../config"
+
+import { Link, NavLink } from "react-router-dom"
 import axios from 'axios'
-import config from '../config/config'
-// import MdHome from 'react-icons/lib/md/blur-on'
-// import MdPage from 'react-icons/lib/md/bookmark-outline'
 
 export default class Navigation extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       firstName: null,
@@ -28,14 +28,14 @@ export default class Navigation extends Component {
     this.toggle = this.toggle.bind(this)
   }
 
-  toggle () {
+  toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
 
-  render () {
-    {console.log(localStorage)}
+  render() {
+    { console.log(localStorage) }
     if (localStorage.getItem('userEmail')) {
       return this.renderFull()
     } else {
@@ -43,55 +43,81 @@ export default class Navigation extends Component {
     }
   }
 
-  renderFull () {
+  renderFull() {
     return (
       <Navbar className="navbar" expand="sm">
-        <Container>
-          <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand href="/npt/#/schedule">
-            {/* <MdHome className="icon-position-fix" />  */}
-            Home Page
-          </NavbarBrand>
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav navbar>
-              <NavLink href="/npt/#/page1">
-                {/* <MdPage className="icon-position-fix" /> Page 1 */}
-              </NavLink>
-              <NavLink href="/npt/#/schedule">
-                {/* <MdPage className="icon-position-fix" /> Page 1 */}
-              </NavLink>
-              <NavLink href="/#/page2">
-                {/* <MdPage className="icon-position-fix" /> Page 2 */}
-              </NavLink>
-              <NavLink href="/#/page3">
-                {/* <MdPage className="icon-position-fix" /> Bad Link */}
-              </NavLink>
-            </Nav>
-          </Collapse>
-          <div className="navbar-text">
-            <Nav navbar>
-              <NavItem>
-                <NavLink href="/npt/#/profile">
-                  {console.log(localStorage.getItem('userEmail'))}
-                  {localStorage.getItem('userEmail')} {this.state.lastName}
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </div>
-        </Container>
+        <Link className="navbar-brand text-white" to={config.baseLOCATION}>
+          <b>NOKIA</b> {appversion}
+        </Link>
+
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav navbar>
+            <ul className="navbar-nav text-center">
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-white"
+                  to={config.baseLOCATION + "/schedule"}
+                >
+                  Schedule
+                      </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-white"
+                  to={config.baseLOCATION + "/schedule"}
+                >
+                  Schedule
+                      </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link text-white"
+                  to={config.baseLOCATION + "/schedule"}
+                >
+                  Schedule
+                      </Link>
+              </li>
+            </ul>
+          </Nav>
+        </Collapse>
+        <div className="navbar-text">
+          <Nav navbar>
+            <NavItem>
+              <ul className="navbar-nav text-center">
+                <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
+                    to={config.baseLOCATION + "/profile"}
+                  >
+                    {localStorage.getItem('userEmail')}
+                  </Link>
+                </li>
+              </ul>
+            </NavItem>
+          </Nav>
+        </div>
       </Navbar>
     )
   }
 
-  renderLogin () {
+  renderLogin() {
     return (
       <Navbar color="faded" className="navbar-expand-lg navbar-light bg-light">
         <Container>
           <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand href="/npt">
-            {/* <MdHome className="icon-position-fix" />  */}
-            Home Page
-          </NavbarBrand>
+          <Link className="navbar-brand text-white" to={config.baseLOCATION}>
+            <b>NOKIA</b> {appversion}
+          </Link>
+          <ul className="navbar-nav text-center">
+            <li className="nav-item">
+              <Link
+                className="nav-link text-white"
+                to={config.baseLOCATION + "/schedule"}
+              >
+                Schedule
+                      </Link>
+            </li>
+          </ul>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar />
           </Collapse>

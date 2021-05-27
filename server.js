@@ -32,9 +32,10 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-app.use("/npt",  express.static(path.join(__dirname, './client/public/dist/')))
+app.use("/npt/",  express.static(path.join(__dirname, './client/public/dist/')))
 
 app.use("/npt/schedule", require("./server/controllers/schedule"));
 app.use("/npt/usersPrivate", require("./server/controllers/usersPrivate"));

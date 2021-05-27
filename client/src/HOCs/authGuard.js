@@ -33,7 +33,7 @@ export default OriginalComponent => {
                 lastName: lastName,
                 loginName: email
               })
-              window.location.href = '/npt'
+              window.location.href = '/npt/'
             })
             .catch(err => {
               console.log(

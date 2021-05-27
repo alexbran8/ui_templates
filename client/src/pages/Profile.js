@@ -54,7 +54,6 @@ export default class Profile extends Component {
     const { firstName, lastName, loginName, id, provider } = this.state
     return (
       <div>
-        <Navigation />
         <Container className="main-container">
           <h3>User Profile</h3>
           <p>Authenticated with: {provider}</p>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Container } from 'reactstrap'
 
-import Navigation from '../components/Navigation'
 
 export default class NotFound extends Component {
   render () {
