@@ -8,7 +8,7 @@ const authCheckMiddleware = require('../middleware/auth-check')
 // ------------------------------------------------------------------
 
 router.get('/profile',
-//  authCheckMiddleware(),
+ authCheckMiddleware(),
  (req, res) => {
   var user = req.session.passport
   res.json(user)
