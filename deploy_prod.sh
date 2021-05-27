@@ -7,7 +7,7 @@ docker build -t nptbetajenkins .
 
 
 # stop existing container
-docker stop nptbetajenkins && docker rm nptbetajenkins
+# docker stop nptbetajenkins && docker rm nptbetajenkins
 
 # delete existing container
 
