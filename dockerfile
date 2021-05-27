@@ -23,4 +23,4 @@ RUN npm install pm2 -g
 # start server
 EXPOSE 5000 587
 STOPSIGNAL SIGTERM
-CMD rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Etc/GMT-3 /etc/localtime && pm2 start server.js
+CMD rm -rf /etc/localtime && ln -s /usr/share/zoneinfo/Etc/GMT-3 /etc/localtime && pm2-runtime start server.js
