@@ -3,15 +3,15 @@
 # cd /root/srv/app
 
 #build docker container
-docker build -t nptbetajenkins .
+docker build -t nptjenkins .
 
 
 # stop existing container
-# docker stop nptbetajenkins && docker rm nptbetajenkins
+docker stop nptjenkins && docker rm nptjenkins
 
 # delete existing container
 
 # delete existing image
 
 # run new image
-docker run  -d -p 5002:8080  --name nptbetajenkins nptbetajenkins
+docker run  -d -p 5002:8080  --name nptjenkins nptenkins
