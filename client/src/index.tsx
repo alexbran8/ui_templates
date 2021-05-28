@@ -19,6 +19,8 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Page1 from './pages/Page1'
 import Page2 from './pages/Page2'
+import SignUp2  from './components/Signup'
+import {signUpForm}  from './components/Signup'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import {config} from "./config"
@@ -59,12 +61,13 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
         <App>
-          <Route  path="/nptbeta/schedule" component={authGuard(Calendar)} />
-          <Route  path="/nptbeta/profile" component={Profile} />
-          <Route  path="/nptbeta/page1" component={Page1} />
-          <Route  path="/nptbeta/page2" component={Page2} />
-          <Route  path="/login" component={Login} />
-          <Route exact path="/nptbeta/" component={Home} />
+          <Route  path={config.baseLOCATION + "/schedule" } component={authGuard(Calendar)} />
+          <Route  path={config.baseLOCATION + "/profile"} component={Profile} />
+          <Route  path={config.baseLOCATION + "/page1"} component={Page1} />
+          <Route  path={config.baseLOCATION + "/page2"} component={Page2} />
+          <Route  path={config.baseLOCATION + "/login"} component={Login} />
+          <Route exact path={config.baseLOCATION} component={Home} />
+          <Route exact path={config.baseLOCATION +"/signup" } component={signUpForm} />
           {/* <Route component={NotFound} /> */}
           </App>
         </Switch>

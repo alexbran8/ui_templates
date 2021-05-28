@@ -84,6 +84,14 @@ export default class Navigation extends Component {
           <Nav navbar>
             <NavItem>
               <ul className="navbar-nav text-center">
+              <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
+                    to={config.baseLOCATION + "/signup"}
+                  >
+                    Add Users
+                  </Link>
+                </li>
                 <li className="nav-item">
                   <Link
                     className="nav-link text-white"

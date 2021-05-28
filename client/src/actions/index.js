@@ -8,17 +8,15 @@ import jwtDecode from 'jwt-decode'
 export const SignUp = data => {
   return dispatch => {
     try {
-      console.log(data)
-      Axios.get(`${config.baseURL + config.baseLOCATION}/users/signup`, data)
+      console.log('data',data)
+      Axios.post(`${config.baseURL + config.baseLOCATION}/users/signup`, data)
         .then(function (response) {
-          // alert(response.data.message + ' => imported: ' + response.data.imported + '; existing: ' + response.data.existing );
-          console.log('res', response.data)
-          alert(response.data)
-          // that.setState({ messageData: response.data })
+          console.log('res', response.data.message)
+          alert(response.data.message)
         })
         .catch(err => {
-          console.log(err);
-          alert(err)
+          console.log(err.response.data.message);
+          alert(err.response.data.message)
         })
       // const decode = jwtDecode(res.data.token)
       // dispatch({

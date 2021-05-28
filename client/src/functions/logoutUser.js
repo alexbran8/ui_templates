@@ -1,4 +1,4 @@
-import config from '../config/config'
+import {config} from '../config'
 import axios from 'axios'
 
 export default function logoutUser () {
@@ -6,12 +6,12 @@ export default function logoutUser () {
   localStorage.removeItem('user')
 
   axios
-    .get(config.apiUrl + '/auth/logout')
+    .get(config.baseURL + config.baseLOCATION + '/auth/logout')
     .then(response => {
-      window.location.href = '/#/login'
+      window.location.href = 'config.baseLOCATION/login'
     })
     .catch(() => {
-      window.location.href = '/#/login'
+      window.location.href = 'config.baseLOCATION/login'
     })
 
   /// function logoutDone () { }

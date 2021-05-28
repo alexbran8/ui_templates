@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Axios from 'axios'
-import config from '../config/config'
+import { config } from "../config";
+
 
 export default OriginalComponent => {
   class MixedComponent extends Component {
@@ -23,7 +24,7 @@ export default OriginalComponent => {
             `**(Nav) User not found in local storage. Checking if user is logged in...`
           )
           Axios
-            .get(config.apiUrl + '/api/profile')
+            .get(config.baseURL + config.baseLOCATION + '/api/profile')
             .then(response => {
               console.log(`**(Nav) User is logged...`)
               console.log(response)

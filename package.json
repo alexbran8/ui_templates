@@ -91,7 +91,7 @@
     "bundle": "cross-env NODE_ENV=development webpack",
     "deploy": "cross-env NODE_ENV=production webpack",
     "start-dev": "npm nodemon server",
-    "start": "concurrently \"npm run bundle\" \"nodemon server\"",
+    "start": "concurrently \"npm run bundle\" \"cross-env NODE_ENV=development nodemon server \"",
     "start-strict": "npm nodemon --use_strict server"
   }
 }

@@ -42,6 +42,7 @@ app.use("/nptbeta/",  express.static(path.join(__dirname, './client/public/dist/
 
 app.use("/nptbeta/schedule", require("./server/controllers/schedule"));
 app.use("/nptbeta/usersPrivate", require("./server/controllers/usersPrivate"));
+app.use("/nptbeta/users", require("./server/controllers/users"));
 
 
 console.log(path.join(__dirname, './client/public/dist/'))

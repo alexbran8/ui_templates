@@ -1,8 +1,10 @@
-const hostUrl = require('../../client/src/config/config').apiUrl
 const Sequelize = require("sequelize");
 /* 
  * create a `.env` file with environment variables in order to laod at runtime.
 */
+
+const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:8080/nptbeta" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/nptbeta';
+
 var config = {
   azureApp: {
     // Azure Application details

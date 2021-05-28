@@ -5,7 +5,7 @@ const User = require('../models/user')(sequelize, DataTypes)
 const { JWT_SECRET } = require('../config/configProvider')()
 const UsersController = require('express').Router()
 const passport = require('passport')
-require('../passport')
+require('../passport/passport')
 
 exports.add = (req, res) => {
   console.log(req);
@@ -27,13 +27,20 @@ signToken = user => {
 }
 
 UsersController.post('/signup', async (req, res, next) => {
+  console.log('SIGNUP')
   let foundUser = await User.findOne({
     where: { nokiaid: req.body.nokiaid },
     limit: 1
   })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Project."
+    });
+  });
 
   if (foundUser) {
-    res.status(403).send({message:'Username is in use.'})
+    res.status(403).send({message:'nokiaid is in use.'})
   }
 
   foundUser = await User.findOne({ where: { email: req.body.email }, limit: 1 })

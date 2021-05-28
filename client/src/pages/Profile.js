@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { Container, Button } from 'reactstrap'
 import axios from 'axios'
 
-import Navigation from '../components/Navigation'
-import config from '../config/config'
+import {config} from '../config'
 import logoutUser from '../functions/logoutUser'
 
 export default class Profile extends Component {
@@ -22,7 +21,7 @@ export default class Profile extends Component {
     console.log(`**(Profile) Loading user details from the server...`)
 
     axios
-      .get(config.apiUrl + '/api/profile')
+      .get(config.baseURL + config.baseLOCATION + '/api/profile')
       .then(response => {
         console.log(`**(Profile) User is logged...`)
         const {
