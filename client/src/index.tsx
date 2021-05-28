@@ -37,7 +37,7 @@ const userName = localStorage.getItem('email'),
   user = localStorage.getItem('userEmail'),
   jwtToken = localStorage.getItem('token'),
   nokiaid = localStorage.getItem('nokiaid')
-Axios.defaults.headers.common['Authorization'] = jwtToken
+// Axios.defaults.headers.common['Authorization'] = jwtToken
 
 
 ReactDOM.render(

@@ -8,7 +8,7 @@ const session = require('express-session')
 const path = require("path");
 require('dotenv').config()
 const config = require("./server/config/configProvider")();
-
+// const cors = require("cors");
 const serverPort = require('./server/config/config').serverPort
 const sessionSecret = require('./server/config/config').jwtSecret
 const cookieSettings = require('./server/config/config').cookieSettings
@@ -17,6 +17,7 @@ const port = process.env.PORT || serverPort
 
 const errorHandlingMiddleware = require('./server/middleware/error')
 
+// app.use(cors());
 
 config.db
   .authenticate()
