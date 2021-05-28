@@ -17,7 +17,6 @@ const port = process.env.PORT || serverPort
 
 const errorHandlingMiddleware = require('./server/middleware/error')
 
-// app.use(cors());
 
 config.db
   .authenticate()
@@ -36,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-app.use("/nptbeta/",  express.static(path.join(__dirname, './client/public/dist/')))
+app.use("/",  express.static(path.join(__dirname, './client/public/dist/')))
 // app.get('*', function(req, res) {
 //   res.redirect('/');
 // });
