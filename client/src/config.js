@@ -5,7 +5,7 @@ const prod = {
   
   const dev = {
     baseURL: "http://localhost:8080",
-    baseLOCATION: "/nptbeta",
+    baseLOCATION: "",
   };
   
  export const config = process.env.NODE_ENV === `development` ? dev : prod;

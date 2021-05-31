@@ -8,7 +8,14 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 const enableBundleAnalyzer = process.env.ENABLE_ANALYZER === "true";
 const regeneratorRuntime = require("regenerator-runtime");
+
 const watch = process.env.NODE_ENV !== 'production'
+console.log('ENV',process.env.NODE_ENV)
+
+process.env.NODE_ENV == "development" ? location = "/" : location = "/nptbeta"
+
+// const location = process.env.NODE_ENV !== 'production'
+
 module.exports = {
   context: __dirname,
   entry: path.resolve(__dirname, "client/src/index.tsx"),
@@ -16,7 +23,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/client/public/dist/'),
     filename: 'main.js',
-    publicPath: "/nptbeta/",
+    publicPath: location,
   },
   devServer: {
     compress: true,

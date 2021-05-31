@@ -18,7 +18,7 @@ export default OriginalComponent => {
             loginName: user.email,
             isAuth: true
           })
-          this.props.history.push('/nptbeta/')
+          this.props.history.push(config.baseLOCATION)
         } else {
           console.log(
             `**(Nav) User not found in local storage. Checking if user is logged in...`
@@ -42,7 +42,7 @@ export default OriginalComponent => {
                 `**(Nav) User is not logged. Redirecting to login page...`
               )
               console.log(err)
-              window.location.href = '/nptbeta/auth/login-adfs'
+              window.location.href = config.baseLOCATION + '/auth/login-adfs'
             })
         }
       }

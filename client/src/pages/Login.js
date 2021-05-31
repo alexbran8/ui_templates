@@ -18,14 +18,12 @@ export default class Login extends Component {
         lastName: lastName,
         loginName: email
       })
-      window.location.href = '/nptbeta/'
+      window.location.href = config.baseLOCATION
     })
     .catch(err => {
       console.log(
         `**(Nav) User is not logged. Redirecting to login page...`
       )
-      console.log(err)
-      window.location.href = '/nptbeta/auth/login-adfs'
       Axios
       .get(config.baseURL + config.baseLOCATION + '/api/profile')
       .then(response => {
@@ -38,8 +36,9 @@ export default class Login extends Component {
           lastName: lastName,
           loginName: email
         })
-        window.location.href = '/nptbeta/'
+        
       })
+      window.location.href = config.baseLOCATION + '/auth/login-adfs'
     })
   }
 
