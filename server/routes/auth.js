@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const passport = require('passport')
+const config = require('../config/config')
 
 // const authCheckMiddleware = require("../middleware/auth-check")
 
@@ -13,7 +14,7 @@ router.get('/logout', (req, res) => {
     if (err) {
       console.error(`failed to /logout and destroy ${err.message}`)
     }
-    res.redirect('/')
+    res.redirect(config.baseLocation)
   })
 })
 

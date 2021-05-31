@@ -4,6 +4,9 @@ const Sequelize = require("sequelize");
 */
 
 const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:8080" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/nptbeta';
+const baseLocation = process.env.NODE_ENV === `development` ? "" :  '/nptbeta';
+
+
 
 var config = {
   azureApp: {
@@ -15,6 +18,7 @@ var config = {
     resource: process.env.MS_GRAPH_URL || 'https://graph.microsoft.com/',
     tenant: process.env.AAD_AUTH_TENANT || '5d471751-9675-428d-917b-70f44f9630b0'
   },
+  baseLocation: baseLocation,
   jwtSecret: process.env.APP_SESSION_SECRET || 'big Secret',
   cookieSettings: {
     maxAge: 360000
