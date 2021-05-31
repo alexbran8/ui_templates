@@ -62,7 +62,7 @@ app.use("/nptbeta/usersPrivate", authCheckMiddleware(), require("./server/contro
 app.use("/nptbeta/users", authCheckMiddleware(),  require("./server/controllers/users"));
 
 const authRoutes = require('./server/routes/auth')
-app.use('/nptbeta/auth', authRoutes)
+app.use('/auth', authRoutes)
 
 const apiRoutes = require('./server/routes/api')
 app.use('/nptbeta/api', apiRoutes)
