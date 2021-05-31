@@ -31,25 +31,35 @@ app.use(morgan('dev'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-
+const authCheckMiddleware = require('./server/middleware/auth-check')
 
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-app.use("/",  express.static(path.join(__dirname, './client/public/dist/')))
+app.use("/nptbeta/",  express.static(path.join(__dirname, './client/public/dist/')))
+// app.get('*', (req, res) => {                       
+//   res.sendFile(path.resolve(__dirname, './client/public/dist/', 'index.html'));                               
+// });
 // app.get('*', function(req, res) {
 //   res.redirect('/');
 // });
 
-app.use("/nptbeta/schedule", require("./server/controllers/schedule"));
-app.use("/nptbeta/usersPrivate", require("./server/controllers/usersPrivate"));
-app.use("/nptbeta/users", require("./server/controllers/users"));
+// if (process.env.NODE_ENV === 'production') {
+  // console.log('production')
+  // const publicPath = path.join(__dirname, './client/public/dist');
+  // app.use(express.static(publicPath));
+  // app.use('*', express.static(publicPath));
+// }
 
 
-console.log(path.join(__dirname, './client/public/dist/'))
+
 require('./server/passport/passport')(passport)
 
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use("/nptbeta/schedule", authCheckMiddleware(),  require("./server/controllers/schedule"));
+app.use("/nptbeta/usersPrivate", authCheckMiddleware(), require("./server/controllers/usersPrivate"));
+app.use("/nptbeta/users", authCheckMiddleware(),  require("./server/controllers/users"));
 
 const authRoutes = require('./server/routes/auth')
 app.use('/nptbeta/auth', authRoutes)
