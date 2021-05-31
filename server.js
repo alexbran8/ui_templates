@@ -65,7 +65,7 @@ const authRoutes = require('./server/routes/auth')
 app.use('/auth', authRoutes)
 
 const apiRoutes = require('./server/routes/api')
-app.use('/nptbeta/api', apiRoutes)
+app.use('/api', apiRoutes)
 
 app.use(errorHandlingMiddleware())
 
