@@ -20,7 +20,7 @@ router.get('/logout', (req, res) => {
 router.get('/login-adfs', passport.authenticate('adfs', { session: false }))
 
 router.get('/cbAdfs', passport.authenticate('adfs'), (req, res) => {
-  res.redirect('/nptbeta')
+  res.redirect('/')
 })
 
 module.exports = router

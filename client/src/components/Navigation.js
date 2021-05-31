@@ -116,6 +116,16 @@ export default class Navigation extends Component {
           <Link className="navbar-brand text-white" to={config.baseLOCATION}>
             <b>NOKIA</b> {appversion}
           </Link>
+          <ul>
+          <li className="nav-item">
+                <Link
+                  className="nav-link text-white"
+                  to={config.baseLOCATION + "/schedule"}
+                >
+                  Schedule
+                      </Link>
+              </li>
+          </ul>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar />
           </Collapse>

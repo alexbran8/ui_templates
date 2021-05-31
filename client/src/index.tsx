@@ -61,10 +61,10 @@ ReactDOM.render(
         <Switch>
         <App>
           <Route  path={config.baseLOCATION + "/schedule" } component={authGuard(Calendar)} />
-          <Route  path={config.baseLOCATION + "/profile"} component={Profile} />
+          <Route  path={config.baseLOCATION + "/profile"} component={authGuard(Profile)} />
           <Route  path={config.baseLOCATION + "/page1"} component={Page1} />
           <Route  path={config.baseLOCATION + "/page2"} component={Page2} />
-          <Route  path={config.baseLOCATION + "/login"} component={Login} />
+          {/* <Route  path={config.baseLOCATION + "/login"} component={authGuard(Login)} /> */}
           <Route exact path={config.baseLOCATION} component={Home} />
           <Route exact path={config.baseLOCATION +"/signup" } component={signUpForm} />
           {/* <Route component={NotFound} /> */}
