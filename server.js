@@ -35,7 +35,7 @@ const authCheckMiddleware = require('./server/middleware/auth-check')
 
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-app.use("/",  express.static(path.join(__dirname, './client/public/dist/')))
+app.use(express.static(path.join(__dirname, './client/public/dist/')))
 // app.get('*', (req, res) => {                       
 //   res.sendFile(path.resolve(__dirname, './client/public/dist/', 'index.html'));                               
 // });
@@ -57,9 +57,9 @@ require('./server/passport/passport')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use("/nptbeta/schedule", authCheckMiddleware(),  require("./server/controllers/schedule"));
-app.use("/nptbeta/usersPrivate", authCheckMiddleware(), require("./server/controllers/usersPrivate"));
-app.use("/nptbeta/users", authCheckMiddleware(),  require("./server/controllers/users"));
+app.use("/schedule", authCheckMiddleware(),  require("./server/controllers/schedule"));
+app.use("/usersPrivate", authCheckMiddleware(), require("./server/controllers/usersPrivate"));
+app.use("/users", authCheckMiddleware(),  require("./server/controllers/users"));
 
 const authRoutes = require('./server/routes/auth')
 app.use('/auth', authRoutes)
