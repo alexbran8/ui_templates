@@ -35,7 +35,7 @@ const authCheckMiddleware = require('./server/middleware/auth-check')
 
 app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
-app.use("/nptbeta/",  express.static(path.join(__dirname, './client/public/dist/')))
+app.use("/",  express.static(path.join(__dirname, './client/public/dist/')))
 // app.get('*', (req, res) => {                       
 //   res.sendFile(path.resolve(__dirname, './client/public/dist/', 'index.html'));                               
 // });
