@@ -57,8 +57,8 @@ require('./server/passport/passport')(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use("/schedule", authCheckMiddleware(),  require("./server/controllers/schedule"));
-app.use("/usersPrivate", authCheckMiddleware(), require("./server/controllers/usersPrivate"));
+app.use("/schedule",   require("./server/controllers/schedule"));
+app.use("/usersPrivate",  require("./server/controllers/usersPrivate"));
 app.use("/users", authCheckMiddleware(),  require("./server/controllers/users"));
 
 const authRoutes = require('./server/routes/auth')

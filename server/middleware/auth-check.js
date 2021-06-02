@@ -1,8 +1,10 @@
 function authCheckMiddleware () {
   return function (req, res, next) {
-    if (req.isAuthenticated()) {
+    console.log(req.user)
+    if (req.user) {
       next()
     } else {
+      // res.redirect('/auth/login-adfs')
       next({
         status: 401,
         message: 'Error: User not logged in.'
