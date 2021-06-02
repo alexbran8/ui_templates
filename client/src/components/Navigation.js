@@ -87,6 +87,14 @@ export default class Navigation extends Component {
               <li className="nav-item">
                   <Link
                     className="nav-link text-white"
+                    to={config.baseLOCATION + "/approval"}
+                  >
+                    Approval
+                  </Link>
+                </li>
+              <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
                     to={config.baseLOCATION + "/signup"}
                   >
                     Add Users
@@ -116,6 +124,7 @@ export default class Navigation extends Component {
           <Link className="navbar-brand text-white" to={config.baseLOCATION}>
             <b>NOKIA</b> {appversion}
           </Link>
+          <NavItem>
           <ul>
           <li className="nav-item">
                 <Link
@@ -126,6 +135,7 @@ export default class Navigation extends Component {
                       </Link>
               </li>
           </ul>
+          </NavItem>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav navbar />
           </Collapse>

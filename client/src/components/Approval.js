@@ -17,6 +17,7 @@ class Approval extends Component {
     const events = await Axios.get(`${ config.baseURL + config.baseLOCATION }/schedule/get/status`);
     this.setState({ events: events.data.data });
     console.log("events to approve", events);
+    console.log(this.state)
   }
 
   createArr(id) {
@@ -106,9 +107,8 @@ class Approval extends Component {
   render() {
     return (
       <div>
-        {
-        // (this.props.role === "L3" || this.props.role === "L2") &&
-        (this.state.events.length == 0) ? (
+        {(this.props.role === "L3" || this.props.role === "L2") &&
+        this.state.events.length > 0 ? (
           <>
             <div className="text-center m-4 row">
               <div className="col">
@@ -132,17 +132,17 @@ class Approval extends Component {
           </>
         ) : (
           <div className="noApprove text-center">
-            <h1>No requests to approve, yet...</h1>
+             <h1>No requests to approve, yet...</h1>
+             {console.log(this.props.role)}
           </div>
-        )
-        }
+        )}
       </div>
     );
   }
 }
 function MapStateToProps(state) {
   return {
-    role: "L3",
+    role: state.auth.role,
   };
 }
 

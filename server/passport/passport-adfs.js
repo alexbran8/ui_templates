@@ -13,6 +13,8 @@ module.exports = function (
   console.log(`**New ADFS user...`)
 
   console.log(JSON.stringify(userProfile))
+  console.log(profile)
+  console.log(params)
 
   var user = {
     id: userProfile.aud,
@@ -20,9 +22,10 @@ module.exports = function (
     email: userProfile.unique_name,
     first_name: userProfile.given_name,
     last_name: userProfile.family_name,
+    role: userProfile.role,
     provider: 'adfs'
   }
-
+  console.log(user.role)
   console.log(`**ADFS user added...`)
   return done(null, user)
 }

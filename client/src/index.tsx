@@ -15,6 +15,7 @@ import Axios from 'axios'
 import App from './pages/App'
 import reducers from './redux/reducers/index'
 import authGuard from './HOCs/authGuard'
+import Approval from './components/Approval'
 import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Page1 from './pages/Page1'
@@ -62,6 +63,7 @@ ReactDOM.render(
         <App>
           <Route exact path={config.baseLOCATION + "/" } component={Home} />
           <Route path={config.baseLOCATION + "/schedule" } component={authGuard(Calendar)} />
+          <Route path={config.baseLOCATION + "/approval" } component={authGuard(Approval)} />
           <Route path={config.baseLOCATION + "/profile"} component={authGuard(Profile)} />
           <Route path={config.baseLOCATION + "/page1"} component={Page1} />
           <Route path={config.baseLOCATION + "/page2"} component={Page2} />
