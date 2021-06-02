@@ -95,6 +95,14 @@ export default class Navigation extends Component {
                 <li className="nav-item">
                   <Link
                     className="nav-link text-white"
+                    to={config.baseLOCATION + "/request"}
+                  >
+                    Request
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link text-white"
                     to={config.baseLOCATION + "/tasks"}
                   >
                     Tasks
