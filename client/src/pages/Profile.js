@@ -45,7 +45,7 @@ export default class Profile extends Component {
         )
         console.log(err)
         localStorage.removeItem('user')
-        window.location.href = '/#/login'
+        window.location.href = '/login'
       })
   }
 
