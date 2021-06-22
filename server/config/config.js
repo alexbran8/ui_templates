@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 */
 
 const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:8080" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/nptbeta';
-const baseLocation = process.env.NODE_ENV === `development` ? "" :  '/nptbeta';
+const baseLocation = process.env.NODE_ENV === `development` ? "" :  '/ecosystem';
 
 
 
