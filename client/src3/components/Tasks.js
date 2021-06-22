@@ -8,7 +8,7 @@ import { getTasks } from "../redux/actions/tasks/getTasks"
 // import { motion } from "framer-motion"
 // import { pageTransitions } from "../data/pageTransitions"
 // import { pageVariants } from "../data/pageVariants"
-import { baseLOCATION, config } from "../config";
+import { config } from "../config";
 import { Button, Modal, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 

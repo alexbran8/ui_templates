@@ -4,7 +4,8 @@ import { Navbar, Nav, Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
 import PasswordModal from "./PasswordModal";
 import { environment } from "../config";
-import { baseLOCATION } from "../config";
+// import { baseLOCATION } from "../config";
+import { config } from "../config";
 
 
 import * as actions from "../actions";
@@ -23,13 +24,14 @@ class Header extends Component {
     this.setState({ show: !this.state.show });
   }
   render() {
+    {console.log(config)}
     return (
       <div>
         <Navbar className="navbar" expand="sm">
           <Link className="navbar-brand text-white" to="/schedule">
-            <b> NOKIA</b> Planning Tool {environment}
+            <b> NOKIA 2</b> {appName} {environment}
           </Link>
-
+  
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">

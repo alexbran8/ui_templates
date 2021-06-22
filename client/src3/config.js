@@ -4,17 +4,26 @@ export const baseLOCATION = "/nptbeta";
 
 
 const prod = {
-    baseURL: `${window.location.origin}`,
-    baseLOCATION: "/nptbeta",
-  };
-  
-  const dev = {
-    baseURL: "http://localhost:5000",
-    baseLOCATION: "/nptbeta",
-  };
-  
- export const config = process.env.NODE_ENV === `development` ? dev : prod;
-  
+  baseURL: `${window.location.origin}`,
+  baseLOCATION: "/nptbeta",
+};
+
+const dev = {
+  baseURL: "http://localhost:5000",
+  baseLOCATION: "/nptbeta",
+};
+
+var config = process.env.NODE_ENV === `development` ? dev : prod
+
+var appMetadata = {};
+
+appMetadata.appName = 'EcoSystem'
+appMetadata.version = '1.00'
+config.push(appMetadata)
+
+export const config;
+
+
 
 
 // update to below value when deploying on VM - port 5000 for build version and 3000 for development version

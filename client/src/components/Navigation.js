@@ -35,7 +35,7 @@ export default class Navigation extends Component {
   }
 
   render() {
-    { console.log(localStorage) }
+    { console.log(config) }
     if (localStorage.getItem('userEmail')) {
       return this.renderFull()
     } else {
@@ -146,18 +146,18 @@ export default class Navigation extends Component {
         <Container>
           <NavbarToggler onClick={this.toggle} />
           <Link className="navbar-brand text-white" to={config.baseLOCATION}>
-            <b>NOKIA</b> {appversion}
+            <b><span style={{ color: 'blue' }}> NOKIA</span> <span style={{ color: 'green' }} >{config.AppName}</span></b> v{config.appVersion}
           </Link>
           <NavItem>
             <ul>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   className="nav-link text-white"
                   to={config.baseLOCATION + "/schedule"}
                 >
                   Schedule
                       </Link>
-              </li>
+              </li> */}
             </ul>
           </NavItem>
           <Collapse isOpen={this.state.isOpen} navbar>

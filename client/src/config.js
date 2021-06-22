@@ -1,3 +1,5 @@
+var config2 = []
+
 const prod = {
     baseURL: `${window.location.origin}`,
     baseLOCATION: "/nptbeta",
@@ -8,5 +10,11 @@ const prod = {
     baseLOCATION: "",
   };
   
- export const config = process.env.NODE_ENV === `development` ? dev : prod;
+
+  config2 = process.env.NODE_ENV === `development` ? dev : prod
+  config2.AppName = 'EcoSystem'
+  config2.appVersion = '1.00'
+
+  export const config = config2
+
  export const appversion = "v1.62";
