@@ -3,15 +3,15 @@
 # cd /root/srv/app
 
 #build docker container
-docker build -t nptjenkins .
+docker build -t ecosystem .
 
 
 # stop existing container
-docker stop nptjenkins && docker rm nptjenkins
+docker stop ecosystem && docker rm ecosystem
 
 # delete existing container
 
 # delete existing image
 
 # run new image
-docker run  -d -p 5002:8080  --name nptjenkins nptjenkins
+docker run  -d -p 5003:8080  --name ecosystem ecosystem
