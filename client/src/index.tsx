@@ -28,7 +28,7 @@ import {config} from "./config"
 import Main from './components/Main'
 import Calendar from './components/Calendar.js'
 import ExcelReader from './components/ExcelReader.js'
-import Tasks from './components/Tasks.js'
+
 import Request from './components/Request.js'
 
 
@@ -69,7 +69,6 @@ ReactDOM.render(
           <Route path={config.baseLOCATION + "/request" } component={authGuard(Request)} />
           <Route path={config.baseLOCATION + "/profile"} component={authGuard(Profile)} />
           <Route exact path={config.baseLOCATION +'/upload'} component={authGuard(ExcelReader)} />
-          <Route exact path={config.baseLOCATION +'/tasks'} component={authGuard(Tasks)} />
           <Route path={config.baseLOCATION + "/page1"} component={Page1} />
           <Route path={config.baseLOCATION + "/page2"} component={Page2} />
           {/* <Route  path={config.baseLOCATION + "/login"} component={authGuard(Login)} /> */}
