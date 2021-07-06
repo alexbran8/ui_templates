@@ -53,7 +53,7 @@ export const SignIn = data => {
     try {
       const res = await Axios.get(`${config.baseURL   }/login`,)
       
-      console.log(res, 'nptbeta')
+      console.log(res, 'ecosystem')
       // const decode = jwtDecode(res.data.token)
       // console.log(decode)
       // dispatch({

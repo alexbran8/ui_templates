@@ -3,8 +3,8 @@ const Sequelize = require("sequelize");
  * create a `.env` file with environment variables in order to laod at runtime.
 */
 
-const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:4000/" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/nptbeta/';
-const baseLocation = process.env.NODE_ENV === `development` ? "" :  '/nptbeta';
+const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:4000/" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/ecosystem/';
+const baseLocation = process.env.NODE_ENV === `development` ? "" :  '/ecosystem';
 
 
 
