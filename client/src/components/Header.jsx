@@ -99,7 +99,7 @@ export default class Header extends Component {
     return (
       <Navbar className="navbar" expand="sm">
         <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
-          <b>NOKIA</b> {config.appversion}
+          <b>NOKIA</b> {config.AppName} {config.appVersion}
         </Link>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
