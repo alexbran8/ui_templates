@@ -2,7 +2,6 @@ import React from "react";
 import Homepage from "./components/Homepage.jsx";
 import Header from "./components/Header.jsx";
 import { HashRouter, Route } from "react-router-dom";
-import { signUpForm } from './components/SignUp'
 import { config } from "./config"
 import authGuard from "./HOCs/authGuard.js";
 
