@@ -10,9 +10,7 @@ export const AppRouter = () => {
     <HashRouter  >
       <Header basename={config.baseLOCATION} />
       <Route exact path={"/"} component={Homepage} />
-
       {/* <Route path={config.baseLOCATION + "/signup"} component={authGuard(signUpForm)} /> */}
-
     </HashRouter>
   );
 };
