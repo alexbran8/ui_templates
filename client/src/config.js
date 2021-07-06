@@ -12,7 +12,7 @@ const prod = {
   
 
   config2 = process.env.NODE_ENV === `development` ? dev : prod
-  config2.AppName = 'NPT Beta'
+  config2.AppName = 'ECOSYSTEM WEB APP'
   config2.appVersion = '1.00'
 
   export const config = config2
