@@ -8,7 +8,7 @@ import { getTasks } from "../redux/actions/tasks/getTasks"
 // import { motion } from "framer-motion"
 // import { pageTransitions } from "../data/pageTransitions"
 // import { pageVariants } from "../data/pageVariants"
-import { baseLOCATION, config } from "../config";
+import { config } from "../config";
 import { Button, Modal, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
@@ -20,7 +20,7 @@ const Tasks = () => {
     const [taskIndex, setTaskIndex] = useState(null);
 
     useEffect( () => {
-        axios.get( config.baseURL + baseLOCATION + '/dailyTasks')
+        axios.get( config.baseURL + config.baseLOCATION + '/dailyTasks', {withCredentials: true})
             .then(res =>{
                 dispatch(getTasks(res.data));
             })
@@ -31,7 +31,7 @@ const Tasks = () => {
     let tasksReducer = useSelector(state => state.tasksReducer);   
 
     const selfAssign =  (props) => {
-        let data = { id: props.id, data: props, date: new Date(), resourceNokiaID:localStorage.getItem('nokiaid')}
+        let data = { id: props.id, data: props, date: new Date(), resourceNokiaID:sessionStorage.getItem('nokiaid')}
         axios.post( config.baseURL + config.baseLOCATION + '/dailyTasks/selfassign', data).then(
             res => {
                 dispatch(onDeleteTask(props.id))

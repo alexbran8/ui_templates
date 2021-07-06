@@ -5,7 +5,7 @@ const User = require('../models/user')(sequelize, DataTypes)
 const { JWT_SECRET } = require('../config/configProvider')()
 const UsersController = require('express').Router()
 const passport = require('passport')
-require('../passport/passport')
+// require('../passport/passport')
 
 exports.add = (req, res) => {
   console.log(req);
@@ -27,7 +27,7 @@ signToken = user => {
 }
 
 UsersController.post('/signup', async (req, res, next) => {
-  console.log('SIGNUP')
+
   let foundUser = await User.findOne({
     where: { nokiaid: req.body.nokiaid },
     limit: 1

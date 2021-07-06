@@ -9,7 +9,7 @@ export const SignUp = data => {
   return dispatch => {
     try {
       console.log('data',data)
-      Axios.post(`${config.baseURL + config.baseLOCATION}/users/signup`, data)
+      Axios.post(`${config.baseURL + config.baseLOCATION}/users/signup`, data, { withCredentials: true })
         .then(function (response) {
           console.log('res', response.data.message)
           alert(response.data.message)
@@ -27,11 +27,11 @@ export const SignUp = data => {
       //   payload_name: decode.name,
       //   payload_nokiaid: decode.sub
       // })
-      // localStorage.setItem('token', res.data.token)
-      // localStorage.setItem('permisiuni', JSON.stringify(decode.role))
-      // localStorage.setItem('email', data.email)
-      // localStorage.setItem('name', decode.name)
-      // localStorage.setItem('nokiaid', decode.sub)
+      // sessionStorage.setItem('token', res.data.token)
+      // sessionStorage.setItem('permisiuni', JSON.stringify(decode.role))
+      // sessionStorage.setItem('email', data.email)
+      // sessionStorage.setItem('name', decode.name)
+      // sessionStorage.setItem('nokiaid', decode.sub)
     } catch (error) {
       if (error.response.status === 400) {
         dispatch({
@@ -64,11 +64,11 @@ export const SignIn = data => {
       //   payload_name: decode.name,
       //   payload_nokiaid: decode.sub
       // })
-      // localStorage.setItem('token', res.data.token)
-      // localStorage.setItem('permisiuni', JSON.stringify(decode.role))
-      // localStorage.setItem('email', data.email)
-      // localStorage.setItem('name', decode.name)
-      // localStorage.setItem('nokiaid', decode.sub)
+      // sessionStorage.setItem('token', res.data.token)
+      // sessionStorage.setItem('permisiuni', JSON.stringify(decode.role))
+      // sessionStorage.setItem('email', data.email)
+      // sessionStorage.setItem('name', decode.name)
+      // sessionStorage.setItem('nokiaid', decode.sub)
     } catch (error) {
       console.log(error)
       if (error && error.response.status === 400) {
@@ -88,11 +88,11 @@ export const SignIn = data => {
 
 export const SignOut = () => {
   return async dispatch => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('permisiuni')
-    localStorage.removeItem('email')
-    localStorage.removeItem('name')
-    localStorage.removeItem('nokiaid')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('permisiuni')
+    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('name')
+    sessionStorage.removeItem('nokiaid')
 
     dispatch({
       type: AUTH_SIGN_OUT,

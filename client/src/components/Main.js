@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import Schedule from "./Schedule";
+import Schedule from "./Calendar";
 import { config } from "../config";
-import { baseLOCATION} from "../config";
-
 var moment = require("moment");
 
 class Main extends Component {
@@ -16,26 +14,20 @@ class Main extends Component {
       employeers: [],
       events: [],
       resources: [],
-      admin: true,
       filter: {
         line_manager: "",
         team: "",
         coordinator: "",
         employeers: "",
         resources: "",
-        admin: true,
-        operational: false,
       },
     };
   }
 
   async init(data) {
-    // add checkBox params here
-    let params = { 'admin': this.state.filter.admin, 'operational': this.state.filter.operational }
-
-    const events = await Axios.post(`${ config.baseURL + config.baseLOCATION }/schedule/get`, params)
-    console.log('evemts', events)
-    if (events.data.schedule) {
+    const events = await Axios.get(`${config.baseURL+ config.baseLocation}/schedule/get`);
+    console.log("events", events);
+    if (events) {
       const fmtEvents = events.data.schedule.reduce((prev, entry) => {
         prev.push({
           id: entry.id,
@@ -53,9 +45,9 @@ class Main extends Component {
         events: fmtEvents,
       });
     }
-    const users = await Axios.get(`${ config.baseURL + config.baseLOCATION }/usersPrivate/get`);
+    const users = await Axios.get(`${baseURL}/usersPrivate/get`);
     console.log("users", users);
-    if ( users.data.users) {
+    if (users) {
       const fmtUsers = users.data.users.reduce((prev, entry) => {
         prev.push({
           id: entry.nokiaid,
@@ -74,9 +66,9 @@ class Main extends Component {
   }
 
   async filter(data) {
-    const users = await Axios.post(`${ config.baseURL + config.baseLOCATION }/usersPrivate/get/filter`, data);
+    const users = await Axios.post(`${baseURL}/usersPrivate/get/filter`, data);
     console.log("filtered users", users.data.filterUsers);
-    if (users.data.filterUsers) {
+    if (users) {
       const fltUsers = users.data.filterUsers.reduce((prev, entry) => {
         prev.push({
           id: entry.nokiaid,
@@ -91,24 +83,13 @@ class Main extends Component {
     }
   }
 
-  async onChangeCheckBox(fieldName, e) {
-      await this.setState((prevState) => ({
-        filter: {
-          ...prevState.filter,
-          [fieldName]: !prevState.filter[fieldName],
-        },
-      }));
-    this.init();
-  }
-
-
   getSchedule() {
     return (
       <Schedule resources={this.state.resources} events={this.state.events} />
     );
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     this.init();
   }
 
@@ -136,14 +117,14 @@ class Main extends Component {
                 <option value="">Line manager</option>
                 {this.state.line_manager.length > 0
                   ? this.state.line_manager.map((main) => {
-                    const name = `${main.line_manager_firstname} ${main.line_manager_lastname}`;
+                      const name = `${main.LINE_MANAGER_LASTNAME} ${main.LINE_MANAGER_FIRSTNAME}`;
 
-                    return (
-                      <option key={name} value={main.line_manager_firstname}>
-                        {name}
-                      </option>
-                    );
-                  })
+                      return (
+                        <option key={name} value={main.LINE_MANAGER_FIRSTNAME}>
+                          {name}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
               <select
@@ -158,12 +139,12 @@ class Main extends Component {
                 <option value="">Team</option>
                 {this.state.team.length > 0
                   ? this.state.team.map((main) => {
-                    return (
-                      <option key={main.DISTINCT} value={main.DISTINCT}>
-                        {main.DISTINCT}
-                      </option>
-                    );
-                  })
+                      return (
+                        <option key={main.DISTINCT} value={main.DISTINCT}>
+                          {main.DISTINCT}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
               <select
@@ -178,13 +159,13 @@ class Main extends Component {
                 <option value="">Coordinator</option>
                 {this.state.tpm.length > 0
                   ? this.state.tpm.map((main) => {
-                    const name = `${main.tpm_lastname} ${main.tpm_firstname}`;
-                    return (
-                      <option key={name} value={main.tpm_firstname}>
-                        {name}
-                      </option>
-                    );
-                  })
+                      const name = `${main.TPM_LASTNAME} ${main.TPM_FIRSTNAME}`;
+                      return (
+                        <option key={name} value={main.TPM_FIRSTNAME}>
+                          {name}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
 
@@ -200,13 +181,13 @@ class Main extends Component {
                 <option value="">Employeer</option>
                 {this.state.employeers.length > 0
                   ? this.state.employeers.map((main) => {
-                    const name = `${main.employeer}`;
-                    return (
-                      <option key={name} value={main.employeer}>
-                        {name}
-                      </option>
-                    );
-                  })
+                      const name = `${main.EMPLOYEER}`;
+                      return (
+                        <option key={name} value={main.EMPLOYEER}>
+                          {name}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
 
@@ -222,37 +203,15 @@ class Main extends Component {
                 <option value="">Resource</option>
                 {this.state.resources.length > 0
                   ? this.state.resources.map((main) => {
-                    const name = `${main.name}`;
-                    return (
-                      <option key={name} value={main.name}>
-                        {name}
-                      </option>
-                    );
-                  })
+                      const name = `${main.name}`;
+                      return (
+                        <option key={name} value={main.name}>
+                          {name}
+                        </option>
+                      );
+                    })
                   : null}
               </select>
-              <div className="checkboxContainer">
-                <div className="checkbox">
-                  <label>
-                    <input
-                      className="checkbox"
-                      type="checkbox"
-                      checked={this.state.filter.admin}
-                      onChange={(e) => this.onChangeCheckBox("admin", e)}
-                    />
-                administrative
-              </label>
-                  <label>
-                    <input
-                      className="checkbox"
-                      type="checkbox"
-                      checked={this.state.filter.operational}
-                      onChange={(e) => this.onChangeCheckBox("operational", e)}
-                    />
-                operational
-              </label>
-                </div>
-              </div>
 
               <button
                 className="btn btn-success m-3"
@@ -279,7 +238,6 @@ class Main extends Component {
                 Clear filter
               </button>
             </form>
-
             {this.state.resources.length > 0 ? (
               this.getSchedule()
             ) : (
@@ -289,7 +247,7 @@ class Main extends Component {
             )}
           </>
         ) : (
-          this.props.history.push("/nptbeta")
+          this.props.history.push("/")
         )}
       </div>
     );

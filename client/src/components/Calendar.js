@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Scheduler, { SchedulerData, ViewTypes } from 'react-big-scheduler';
 import Axios from "axios";
 //include react-big-scheduler/lib/css/style.css for styles, link it in html or import it here
@@ -6,12 +6,22 @@ import 'react-big-scheduler/lib/css/style.css';
 import withDragDropContext from './withDnDContext';
 
 import CustomModal from "./Modal";
+import Filter from "./Filter";
 import { config } from "../config";
 
-// import { resources, events } from 'pages/calendar/data';
-
-let schedulerData = new SchedulerData('2021-05-20', ViewTypes.Week);
+let schedulerData = new SchedulerData(new Date(), ViewTypes.Week, false, false,
+ {schedulerMaxHeight: 800}
+);
 schedulerData.localeMoment.locale('en');
+
+
+function useForceUpdate() {
+  const [, setTick] = useState(0);
+  const update = useCallback(() => {
+    setTick(tick => tick + 1);
+  }, [])
+  return update;
+}
 
 const Calendar = () => {
   const [viewModal2, setViewModal2] = useState(schedulerData);
@@ -19,13 +29,95 @@ const Calendar = () => {
   const [events, setEvents] = useState([])
   const [event, setEvent] = useState()
   const [slot, setSlot] = useState()
+  const [types, setTypes] = useState()
   const [editEvent, setEditEvent] = useState()
   // eslint-disable-next-line no-unused-vars
-  const [renderCounter, setRenderCounter] = useState(0);
+  const [count, setCount] = useState()
+  const [refresh, setRefresh] = useState(1);
   var moment = require("moment");
 
   useEffect(() => {
-    Axios.post(`${config.baseURL + config.baseLOCATION}/schedule/get`, params)
+		if(refresh === 0){
+			setRefresh(1);
+      setCount()
+		}
+	}, [refresh])
+	
+	useEffect(() => {
+		setRefresh(0);
+	}, [count]);
+
+
+  const sendData = async(data, viewModal) => {
+
+    console.log('sendData', data)
+    data.status =
+      localStorage.getItem("permisiuni") !== undefined
+        ? localStorage.getItem("permisiuni")
+        : "L1";
+    console.log(data.status);
+    if (
+      data.bgColor === undefined ||
+      data.bgColor === null ||
+      data.bgColor === ""
+    ) {
+      data.bgColor = "#5DB5F4";
+    }
+    if (data.type === undefined || data.type === null || data.type === "") {
+      data.type = "Null";
+    }
+    
+    // const response = await Axios.post(`${ config.baseURL + baseLOCATION }/schedule/add`, data, {withCredentials: true} );
+
+    console.log('data',data);
+    if (data.id === undefined) {
+      data.id = 0;
+      console.log("aici");
+    }
+
+    let newFreshId = 0;
+
+    let newEvent = {
+      id: newFreshId,
+      title: data.title,
+      start: data.start,
+      end: data.end,
+      resourceId: data.nokiaid,
+      bgColor: "#E74C3C"
+    };    
+    setCount(data.title)
+    setEvents(schedulerData.events)
+    schedulerData.addEvent(newEvent);
+    setViewModal(schedulerData);
+  
+    setEvent(undefined)    
+  }
+
+  
+
+ const getType = async () => {
+    const types = await Axios.get(`${ config.baseURL + config.baseLOCATION }/types`, {withCredentials: true});
+    if (types) setTypes(types.data.data);
+  }
+
+
+ const  toggleLegend = () => {
+    this.setState({ legend: !this.state.legend });
+  }
+
+  const reset = () =>  {
+    setEvent(undefined)
+  }
+
+  const resetEdit = () =>  {
+    setEditEvent(undefined)
+  }
+
+
+
+  useEffect(() => {
+    getType();
+    Axios.post(`${config.baseURL + config.baseLOCATION}/schedule/get`, params, {withCredentials: true})
       .then(res => {
         const fmtEvents = res.data.schedule.reduce((prev, entry) => {
           prev.push({
@@ -45,7 +137,7 @@ const Calendar = () => {
 
       }
       )
-    Axios.post(`${config.baseURL + config.baseLOCATION}/usersPrivate/get/filter`, data)
+    Axios.post(`${config.baseURL + config.baseLOCATION}/usersPrivate/get/filter`, data, {withCredentials: true})
       .then(res => {
         const fmtUsers = res.data.filterUsers.reduce((prev, entry) => {
           prev.push({
@@ -72,6 +164,85 @@ const Calendar = () => {
     setViewModal(schedulerData);
   };
 
+ const deleteItem = (schedulerData, event) => {
+    if (sessionStorage.getItem('roles')=== "L3") {
+      if (
+        window.confirm(
+          `Are you sure you want to delete: ${event.title}  assigned to ${event.name} with ${event.replacement} as replacement?`
+        )
+      )
+        console.log(schedulerData)
+        schedulerData.removeEvent(event);
+        // Axios.delete(`${ config.baseURL + config.baseLOCATION }/schedule/delete/${event.id}`, event,  {withCredentials: true});
+        
+        setViewModal2(schedulerData);
+        setCount(1)
+        console.log(schedulerData)
+    } else {
+      return;
+    }
+  };
+const updateData = (data) => {
+    if (
+      data.bgColor === undefined ||
+      data.bgColor === null ||
+      data.bgColor === ""
+    ) {
+      data.bgColor = "#5DB5F4";
+    }
+    if (data.type === undefined || data.type === null || data.type === "") {
+      data.type = "Null";
+    }
+    // const response = await Axios.post(
+    //   `${baseURL}/schedule/update/${data.id}`,
+    //   data, {withCredentials: true}
+    // );
+    // if (!response) {
+    //   alert("failed");
+    // }
+    console.log(events)
+    console.log(data.id)
+      events.map((item) => {
+          item.id === data.id? item = data: null;
+      })
+      console.log(events)
+      schedulerData.setEvents(events);
+      setViewModal2(schedulerData)
+    
+    
+    console.log(data)
+    // setViewModal2(data.schedulerData);
+    setCount(0)
+    resetEdit();
+    // this.getType();
+    
+  }
+
+
+  const editItem = (schedulerData, event) => {
+    alert("This feature is currently under development. Please delete and add event as temporary solution... ")
+    // if (sessionStorage.getItem('roles') === "L3") {
+    //   let editEvent = {
+    //     id: event.id,
+    //     // schedulerData: schedulerData,
+    //     nokiaid: event.resourceId,
+    //     title: event.title,
+    //     type: event.type,
+    //     replacement: event.replacement,
+    //     start: event.start,
+    //     end: event.end,
+    //     createdBy: event.createdBy,
+    //     status: event.status,
+    //   };
+    //   setEditEvent(editEvent)
+    //   console.log(event);
+    // } else {
+    //   return;
+    // }
+  };
+
+
+
 
   const onSelectDate = (schedulerData, date) => {
     setEvents(schedulerData.events)
@@ -96,12 +267,21 @@ const Calendar = () => {
     setRenderCounter(o => ++o);
   };
 
+  const  eventClicked = (schedulerData, event) => {
+    alert(
+      `You clicked event: ${event.title} with ${
+        event.replacement ? event.replacement : `no one`
+      } as replacement.`
+    );
+  };
+
+
   const slotClickedFunc = (schedulerData, slot) => {
     console.log(slot)
     setSlot(slot.slotId);
     console.log(slot)
   };
-  const newEvent = (schedulerData, slotId, slotName, start, end, type, item) => {
+  const newEvent = async (schedulerData, slotId, slotName, start, end, type, item) => {
     let newEvent = {
       schedulerData: schedulerData,
       id: 0,
@@ -114,46 +294,8 @@ const Calendar = () => {
       dayDiff: moment(end).diff(start, "days") + 1,
       // bgColor: "purple"
     };
-    alert(newEvent)
-    console.log(newEvent)
-    setEditEvent(newEvent)
-    // let newFreshId = 0;
-    // schedulerData.events.forEach((item) => {
-    //         newFreshId = item.id + 1;
-    // });
-    //   this.setState({
-    //     viewModel: schedulerData
-    // })
-    //   let newEvent = {
-    //     schedulerData: schedulerData,
-    //     id: newFreshId,
-    //     title: 'Hotline',
-    //     start: start,
-    //     nokiaid: slotId,
-    //     end: end,
-    //     repalcement: "",
-    //     fullname: slotName,
-    //     createdBy: this.props.name,
-    //     type: 'Hotline',
-    //     status:this.props.role,
-    //     dayDiff: moment(end).diff(start, "days") + 1,
-    //     resourceId: slotId,
-    //     bgColor: '#2ECC71'
-    // }
-    // this.setState({ event: newEvent });
-    // console.log(schedulerData)
-    // // Axios.post(`${ config }/schedule/add`, newEvent);
-    // schedulerData.addEvent(newEvent);
-    // console.log(schedulerData)
-    // this.setState({ viewModel: schedulerData });
-    // console.log(this.state.viewModel)
-    // console.log(schedulerData)
-    // schedulerData.addEvent(newEvent);
-    // // console.log('here2', newEvent)
-    // this.setState({
-    //     viewModel: schedulerData
-    // })
-    // console.log(schedulerData)
+    console.log('data', schedulerData)
+    setEvent(newEvent)   
   };
 
   let params = { 'admin': true, 'operational': false }
@@ -170,16 +312,17 @@ const Calendar = () => {
 
   return (
     <div>
+      <Filter />
         {event || editEvent ? (
           <CustomModal
             resources={schedulerData.resources}
-            // reset={() => this.reset()}
-            // resetEdit={() => this.resetEdit()}
+            reset={() => reset()}
+            resetEdit={() => resetEdit()}
             event={event}
             editEvent={editEvent}
-            // sendData={(e) => this.sendData(e, viewModel)}
-            // updateData={(e) => this.updateData(e)}
-            // types={types}
+            sendData={(e) => sendData(e, schedulerData)}
+            updateData={(e) => updateData(e)}
+            types={types}
           />
         ) : null}
       {slot ? (
@@ -189,15 +332,22 @@ const Calendar = () => {
           id={slot}
         />
       ) : null}
+      {refresh ?
       <Scheduler
-        schedulerData={schedulerData}
+        schedulerData={viewModal2}
         prevClick={prevClick}
         nextClick={nextClick}
+        eventItemClick={eventClicked}
         onViewChange={onViewChange}
         onSelectDate={onSelectDate}
         newEvent={newEvent}
         slotClickedFunc={slotClickedFunc}
+        viewEventClick={sessionStorage.getItem('roles') === "L3" ? editItem : null}  
+        viewEventText="Edit"
+        viewEvent2Text={sessionStorage.getItem('roles') === "L3" ? "Delete" : null}
+        viewEvent2Click={sessionStorage.getItem('roles') === "L3" ? deleteItem : null}  
       />
+      : null}
     </div>
   );
 };

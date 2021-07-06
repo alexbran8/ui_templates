@@ -14,10 +14,9 @@ class Approval extends Component {
   }
 
   async componentDidMount() {
-    const events = await Axios.get(`${ config.baseURL + config.baseLOCATION }/schedule/get/status`);
+    const events = await Axios.get(`${ config.baseURL + config.baseLOCATION }/schedule/get/status`,{withCredentials: true});
     this.setState({ events: events.data.data });
     console.log("events to approve", events);
-    console.log(this.state)
   }
 
   createArr(id) {
@@ -32,6 +31,7 @@ class Approval extends Component {
   }
 
   renderEvents(data) {
+   
     if (data.length > 0) {
       var x = data.map((e) => {
         return (
@@ -107,7 +107,7 @@ class Approval extends Component {
   render() {
     return (
       <div>
-        {(this.props.role === "L3" || this.props.role === "L2") &&
+      {(this.props.role === "L3" || this.props.role === "L2") &&
         this.state.events.length > 0 ? (
           <>
             <div className="text-center m-4 row">

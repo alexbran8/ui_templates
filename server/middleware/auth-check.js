@@ -1,7 +1,7 @@
 function authCheckMiddleware () {
   return function (req, res, next) {
-    console.log(req.user)
-    if (req.user) {
+    console.log('req',req)
+    if (req.isAuthenticated()) {
       next()
     } else {
       // res.redirect('/auth/login-adfs')

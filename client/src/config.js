@@ -2,17 +2,17 @@ var config2 = []
 
 const prod = {
     baseURL: `${window.location.origin}`,
-    baseLOCATION: "/ecosystem",
+    baseLOCATION: "/nptbeta",
   };
   
   const dev = {
-    baseURL: "http://localhost:8080",
+    baseURL: "http://localhost:4000",
     baseLOCATION: "",
   };
   
 
   config2 = process.env.NODE_ENV === `development` ? dev : prod
-  config2.AppName = 'EcoSystem'
+  config2.AppName = 'NPT Beta'
   config2.appVersion = '1.00'
 
   export const config = config2

@@ -21,7 +21,8 @@ router.get('/logout', (req, res) => {
 router.get('/login-adfs', passport.authenticate('adfs', { session: false }))
 
 router.get('/cbAdfs', passport.authenticate('adfs'), (req, res) => {
-  res.redirect('/nptbeta')
+  // check if needed to add location based on env
+  res.redirect('/')
 })
 
 module.exports = router

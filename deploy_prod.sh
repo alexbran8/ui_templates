@@ -7,11 +7,11 @@ docker build -t ecosystem .
 
 
 # stop existing container
-docker stop ecosystem && docker rm ecosystem
+docker stop ecosystem  && docker rm ecosystem 
 
 # delete existing container
 
 # delete existing image
 
 # run new image
-docker run  -d -p 5003:8080  --name ecosystem ecosystem
+docker run  -d -p 5002:4000  --name ecosystem  ecosystem 
