@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./Header.scss"
 import React, { Component } from "react";
 import { config } from "../config"
 import { AUTH_SIGN_UP, AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../actions/types'
@@ -109,31 +110,7 @@ export default class Header extends Component {
                   className="nav-link text-white"
                   to={config.baseLOCATION + "/schedule"}
                 >
-                  Schedule
-                      </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  to={config.baseLOCATION + "/approvals"}
-                >
-                  Approvals
-                      </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  to={config.baseLOCATION + "/request"}
-                >
-                  Add
-                      </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  className="nav-link text-white"
-                  to={config.baseLOCATION + "/tasks"}
-                >
-                  Tasks
+                  Attendance Form
                       </Link>
               </li>
             </ul>
@@ -146,18 +123,10 @@ export default class Header extends Component {
               className="nav-link text-white"
               to={config.baseLOCATION + "/signup"}
             >
-              Add Users
+              Reports
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              className="nav-link text-white"
-              to={config.baseLOCATION + "/normcheck"}
-            >
-              NormCheck
-            </Link>
-          </li>
-            <ul className="menu">
+          <ul className="menu">
               {authenticated ? (
                 <Button color="danger" onClick={this._handleLogoutClick}>Logout {user.email}</Button>
               ) : (
@@ -182,7 +151,11 @@ export default class Header extends Component {
     // Logout using Twitter passport api
     // Set authenticated state to false in the HomePage
     window.open(config.baseURL + config.baseLOCATION + "/auth/logout", "_self");
+    sessionStorage.removeItem('exp')
     sessionStorage.removeItem('userEmail')
+    sessionStorage.removeItem('name')
+    sessionStorage.removeItem('token')
+    sessionStorage.removeItem('roles')
     this.props.handleNotAuthenticated();
   };
   _handleNotAuthenticated = () => {

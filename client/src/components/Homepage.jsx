@@ -2,6 +2,7 @@ import Header from "./Header.jsx";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import {config} from "../config"
+import "./Homepage.scss"
 
 
 export default class HomePage extends Component {
@@ -26,17 +27,19 @@ export default class HomePage extends Component {
   render() {
     const { authenticated, user } = this.state;
     return (
-      <div>
+      <div className="homeContainer">
         <div>
-          {!authenticated ? (
+          {/* add user to redux */}
+          {!sessionStorage.getItem('userEmail') ? (
             <h1>Welcome!</h1>
+
           ) : (
             <div>
-              {console.log(this.state.user)}
               <h1>You have login succcessfully!</h1>
               <h2>Welcome {this.state.user.email}!</h2>
             </div>
           )}
+          <h3>This web application is still under development...</h3>
         </div>
       </div>
     );
