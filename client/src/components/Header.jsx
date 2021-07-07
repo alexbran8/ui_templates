@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Header.scss"
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { config } from "../config"
 import { AUTH_SIGN_UP, AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../actions/types'
 import {
@@ -12,8 +12,21 @@ import {
   Nav,
   NavItem,
   Button,
-  Container
+  UncontrolledPopover, PopoverHeader, PopoverBody
 } from 'reactstrap'
+
+const PopoverContent = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <PopoverHeader>NOKIA {config.AppName} WEB APPLICATION {config.appVersion}</PopoverHeader>
+      <PopoverBody>
+        LATEST UPDATES:
+      </PopoverBody>
+    </>
+  );
+}
 
 export default class Header extends Component {
   constructor(props) {
@@ -95,12 +108,16 @@ export default class Header extends Component {
   }
 
 
+
   render() {
     const { authenticated, user } = this.state;
     return (
       <Navbar className="navbar" expand="sm">
-        <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
+        <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
           <b>NOKIA</b> {config.AppName} {config.appVersion}
+          <UncontrolledPopover trigger="hover" placement="top" target="navbar-brand">
+          <PopoverContent  />
+      </UncontrolledPopover>
         </Link>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
