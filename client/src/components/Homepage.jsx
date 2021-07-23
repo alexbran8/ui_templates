@@ -18,27 +18,27 @@ const cardClick = (resource_origin) => {
   console.log('test', resource_origin)
 }
   return (
-    <div className="homeContainer">
+    <div className="home-container">
 
       <div>
         {/* add user to redux */}
         {!sessionStorage.getItem('userEmail') ? (
 
           <div>
-            <div className="resourceType-container">
+            <div className="card-container">
               <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('student')}}>
                 <Card className="card-item">
                   <CardBody>
-                    <CardTitle>I am a student</CardTitle>
-                    <CardText className="text-muted">Select this if you are stundent at University and you want to login using your facebook / google account</CardText>
+                    <CardTitle className="card-title">student</CardTitle>
+                    <CardText className="text-muted">Select this if you are stundent at University</CardText>
                   </CardBody>
                 </Card>
               </a>
               <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('nokia')}}>
                 <Card className="card-item">
                   <CardBody>
-                    <CardTitle>I am a Nokia user</CardTitle>
-                    <CardText className="text-muted">Select this if you are a nokia user </CardText>
+                    <CardTitle className="card-title">Nokia tentant</CardTitle>
+                    <CardText className="text-muted">Select this if you are a nokia employee / guest</CardText>
                   </CardBody>
                 </Card>
               </a>

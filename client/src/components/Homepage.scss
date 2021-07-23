@@ -1,24 +1,47 @@
-.homeContainer {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 150px;
-    width: 60%;
+.home-container {
+    position: absolute;
+    width: 40%;
+    height: 60%;
+    z-index: 15;
+    top: 20%;
+    left: 30%;
+    // margin: -100px 0 0 -150px;
+    // background: red;
+    // margin-left: auto;
+    // margin-right: auto;
+    // margin-top: 250px;
+    // bottom: auto;
+    // // height: 409px;
+    // width: 70%;
     text-align: center;
 }
 
 .card-item {
     // margin-top: 150px;
-    width: 500px;
+    width: 100%;
     // padding-right: 5%;
     height: 150px;
 
 }
 
-.resourceType-container{
+.card-item :hover {
+    zoom: 110%;
+    transition: 10ms;
+}
+
+.card-container{
+    position: absolute;
+    top:auto;
+    bottom: auto;
     display: flex;
     justify-content: space-between;
-    height: 30%;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     flex:auto;
     flex-wrap: wrap-reverse;
-    
+}
+.card-title {
+    font-weight: bold;
+    text-transform: uppercase;
 }

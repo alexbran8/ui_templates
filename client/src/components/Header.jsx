@@ -114,14 +114,14 @@ export default class Header extends Component {
     return (
       <Navbar className="navbar" expand="sm">
         <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
-          <b>NOKIA</b> {config.AppName} {config.appVersion}
+          <b>NOKIA</b> {config.AppName} 
           <UncontrolledPopover trigger="hover" placement="top" target="navbar-brand">
           <PopoverContent  />
       </UncontrolledPopover>
         </Link>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav navbar>
-            <ul className="navbar-nav text-center">
+            {/* <ul className="navbar-nav text-center">
               <li className="nav-item">
                 <Link
                   className="nav-link text-white"
@@ -130,11 +130,11 @@ export default class Header extends Component {
                   Attendance Form
                       </Link>
               </li>
-            </ul>
+            </ul> */}
           </Nav>
         </Collapse>
         <div className="navbar-text">
-          <Nav navbar>
+          {/* <Nav navbar>
           <li className="nav-item">
             <Link
               className="nav-link text-white"
@@ -150,7 +150,7 @@ export default class Header extends Component {
                 <Button color="primary" onClick={this._handleSignInClick}>Login</Button>
               )}
             </ul>
-          </Nav>
+          </Nav> */}
         </div>
       </Navbar>
 
