@@ -1,49 +1,60 @@
 import Header from "./Header.jsx";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import {config} from "../config"
+import { config } from "../config"
 import "./Homepage.scss"
 
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
-export default class HomePage extends Component {
-  static propTypes = {
-    user: PropTypes.shape({
-      name: PropTypes.string,
-      profileImageUrl: PropTypes.string,
-      twitterId: PropTypes.string,
-      screenName: PropTypes.string,
-      _id: PropTypes.string
-    })
-  };
-    state = {
-      user: {},
-      error: null,
-      authenticated: false
-    };
 
+
+const homePage = () => {
 
   
-
-  render() {
-    const { authenticated, user } = this.state;
-    return (
-      <div className="homeContainer">
-        <div>
-          {/* add user to redux */}
-          {!sessionStorage.getItem('userEmail') ? (
-            <h1>Welcome!</h1>
-
-          ) : (
-            <div>
-              <h1>You have login succcessfully!</h1>
-              <h2>Welcome {this.state.user.email}!</h2>
-            </div>
-          )}
-          <h3>This web application is still under development...</h3>
-        </div>
-      </div>
-    );
-  }
-
-
+const cardClick = (resource_origin) => {
+  console.log('test', resource_origin)
 }
+  return (
+    <div className="homeContainer">
+
+      <div>
+        {/* add user to redux */}
+        {!sessionStorage.getItem('userEmail') ? (
+
+          <div>
+            <div className="resourceType-container">
+              <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('student')}}>
+                <Card className="card-item">
+                  <CardBody>
+                    <CardTitle>I am a student</CardTitle>
+                    <CardText className="text-muted">Select this if you are stundent at University and you want to login using your facebook / google account</CardText>
+                  </CardBody>
+                </Card>
+              </a>
+              <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('nokia')}}>
+                <Card className="card-item">
+                  <CardBody>
+                    <CardTitle>I am a Nokia user</CardTitle>
+                    <CardText className="text-muted">Select this if you are a nokia user </CardText>
+                  </CardBody>
+                </Card>
+              </a>
+            </div>
+          </div>
+
+        ) : (
+          <div>
+            <h1>You have login succcessfully!</h1>
+            <h2>Welcome {state.user.email}!</h2>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+export default homePage;

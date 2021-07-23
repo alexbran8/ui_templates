@@ -2,6 +2,23 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
-    width: 500px;
+    width: 60%;
     text-align: center;
+}
+
+.card-item {
+    // margin-top: 150px;
+    width: 500px;
+    // padding-right: 5%;
+    height: 150px;
+
+}
+
+.resourceType-container{
+    display: flex;
+    justify-content: space-between;
+    height: 30%;
+    flex:auto;
+    flex-wrap: wrap-reverse;
+    
 }

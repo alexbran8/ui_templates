@@ -43,14 +43,14 @@ const apolloServer = new ApolloServer({
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-config.db
-  .authenticate()
-  .then(() => {
-    console.log("Connection has been established successfully.");
-  })
-  .catch((err) => {
-    console.error("Unable to connect to the database:", err);
-  });
+// config.db
+//   .authenticate()
+//   .then(() => {
+//     console.log("Connection has been established successfully.");
+//   })
+//   .catch((err) => {
+//     console.error("Unable to connect to the database:", err);
+//   });
 
 
 app.use(
