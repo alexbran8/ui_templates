@@ -8,8 +8,9 @@ import authGuard from "./HOCs/authGuard.js";
 export const AppRouter = () => {
   return (
     <HashRouter  >
-      <Header basename={config.baseLOCATION} />
+      {/* <Header basename={config.baseLOCATION} /> */}
       <Route exact path={"/"} component={Homepage} />
+      
       {/* <Route path={config.baseLOCATION + "/signup"} component={authGuard(signUpForm)} /> */}
     </HashRouter>
   );
