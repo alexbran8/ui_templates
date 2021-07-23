@@ -38,7 +38,7 @@ const cardClick = (resource_origin) => {
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">Nokia tentant</CardTitle>
-                    <CardText className="text-muted">Select this if you are a nokia employee / guest</CardText>
+                    <CardText className="text-muted">Select this if you are a nokia employee / guest </CardText>
                   </CardBody>
                 </Card>
               </a>
