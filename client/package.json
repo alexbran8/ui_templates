@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "test": "jest --config ./jest.config.js",
     "test:watch": "npm run test -- --watch",
-    "start": "cross-env NODE_ENV=development webpack  serve --port 3000 --config ./webpack.config.js"
+    "start": "cross-env NODE_ENV=development webpack  serve --port 3000 PUBLIC_URL=https://ecosystem.eecloud.dynamic.nsn-net.net/#/ --config ./webpack.config.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.5",
