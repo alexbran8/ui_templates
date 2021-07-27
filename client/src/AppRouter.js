@@ -1,6 +1,7 @@
 import React from "react";
 import Landingpage from "./components/Landingpage.jsx";
 import Homepage from "./components/Homepage";
+import Timeline from "./components/Timeline";
 
 import {Header} from "./components/Header.jsx";
 import { HashRouter, Route } from "react-router-dom";
@@ -17,6 +18,7 @@ export const AppRouter = (props) => {
       />
       <Route exact path={"/"} component={Landingpage} />
       <Route exact path={"/home"} component={Homepage} />
+      <Route exact path={"/devtimeline"} component={Timeline} />
       {/* {config.baseLOCATION + "/signup"} component={authGuard(signUpForm)} */}
     </HashRouter>
   );

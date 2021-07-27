@@ -210,7 +210,7 @@ export const Header = () => {
     return (
       <Navbar className="navbar" expand="sm">
         <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
-          <div><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> for students </div>: null }</div>
+          <div className="navbar-brand"><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> for students </div>: null }</div>
           <UncontrolledPopover trigger="hover" placement="top" target="navbar-brand">
             {/* {console.log(state)} */}
           <PopoverContent  />
@@ -237,9 +237,9 @@ export const Header = () => {
           <li className="nav-item">
             <Link
               className="nav-link text-white"
-              to={config.baseLOCATION + "/signup"}
+              to={config.baseLOCATION + "/devtimeline"}
             >
-              Reports
+              Development Timeline
             </Link>
           </li>
           <ul className="menu">
