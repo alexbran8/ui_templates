@@ -104,6 +104,7 @@ app.use("/types", find(Types));
 
 
 app.use("/", express.static(path.resolve(__dirname, "../client/public/dist")));
+app.use("/public", express.static(path.resolve(__dirname, "../client/public")));
 
 // if it's already login, send the profile response,
 // otherwise, send a 401 response that the user is not authenticated
