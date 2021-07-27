@@ -1,8 +1,10 @@
-import Header from "./Header.jsx";
-import PropTypes from "prop-types";
-import React, { Component } from "react";
+
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { UPDATE_PROFILE, AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../actions/types'
 import { config } from "../config"
-import "./Homepage.scss"
+import "./Landingpage.scss"
 
 import {
   Card, CardImg, CardText, CardBody,
@@ -11,11 +13,20 @@ import {
 
 
 
-const homePage = () => {
-
+const Langingpage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory()
   
 const cardClick = (resource_origin) => {
+  
   console.log('test', resource_origin)
+  dispatch({
+    type: UPDATE_PROFILE,
+    payload: {
+      type: resource_origin,
+    },
+  });
+  history.push('/home');
 }
   return (
     <div className="home-container">
@@ -25,8 +36,11 @@ const cardClick = (resource_origin) => {
         {!sessionStorage.getItem('userEmail') ? (
 
           <div>
+         
+            {/* <Card props={props} /> */}
+             
             <div className="card-container">
-              <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('student')}}>
+            <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('student')}}>
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">student</CardTitle>
@@ -57,4 +71,4 @@ const cardClick = (resource_origin) => {
   );
 }
 
-export default homePage;
+export default Langingpage;
