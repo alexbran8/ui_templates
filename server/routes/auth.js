@@ -22,7 +22,7 @@ router.get('/login-adfs', passport.authenticate('adfs', { session: false }))
 
 router.get('/cbAdfs', passport.authenticate('adfs'), (req, res) => {
   // check if needed to add location based on env
-  res.redirect('/')
+  res.redirect('/home')
 })
 
 module.exports = router
