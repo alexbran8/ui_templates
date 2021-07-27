@@ -1,7 +1,7 @@
 import React from "react";
 import Landingpage from "./components/Landingpage.jsx";
 import Homepage from "./components/Homepage";
-import Timeline from "./components/Timeline.tsx";
+import Timeline from "./components/Timeline.jsx";
 
 import {Header} from "./components/Header.jsx";
 import { HashRouter, Route } from "react-router-dom";
