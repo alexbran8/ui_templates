@@ -208,13 +208,10 @@ export const Header = () => {
     setState({ authenticated: false });
   };
     return (
-      <Navbar className="navbar" expand="sm">
+      <Navbar className="navbar sticky-top" expand="sm">
         <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
           <div className="navbar-brand"><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> for students </div>: null }</div>
-          <UncontrolledPopover trigger="hover" placement="top" target="navbar-brand">
-            {/* {console.log(state)} */}
-          <PopoverContent  />
-      </UncontrolledPopover>
+         
         </Link>
         <Collapse 
         // isOpen={isOpen} 
