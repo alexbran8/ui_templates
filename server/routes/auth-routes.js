@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const passport = require("passport");
-// const CLIENT_HOME_PAGE_URL = "http://localhost:3000"
-console.log(process.env.NODE_ENV)
-const CLIENT_HOME_PAGE_URL = process.env.NODE_ENV === `development` ? "http://localhost:3000/#/home" :  'https://apps.gdceur.eecloud.dynamic.nsn-net.net/ecosystem/#/home';
+const config = require("../config/config")
+
+console.log(config)
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
@@ -27,17 +27,17 @@ router.get("/login/failed", (req, res) => {
 // When logout, redirect to client
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(CLIENT_HOME_PAGE_URL);
+  res.redirect(config.CLIENT_HOME_PAGE_URL);
 });
 
 // auth with twitter
-router.get("/twitter", passport.authenticate("adfs"));
-
+router.get("/azure", passport.authenticate("adfs"));
+console.log('test',config.CLIENT_HOME_PAGE_URL)
 // redirect to home page after successfully login via twitter
 router.get(
-  "/twitter/redirect/auth/cbAdfs",
+  "/azure/redirect/auth/cbAdfs",
   passport.authenticate("adfs", {
-    successRedirect: CLIENT_HOME_PAGE_URL,
+    successRedirect: config.CLIENT_HOME_PAGE_URL,
     failureRedirect: "/auth/login/failed"
   })
 );
