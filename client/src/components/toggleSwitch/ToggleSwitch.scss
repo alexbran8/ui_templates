@@ -5,6 +5,10 @@ $toggle-colour: #e6141480;
 $white: #fff;
 $focus-color: #ff0;
 
+$assetPath: '~/static/';
+$logo-en: '#{$assetPath}en.jpg';
+$logo-ro: '#{$assetPath}ro.jpg';
+
 .toggle-switch {
   position: relative;
   margin-right: 10px;
@@ -59,7 +63,7 @@ $focus-color: #ff0;
       text-transform: uppercase;
       padding-left: 10px;
 
-      background: url(http://localhost:4000/static/en.jpg) 20% 50% no-repeat;
+      background: url(#{$logo-en}) 20% 50% no-repeat;
       background-size: 40%;
       // background-color: $toggle-colour;
       // background-attachment: scroll;
@@ -79,7 +83,7 @@ $focus-color: #ff0;
     text-transform: uppercase;
     padding-right: 10px;
 
-    background: url(http://localhost:4000/static/ro.jpg) 80% 50% no-repeat;
+    background: url(#{$logo-ro}) 80% 50% no-repeat;
     background-size: 40%;
     // background-color: $label-colour;
     // border: $label-colour 5px;
