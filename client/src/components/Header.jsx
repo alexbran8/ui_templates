@@ -11,6 +11,10 @@ import {
   Nav,
   UncontrolledPopover, PopoverHeader, PopoverBody
 } from 'reactstrap'
+import { withTranslation } from "react-i18next";
+import "../services/i18n";
+import LanguageSelector from "./LanguageSelector";
+import { useTranslation } from "react-i18next";
 
 const PopoverContent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -112,6 +116,12 @@ export const Header = () => {
   const user = useSelector((state) => ({ auth: state.auth }));
   const [state, setState] = useState();
 
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
+
  useEffect(() => {
      fetch(config.baseURL + config.baseLOCATION + "/auth/login/success/", {
           method: "GET",
@@ -210,7 +220,7 @@ export const Header = () => {
     return (
       <Navbar className="navbar sticky-top" expand="sm">
         <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
-          <div className="navbar-brand"><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> for students </div>: null }</div>
+          <div className="navbar-brand"><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div>: null }</div>
          
         </Link>
         <Collapse 
@@ -231,22 +241,25 @@ export const Header = () => {
         </Collapse>
         <div className="navbar-text">
           <Nav navbar>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link
               className="nav-link text-white"
               to={config.baseLOCATION + "/devtimeline"}
             >
               Development Timeline
             </Link>
-          </li>
+          </li> */}
+          
           <ul className="menu">
               {state && state.authenticated ? (
                 <Button color="danger" onClick={_handleLogoutClick}>Logout {state.user.email}</Button>
               ) : (
-                <Button color="primary" onClick={_handleSignInClick}>Login</Button>
+                <Button color="primary" onClick={_handleSignInClick}>{t("login.label")}</Button>
               )}
             </ul>
+            <LanguageSelector />
           </Nav>
+          
         </div>
       </Navbar>
 

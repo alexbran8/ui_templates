@@ -68,7 +68,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 // deserialize cookie from the browser
 app.use(passport.session());
-
+app.use("/static", express.static("static"));
 // set up cors to allow us to accept requests from our client
 app.use(
   cors({
@@ -117,6 +117,7 @@ app.get("/", authCheck, (req, res) => {
     cookies: req.cookies
   });
 });
+
 
 apolloServer.applyMiddleware({ app, path: "/graphql" });
 
