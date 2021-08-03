@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken')
+const config = require("./config")
+const router = require("express").Router();
 
 module.exports = function (
   accessToken,
@@ -7,7 +9,8 @@ module.exports = function (
   profile,
   done
 ) {
-  console.log(`**Passport ADFS strategy...`)
+  try {
+  console.log(`**Passport ADFS strategy ...`)
   const userProfile = jwt.decode(params.id_token, '', true)
   // New user
   console.log(`**New ADFS user...`)
@@ -30,4 +33,9 @@ module.exports = function (
   console.log(userProfile.roles[0])
   console.log(`**ADFS user added...`)
   return done(null, user)
+}
+catch {
+  console.log('error');
+  return done(null, null)
+}
 }
