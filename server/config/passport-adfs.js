@@ -15,10 +15,6 @@ module.exports = function (
   // New user
   console.log(`**New ADFS user...`)
 
-  console.log(JSON.stringify(userProfile))
-  console.log(profile)
-  console.log(params)
-
   var user = {
     id: userProfile.aud,
     groups: userProfile.groups,
