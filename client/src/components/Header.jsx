@@ -252,9 +252,9 @@ export const Header = () => {
           
           <ul className="menu">
               {state && state.authenticated ? (
-                <Button color="danger" onClick={_handleLogoutClick}>Logout {state.user.email}</Button>
+                <Button className="log-button" color="danger" onClick={_handleLogoutClick}>Logout {state.user.email}</Button>
               ) : (
-                <Button color="primary" onClick={_handleSignInClick}>{t("login.label")}</Button>
+                <Button className="log-button" color="primary" onClick={_handleSignInClick}>{t("login.label")}</Button>
               )}
             </ul>
             <LanguageSelector />

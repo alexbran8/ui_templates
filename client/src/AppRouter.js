@@ -21,7 +21,6 @@ export const AppRouter = (props) => {
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
-      {/* {config.baseLOCATION + "/signup"} component={authGuard(signUpForm)} */}
     </HashRouter>
   );
 };

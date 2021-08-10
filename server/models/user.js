@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { db } = require('../config/configProvider')()
+const { db } = require('../config/config')
 
 module.exports = function(DataTypes) {
   const User = db.define(
