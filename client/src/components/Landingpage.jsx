@@ -1,9 +1,10 @@
 
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { UPDATE_PROFILE, AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../actions/types'
+import { UPDATE_PROFILE_TYPE, AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../redux/reducers/types'
+import { useSelector, useDispatch } from "react-redux";
 import { config } from "../config"
+
 import "./Landingpage.scss"
 
 import {
@@ -13,34 +14,27 @@ import {
 
 
 
-const Langingpage = () => {
+const Landingpage = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
-  
-const cardClick = (resource_origin) => {
-  
-  console.log('test', resource_origin)
-  dispatch({
-    type: UPDATE_PROFILE,
-    payload: {
-      type: resource_origin,
-    },
-  });
-  history.push('/home');
-}
+  const history = useHistory();
+  const user = useSelector((state) => ({ auth: state.auth }));
+
+  const cardClick = (resource_origin) => {
+    dispatch({
+      type: UPDATE_PROFILE_TYPE,
+      payload: {
+        type: resource_origin,
+      },
+    });
+    history.push('/home');
+  }
   return (
     <div className="home-container">
-
       <div>
-        {/* add user to redux */}
-        {!sessionStorage.getItem('userEmail') ? (
-
+        {!user.auth.token ? (
           <div>
-         
-            {/* <Card props={props} /> */}
-             
             <div className="card-container">
-            <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('student')}}>
+              <a style={{ cursor: 'pointer' }} onClick={() => { cardClick('student') }}>
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">student</CardTitle>
@@ -48,7 +42,7 @@ const cardClick = (resource_origin) => {
                   </CardBody>
                 </Card>
               </a>
-              <a style={{ cursor: 'pointer' }} onClick={() => {cardClick('nokia')}}>
+              <a style={{ cursor: 'pointer' }} onClick={() => { cardClick('nokia') }}>
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">Nokia tentant</CardTitle>
@@ -61,8 +55,8 @@ const cardClick = (resource_origin) => {
 
         ) : (
           <div>
-            <h1>You have login succcessfully!</h1>
-            <h2>Welcome {state.user.email}!</h2>
+            <h1>{user.auth.name}, you have been logeed in succcessfully!</h1>
+            <Button onClick={() => { cardClick(user.auth.type) }}>Continue here ...</Button>
           </div>
         )}
 
@@ -71,4 +65,4 @@ const cardClick = (resource_origin) => {
   );
 }
 
-export default Langingpage;
+export default Landingpage;

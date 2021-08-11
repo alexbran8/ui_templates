@@ -3,6 +3,8 @@ import "./Header.scss"
 import React, { useEffect, useState } from "react";
 import { config } from "../config"
 import { useSelector, useDispatch } from "react-redux";
+import { AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../redux/reducers/types'
+import { ExitToApp, ThreeDRotation } from '@material-ui/icons';
 
 import {
   Collapse,
@@ -16,6 +18,8 @@ import "../services/i18n";
 import LanguageSelector from "./LanguageSelector";
 import { useTranslation } from "react-i18next";
 
+
+
 const PopoverContent = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -28,89 +32,6 @@ const PopoverContent = () => {
     </>
   );
 }
-
-// class Header extends Component {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       firstName: null,
-//       lastName: null,
-//       loginName: null,
-//       isOpen: false
-//     }
-//     // state = {
-//     //   user: {},
-//     //   error: null,
-//     //   authenticated: false
-//     // };
-//   }
-//   // static propTypes = {
-//   //   authenticated: PropTypes.bool.isRequired,
-//   //   user: PropTypes.object
-//   // };
-
-//   componentDidMount() {
-//     // Fetch does not send cookies. So you should add credentials: 'include'
-//     fetch( config.baseURL + config.baseLOCATION + "/auth/login/success/", {
-//       method: "GET",
-//       credentials: "include",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Credentials": true
-//       }
-//     })
-//       .then(response => {
-//         if (response.status === 200) return response.json();
-//         throw new Error("failed to authenticate user");
-//       })
-//       .then(responseJson => {
-//         this.setState({
-//           authenticated: true,
-//           user: responseJson.user
-//         });
-
-//            // save to localstorage and redux
-           
-//            sessionStorage.setItem('userEmail', responseJson.user.email)
-//            sessionStorage.setItem('exp', responseJson.user.exp)
-//            sessionStorage.setItem('token', responseJson.user.id)
-//            sessionStorage.setItem('name', responseJson.user.first_name)
-//            sessionStorage.setItem('userEmail', responseJson.user.email)
-//            sessionStorage.setItem('roles', responseJson.user.roles)
-
-//         console.log(responseJson)
-//         return async dispatch => {
-//            dispatch({
-//         type: AUTH_SIGN_IN,
-//         payload: responseJson.user.id,
-//         payload_role: responseJson.user.role,
-//         payload_email: responseJson.user.email,
-//         payload_name: responseJson.user.first_name,
-//         payload_nokiaid: responseJson.user.sub
-//       })
-//     }
-
-     
-//       })
-//       .catch(error => {
-//         this.setState({
-//           authenticated: false,
-//           error: "Failed to authenticate user"
-//         });
-//         console.log(error)
-//       });
-//   }
-
-//   toggle() {
-//     this.setState({
-//       isOpen: !this.state.isOpen
-//     })
-//   }
-
-
-
-//   render() {
   
 export const Header = () => {
   const user = useSelector((state) => ({ auth: state.auth }));
@@ -121,6 +42,8 @@ export const Header = () => {
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
   };
+
+  const dispatch = useDispatch()
 
  useEffect(() => {
      fetch(config.baseURL + config.baseLOCATION + "/auth/login/success/", {
@@ -141,60 +64,32 @@ export const Header = () => {
             setState({
               authenticated: true,
               user: responseJson.user
-            })
-            .catch(error => {
-                      setState({
-                        authenticated: false,
-                        error: "Failed to authenticate user"
-                      });
-                      console.log(error)
-                    });
-                
+            }
+            );
+            sessionStorage.setItem('exp', responseJson.user.exp)
+            sessionStorage.setItem('userEmail', responseJson.user.email)
+            sessionStorage.setItem('name', responseJson.user.first_name)
+            sessionStorage.setItem('token', responseJson.user.id)
+            sessionStorage.setItem('roles', responseJson.user.roles)    
+            dispatch({
+              type: AUTH_SIGN_IN,
+              payload: {
+                role: responseJson.user.roles,
+                name: responseJson.user.first_name,
+                email: responseJson.user.email,
+                token: responseJson.user.id
+              }}
+            )   
           }
-          );
+          )
+          .catch(error => {
+            setState({
+              authenticated: false,
+              error: "Failed to authenticate user"
+            });
+            console.log(error)
+          });
  },[])
-//     // Fetch does not send cookies. So you should add credentials: 'include'
-//     fetch( config.baseURL + config.baseLOCATION + "/auth/login/success/", {
-//       method: "GET",
-//       credentials: "include",
-//       headers: {
-//         Accept: "application/json",
-//         "Content-Type": "application/json",
-//         "Access-Control-Allow-Credentials": true
-//       }
-//     })
-//       .then(response => {
-//         if (response.status === 200) return response.json();
-//         throw new Error("failed to authenticate user");
-//       })
-//       .then(responseJson => {
-//         this.setState({
-//           authenticated: true,
-//           user: responseJson.user
-//         });
-
-//            // save to localstorage and redux
-           
-//            sessionStorage.setItem('userEmail', responseJson.user.email)
-//            sessionStorage.setItem('exp', responseJson.user.exp)
-//            sessionStorage.setItem('token', responseJson.user.id)
-//            sessionStorage.setItem('name', responseJson.user.first_name)
-//            sessionStorage.setItem('userEmail', responseJson.user.email)
-//            sessionStorage.setItem('roles', responseJson.user.roles)
-
-//         console.log(responseJson)
-//         return async dispatch => {
-//            dispatch({
-//         type: AUTH_SIGN_IN,
-//         payload: responseJson.user.id,
-//         payload_role: responseJson.user.role,
-//         payload_email: responseJson.user.email,
-//         payload_name: responseJson.user.first_name,
-//         payload_nokiaid: responseJson.user.sub
-//       })
-//     }
-
-    // const { authenticated, user } = this.state;
 
     const _handleSignInClick = () => {
     // Authenticate using via passport api in the backend
@@ -252,10 +147,9 @@ export const Header = () => {
           
           <ul className="menu">
               {state && state.authenticated ? (
-                <Button className="log-button" color="danger" onClick={_handleLogoutClick}>Logout</Button>
-                // {state.user.email}
+                <Button className="log-button" color="danger" onClick={_handleLogoutClick}><span title="log out"><ExitToApp /> {user.auth.name}</span></Button>
               ) : (
-                <Button className="log-button" color="primary" onClick={_handleSignInClick}>{t("login.label")}</Button>
+                <Button className="log-button" color="primary" onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button>
               )}
             </ul>
             <LanguageSelector />
