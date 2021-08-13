@@ -16,6 +16,7 @@ module.exports = function (
   console.log(`**New ADFS user...`)
 
   var user = {
+    token: accessToken,
     id: userProfile.aud,
     groups: userProfile.groups,
     email: userProfile.unique_name,

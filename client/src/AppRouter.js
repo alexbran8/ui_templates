@@ -4,7 +4,7 @@ import LoginError from "./components/LoginError";
 import Homepage from "./components/Homepage";
 import Timeline from "./components/Timeline.jsx";
 
-import {Header} from "./components/Header.jsx";
+import {Header} from "./components/Header";
 import { HashRouter, Route } from "react-router-dom";
 import { config } from "./config"
 import authGuard from "./HOCs/authGuard.js";
