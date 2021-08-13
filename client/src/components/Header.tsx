@@ -65,6 +65,7 @@ export const Header = () => {
   const [auth, setAuth] = React.useState(true);
   const classes = useStyles();
   const [state, setState] = useState();
+  // const [token, setToken] = useState(null);
   const [pic, setPic] = useState();
 
   const { t, i18n } = useTranslation();
@@ -126,7 +127,8 @@ export const Header = () => {
             token: responseJson.user.token
           }
         }
-        )
+        );
+        getIcon(responseJson.user.token)
       }
       )
       .catch(error => {
@@ -138,12 +140,13 @@ export const Header = () => {
       });
   }, [])
 
-  useEffect(() => {
+  const getIcon = (token) => {
+    console.log(token)
     fetch("https://graph.microsoft.com/v1.0/me/photo/$value", {
       method: "GET",
       // credentials: "include",
       headers: {
-        Authorization: sessionStorage.getItem('token'),
+        Authorization: token,
       }
     })
       .then(response => {
@@ -159,7 +162,7 @@ export const Header = () => {
         });
         console.log(error)
       });
-  }, [])
+  }
 
   const _handleSignInClick = () => {
     // Authenticate using via passport api in the backend
@@ -196,6 +199,7 @@ export const Header = () => {
           </Typography>
           {(state && state.authenticated) ? (
             <div>
+              { pic ?
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
@@ -205,6 +209,7 @@ export const Header = () => {
               >
                 <Avatar alt="Remy Sharp" src={pic} />
               </IconButton>
+              : null }
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
