@@ -5,6 +5,9 @@ import { config } from "../config"
 import { useSelector, useDispatch } from "react-redux";
 import { AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../redux/reducers/types'
 import { ExitToApp, ThreeDRotation } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
+
+import Sidebar from "./SideBar/SideBar"
 
 import {
   Collapse,
@@ -24,6 +27,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import Avatar from '@material-ui/core/Avatar';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -31,10 +35,20 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -71,6 +85,7 @@ export const Header = () => {
   const { t, i18n } = useTranslation();
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorElMenu, setAnchorElMenu] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +98,48 @@ export const Header = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setAnchorElMenu(null);
   };
+
+
+  const handleClickMenu = (event) => {
+    setAnchorElMenu(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorElMenu(null);
+  };
+
+  const StyledMenu = withStyles({
+    paper: {
+      border: '1px solid #d3d4d5',
+    },
+  })((props) => (
+    <Menu
+      elevation={0}
+      getContentAnchorEl={null}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      {...props}
+    />
+  ));
+
+  const StyledMenuItem = withStyles((theme) => ({
+    root: {
+      '&:focus': {
+        backgroundColor: theme.palette.primary.main,
+        '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+          color: theme.palette.common.white,
+        },
+      },
+    },
+  }))(MenuItem);
 
 
   const changeLanguage = (event) => {
@@ -188,28 +244,32 @@ export const Header = () => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
+    
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+        <Sidebar />
           <Typography variant="h6" className={classes.title}>
-          <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
-            <b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div> : null}
-            </Link>
+            <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
+              <b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div> : null}
+            </Link >
           </Typography>
           {(state && state.authenticated) ? (
-            <div>
-              { pic ?
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <Avatar alt="Remy Sharp" src={pic} />
-              </IconButton>
-              : null }
+            <div className="avatar">
+              {pic ?
+                <div className='icon'>
+                  <IconButton
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    className="icon"
+                    onClick={handleMenu}
+                    color="inherit"
+                  >
+                    <Avatar alt="avatar Sharp"
+                      // className={classes.small}
+                      src={pic} /> <div className='avatar-name'>{state.user.first_name}</div>
+                  </IconButton>
+                </div>
+                : null}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -235,74 +295,6 @@ export const Header = () => {
         </Toolbar>
       </AppBar>
     </div>
-    // <div className={classes.root}>
-    // <AppBar position="static">
-    //   <Toolbar>
-    //     <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
-    //       <Typography variant="h6" className={classes.title}>
-    //         <b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div> : null}
-    //       </Typography>
-    //     </Link>
-    //     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-    //       <MenuIcon />
-    //     </IconButton>
-    //   </Toolbar>
-    //   {auth ?
-    //       <FormGroup>
-    //         <Button variant="contained" color="primary"
-    //           onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span>
-    //         </Button>
-    //       </FormGroup>
-    //       : null
-    //     }
-
-
-    // </AppBar>
-    // </div>
-    // <Navbar className="navbar sticky-top" expand="sm">
-    //   <Link className="navbar-brand text-white" id="navbar-brand" to={config.baseLOCATION + "/"}>
-    //     <div className="navbar-brand"><b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div>: null }</div>
-
-    //   </Link>
-    //   <Collapse 
-    //   // isOpen={isOpen} 
-    //   navbar>
-    //     <Nav navbar>
-    //       {/* <ul className="navbar-nav text-center">
-    //         <li className="nav-item">
-    //           <Link
-    //             className="nav-link text-white"
-    //             to={config.baseLOCATION + "/schedule"}
-    //           >
-    //             Attendance Form
-    //                 </Link>
-    //         </li>
-    //       </ul> */}
-    //     </Nav>
-    //   </Collapse>
-    //   <div className="navbar-text">
-    //     <Nav navbar>
-    //     {/* <li className="nav-item">
-    //       <Link
-    //         className="nav-link text-white"
-    //         to={config.baseLOCATION + "/devtimeline"}
-    //       >
-    //         Development Timeline
-    //       </Link>
-    //     </li> */}
-
-    //     <ul className="menu">
-    //         {state && state.authenticated ? (
-    //           <Button className="log-button" color="danger" onClick={_handleLogoutClick}><span title="log out"><ExitToApp /> {user.auth.name}</span></Button>
-    //         ) : (
-    //           <Button className="log-button" color="primary" onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button>
-    //         )}
-    //       </ul>
-    //       <LanguageSelector />
-    //     </Nav>
-
-    //   </div>
-    // </Navbar>
 
   );
 }
