@@ -27,8 +27,8 @@ export const SidebarData = [
     // icon: <IoIcons.IoMdHelpCircle />,
     subNav: [
       {
-        title: "Service 1",
-        path: "/services/services1",
+        title: "Database",
+        path: "/admin/database",
         // icon: <IoIcons.IoIosPaper />,c
         cName: "sub-nav",
       },
