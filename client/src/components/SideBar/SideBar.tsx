@@ -27,7 +27,7 @@ const SidebarNav = styled.nav`
   top: 80px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 490ms;
-  z-index: 10;
+  z-index: 999;
 `;
 
 const SidebarWrap = styled.div`
@@ -55,7 +55,7 @@ const Sidebar = () => {
         <SidebarWrap>
           <div className="slideBarData">
             {SidebarData.map((item, index) => {
-              return <SubMenu item={item} key={index} />;
+              return <SubMenu item={item} key={index} showSidebar={showSidebar}/>;
             })}
           </div>
           <LanguageSelector />

@@ -3,7 +3,7 @@ import React from "react";
 export const SidebarData = [
   {
     title: "Students",
-    path: "/students",
+    // path: "/students",
     // icon: <AiIcons.AiFillHome />,
     // iconClosed: <RiIcons.RiArrowDownSFill />,
     // iconOpened: <RiIcons.RiArrowUpSFill />,
