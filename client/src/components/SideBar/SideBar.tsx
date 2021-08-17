@@ -32,7 +32,7 @@ const SidebarNav = styled.nav`
 
 const SidebarWrap = styled.div`
   width: 100%;
-  maring-top: 100px;
+  maring-top: 10px;
   // padding: 0 100px;
 `;
 

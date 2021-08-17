@@ -14,11 +14,11 @@ export const SidebarData = [
         path: "/about-us/aim",
         // icon: <IoIcons.IoIosPaper />,
       },
-      {
-        title: "Our Vision",
-        path: "/about-us/vision",
-        // icon: <IoIcons.IoIosPaper />,
-      },
+      // {
+      //   title: "Our Vision",
+      //   path: "/about-us/vision",
+      //   // icon: <IoIcons.IoIosPaper />,
+      // },
     ],
   },
   {

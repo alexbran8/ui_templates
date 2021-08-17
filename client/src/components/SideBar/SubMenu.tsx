@@ -15,7 +15,7 @@ const SidebarLink = styled(Link)`
 
   &:hover {
     background: #252831;
-    border-left: 4px solid green;
+    border-left: 4px solid blue;
     cursor: pointer;
   }
 `;
@@ -25,18 +25,19 @@ const SidebarLabel = styled.span`
 `;
 
 const DropdownLink = styled(Link)`
-  background: #4052B8;
+  background: #4E5478;
   height: 60px;
   padding-left: 3rem;
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #4052B8;
+  color: white;
   font-size: 18px;
 
   &:hover {
-    background: #4052B8;
+    background: #252831;
     cursor: pointer;
+    border-left: 6px solid blue;
   }
 `;
 
