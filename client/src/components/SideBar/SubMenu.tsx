@@ -48,19 +48,19 @@ const SubMenu = ({ item, showSidebar }) => {
 
   return (
     <>
-      <SidebarLink to={item.path} onClick={item.path ? item.subNav  && showSubnav  : item.subNav  && showSubnav && showSidebar }>
-        <div>
-          {item.icon}
-          <SidebarLabel>{item.title}</SidebarLabel>
-        </div>
-        <div>
-          {item.subNav && subnav && showSidebar 
-            ? item.iconOpened
-            : item.subNav
-            ? item.iconClosed
-            : null}
-        </div>
-      </SidebarLink>
+      <SidebarLink to={item.path} onClick={item.path == "#" ? item.subNav  && showSubnav   :  showSidebar }>        
+      <div>
+        {item.icon}
+        <SidebarLabel>{item.title}</SidebarLabel>
+      </div>
+      <div>
+        {item.subNav && subnav && showSidebar 
+          ? item.iconOpened
+          : item.subNav
+          ? item.iconClosed
+          : null}
+      </div>
+    </SidebarLink> 
       {subnav &&
         item.subNav.map((item, index) => {
           return (

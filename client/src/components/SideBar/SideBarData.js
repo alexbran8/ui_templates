@@ -1,7 +1,7 @@
 export const SidebarData = [
   {
     title: "Students",
-    // path: "/students",
+    path: "#",
     // icon: <AiIcons.AiFillHome />,
     // iconClosed: <RiIcons.RiArrowDownSFill />,
     // iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -21,7 +21,7 @@ export const SidebarData = [
   },
   {
     title: "Admin",
-    path: "/admin/items",
+    path: "#",
     // icon: <IoIcons.IoMdHelpCircle />,
     subNav: [
       {
@@ -52,7 +52,7 @@ export const SidebarData = [
   },
   {
     title: "Events",
-    path: "/events",
+    path: "#",
     // icon: <FaIcons.FaEnvelopeOpenText />,
 
     // iconClosed: <RiIcons.RiArrowDownSFill />,
