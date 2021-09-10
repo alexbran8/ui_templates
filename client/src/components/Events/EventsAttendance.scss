@@ -9,7 +9,7 @@
     border: 2px solid black;
 }
 
-.filter-container {
+.button-container {
     text-align: center;
 }
 
@@ -30,4 +30,9 @@
     align-items: center;
     justify-content: center;
     background-color: white;
+  }
+
+  .report-container {
+      height: 200px;
+      border: solid black 2px;
   }

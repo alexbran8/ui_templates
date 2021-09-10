@@ -34,7 +34,7 @@ const EventsAttendance = () => {
     i18n.changeLanguage(event.target.value);
   };
   const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
+    { field: 'id', headerName: 'ID', width: 150 },
     {
       field: 'firstName',
       headerName: 'First name',
@@ -149,15 +149,21 @@ const EventsAttendance = () => {
           />
         </>
       </>
+    </div>
+    <div className="report-container">
+
+    </div>
+    <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Add</Button>
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Delete</Button>
     </div>
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 600, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
+        // pageSize={5}
+        disableColumnFilter
         checkboxSelection
         disableSelectionOnClick
       />
