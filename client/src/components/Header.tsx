@@ -212,10 +212,10 @@ export const Header = () => {
       .then(response => response.blob())
       .then(blob => setPic(URL.createObjectURL(blob)))
       .catch(error => {
-        setState({
-          // authenticated: false,
-          error: "Failed to authenticate user"
-        });
+        // setState({
+        //   // authenticated: false,
+        //   error: "Failed to authenticate user"
+        // });
         console.log(error)
       });
   }
@@ -286,7 +286,6 @@ export const Header = () => {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={_handleLogoutClick}><span title="log out"><ExitToApp /> Log out</span></MenuItem>
               </Menu>
 
