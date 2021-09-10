@@ -60,13 +60,14 @@ $logo-ro: '#{$assetPath}ro.jpg';
       color: white;
       font-weight: bold;
       box-sizing: border-box;
+      
     }
     &:before {
       content: attr(data-yes);
       text-transform: uppercase;
       padding-left: 10px;
-
       background: url(#{$logo-en}) 20% 50% no-repeat;
+      // background-color: #ff0;
       background-size: 40%;
       // background-color: $toggle-colour;
       // background-attachment: scroll;
