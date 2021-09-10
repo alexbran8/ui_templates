@@ -5,6 +5,8 @@ import Homepage from "./components/Homepage";
 import Timeline from "./components/Timeline.jsx"
 import Database from "./components/Admin/Database"
 
+import EventsAttendance from "./components/events/EventsAttendance"
+
 import {Header} from "./components/Header";
 import { HashRouter, Route } from "react-router-dom";
 import { config } from "./config"
@@ -21,6 +23,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/"} component={Landingpage} />
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/admin/database"} component={Database} />
+      <Route exact path={"/events/attendance"} component={EventsAttendance} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
     </HashRouter>

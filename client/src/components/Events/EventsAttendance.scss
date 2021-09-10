@@ -1,0 +1,33 @@
+.page-container h1 {
+    text-align: center;
+}
+.page-container button {
+    text-align: center;
+}
+
+.page-container {
+    border: 2px solid black;
+}
+
+.filter-container {
+    text-align: center;
+}
+
+.filter-container {
+    position: sticky;
+    top: 70px;
+    display: flex;
+    z-index: 98;
+    height: 100px;
+    
+    // flex-wrap: wrap-reverse;
+    // margin-top: 150px;
+    // border: 1px #7b8d9b solid;
+    
+    overflow-y: hidden;
+    opacity: 100%;
+    // align-items: stretch;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
