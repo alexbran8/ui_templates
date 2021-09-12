@@ -5,11 +5,15 @@ import { UPDATE_PROFILE_TYPE } from '../redux/reducers/types'
 import { useSelector, useDispatch } from "react-redux";
 import { config } from "../config"
 
+import LogOut from  "../middlewares/LogOut"
+
 import "./Landingpage.scss"
+
+import Button from '@material-ui/core/Button';
 
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button
+  CardTitle, CardSubtitle
 } from 'reactstrap';
 
 
@@ -28,6 +32,12 @@ const Landingpage = () => {
     });
     history.push('/home');
   }
+
+  const handleLogOut = () => 
+  {
+    LogOut()
+  }
+
   return (
     <div className="home-container">
       <div>
@@ -56,7 +66,8 @@ const Landingpage = () => {
         ) : (
           <div>
             <h1>{user.auth.name}, you have been logeed in succcessfully!</h1>
-            <Button onClick={() => { cardClick(user.auth.type) }}>Continue here ...</Button>
+             <Button variant="contained" color="primary" className="button" onClick={() => { cardClick(user.auth.type) }}>Continue here</Button> 
+            <Button variant="contained" color="secondary" className="button" onClick={() => { handleLogOut() }}>Logout</Button>
           </div>
         )}
 

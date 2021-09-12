@@ -36,7 +36,7 @@ const EventsAttendance = () => {
   const columns = [
     { field: 'id', headerName: 'ID', width: 150 },
     {
-      field: 'firstName',
+      field: 'event',
       headerName: 'First name',
       width: 150,
       editable: true,
@@ -67,7 +67,7 @@ const EventsAttendance = () => {
   ];
 
   const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    { id: 1, event: 'TechFlight', firstName: 'Jon', age: 35 },
     { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
     { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
     { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },

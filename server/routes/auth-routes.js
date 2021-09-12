@@ -27,7 +27,7 @@ router.get("/login/failed", (req, res) => {
 // When logout, redirect to client
 router.get("/logout", (req, res) => {
   req.logout();
-  res.redirect(config.CLIENT_HOME_PAGE_URL);
+  res.redirect(config.CLIENT_LANDING_PAGE_URL);
 });
 
 // auth with twitter

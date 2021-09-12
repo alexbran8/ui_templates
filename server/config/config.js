@@ -11,6 +11,7 @@ const baseLocation = process.env.NODE_ENV === `development` ? "" :  '';
 var config = {
   CLIENT_HOME_PAGE_URL: process.env.NODE_ENV === `development` ? "http://localhost:3000/#/home" :  'https://ecosystem.eecloud.dynamic.nsn-net.net/#/home',
   CLIENT_ERROR_URL: process.env.NODE_ENV === `development` ? "http://localhost:3000/#/error" :  'https://ecosystem.eecloud.dynamic.nsn-net.net/#/error',
+  CLIENT_LANDING_PAGE_URL:process.env.NODE_ENV === `development` ? "http://localhost:3000/" :  'https://ecosystem.eecloud.dynamic.nsn-net.net/',
   azureApp: {
     // Azure Application details
     base: process.env.AAD_AUTH_URL || 'https://login.microsoftonline.com/',
