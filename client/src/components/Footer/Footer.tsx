@@ -29,7 +29,7 @@ const Footer = () => {
           <h2 className="ft-title">Contact</h2>
           <ul>
             <li><a href="#">Help</a></li>
-            <li><a href="#"><FacebookIcon /></a><a href="#"><LinkedInIcon /></a><a href="#"><InstagramIcon /></a></li>
+            <li><a href="https://www.facebook.com/search/top?q=nokia%20timisoara%20careers" target="blank"><FacebookIcon /></a><a href="https://www.linkedin.com/company/nokia/mycompany/verification/" target="blank"><LinkedInIcon /></a><a href="#"><InstagramIcon /></a></li>
           </ul>
         </div>
         <div className="ft-main-item">

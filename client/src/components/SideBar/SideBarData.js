@@ -22,23 +22,27 @@ export const SidebarData = [
   {
     title: "Admin",
     path: "#",
+    restriction: 'admin',
     // icon: <IoIcons.IoMdHelpCircle />,
     subNav: [
       {
         title: "Database",
         path: "/admin/database",
+        restriction: 'admin2',
         // icon: <IoIcons.IoIosPaper />,c
         cName: "sub-nav",
       },
       {
         title: "Service 2",
         path: "/services/services2",
+        restriction: 'admin',
         // icon: <IoIcons.IoIosPaper />,
         cName: "sub-nav",
       },
       {
         title: "Service 3",
         path: "/services/services3",
+        restriction: 'admin',
         // icon: <IoIcons.IoIosPaper />,
       },
     ],
@@ -46,26 +50,21 @@ export const SidebarData = [
   {
     title: "Services",
     path: "/services",
-    // icon: <IoIcons.IoIosPaper />,
-    // iconClosed: <RiIcons.RiArrowDownSFill />,
-    // iconOpened: <RiIcons.RiArrowUpSFill />,
   },
   {
     title: "Events",
     path: "#",
-    // icon: <FaIcons.FaEnvelopeOpenText />,
-
-    // iconClosed: <RiIcons.RiArrowDownSFill />,
-    // iconOpened: <RiIcons.RiArrowUpSFill />,
-
+    restriction: 'admin',
     subNav: [
       {
         title: "List",
+        restriction: 'admin',
         path: "/events/list",
         // icon: <IoIcons.IoIosPaper />,
       },
       {
         title: "Attendace",
+        restriction: 'admin',
         path: "/events/attendance",
         // icon: <IoIcons.IoIosPaper />,
       },

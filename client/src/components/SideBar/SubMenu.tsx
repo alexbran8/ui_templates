@@ -48,7 +48,9 @@ const SubMenu = ({ item, showSidebar }) => {
 
   return (
     <>
-      <SidebarLink to={item.path} onClick={item.path == "#" ? item.subNav  && showSubnav   :  showSidebar }>        
+       {item.restriction === 'admin' ?
+      <SidebarLink to={item.path}  onClick={item.path == "#" ? item.subNav  && showSubnav   :  showSidebar }>        
+   
       <div>
         {item.icon}
         <SidebarLabel>{item.title}</SidebarLabel>
@@ -61,13 +63,17 @@ const SubMenu = ({ item, showSidebar }) => {
           : null}
       </div>
     </SidebarLink> 
+    : null }
       {subnav &&
         item.subNav.map((item, index) => {
           return (
-            <DropdownLink to={item.path} key={index}  onClick={showSidebar}>
+          // console.log(item)
+            item.restriction === 'admin' ?
+            <DropdownLink to={item.path} key={index} onClick={showSidebar}>
               {item.icon}
               <SidebarLabel>{item.title}</SidebarLabel>
             </DropdownLink>
+            : null
           );
         })}
     </>

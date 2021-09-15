@@ -75,7 +75,7 @@ const EventsAttendance = () => {
           style={{ width: 300 }}
           onChange={(e, v) => { setWeek(v); refetch() }}
           className={classes.textField}
-          renderInput={(params) => <TextField {...params} label="select week" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="select year" variant="outlined" />}
         />
       </>
       <>
@@ -86,7 +86,7 @@ const EventsAttendance = () => {
           style={{ width: 300 }}
           className={classes.textField}
           onChange={(e, v) => setItv(v)}
-          renderInput={(params) => <TextField {...params} label="select ITV" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="select event" variant="outlined" />}
         />
       </>
       <>
@@ -104,7 +104,7 @@ const EventsAttendance = () => {
         <>
           <Autocomplete
             id="combo-box-demo"
-            options={[{ status: 'null', labeL: "" }, { status: 'Problème résolu' }, { status: 'Problème résolu avec réserve' }, { status: 'Problème pas identifié' }, { status: 'Problème identifié' }]}
+            options={[{ status: 'null', labeL: "" }, { status: 'on going' }, { status: 'finished' }, { status: 'planned' }, { status: 'proposed' }]}
             getOptionLabel={(option) => option.status}
             style={{ width: 300 }}
             className={classes.textField}
@@ -137,14 +137,14 @@ const EventsAttendance = () => {
       </>
     </div>
     <div className="report-container">
-
+          <h5>Metrics about events</h5>
     </div>
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Add</Button>
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Delete</Button>
     </div>
-    <div style={{ height: 600, width: '100%' }}>
+    <div style={{ height: 400, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}
