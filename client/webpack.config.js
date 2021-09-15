@@ -73,7 +73,7 @@ module.exports = {
       },
       {
         test: /\.s(a|c)ss$/,
-        exclude:  path.resolve(__dirname, "node_modules"),
+        // exclude:  path.resolve(__dirname, "node_modules"),
         use: [
           { loader: MiniCssExtractPlugin.loader },
           { loader: "css-loader" },

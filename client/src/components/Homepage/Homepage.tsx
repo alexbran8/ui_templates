@@ -29,7 +29,7 @@ const Homepage = () => {
         </div>
       )}
       <h5>This web application is still under development!</h5>
-      <div className="grid-container">
+      {/* <div className="grid-container">
         <div className="grid-item">1</div>
         <div className="grid-item">2</div>
         <div className="grid-item">3</div>
@@ -39,7 +39,7 @@ const Homepage = () => {
         <div className="grid-item">7</div>
         <div className="grid-item">8</div>
         <div className="grid-item">9</div>
-      </div>
+      </div> */}
       </div>
     </div>)
 
