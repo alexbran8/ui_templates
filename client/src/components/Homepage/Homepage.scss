@@ -1,0 +1,134 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    height: 200px;
+    text-align: center;
+  }
+
+ul {
+    text-align: center;
+}
+
+.toppane  {
+  color: black;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid black;
+  width: 30%;
+  height: 100%;
+//   margin: auto;
+}
+
+
+
+// .paragraph-container {
+//     margin-top: 5%;
+//     margin-bottom: 5%;
+//     border: 1px black solid;
+// }
+
+
+.flexbox-container{
+  position: sticky;
+  margin-top: 2%;
+  display: flex;
+  // margin-top: 10%;
+ 
+  // justify-content: space-between; /* space flex items apart, with no space on left and right edges */
+  text-align: center;
+  // min-height: 100vh; /* set min height to 100% viewport height */
+  // font-size: 2em;
+  flex-wrap: wrap-reverse;
+}
+.fill{
+  flex: 1 0 15%; /* alternate way to specify a fixed width for a flex item */
+  // border: 2px solid red;
+}
+.fillx2{
+  flex: 2 0 70%;
+  // border: 2px solid red;
+}
+.box-center{
+  // border: 2px solid red;
+  width: 300px;
+  // height: 200px;
+  // margin: 10px;
+}
+.box-left{
+  // border: 2px solid red;
+  width: 300px;
+  // height: 200px;
+  // margin: 10px;
+}   
+.box-right{
+  // border: 2px solid red;
+  width: 300px;
+  // height: 200px;
+  // margin: 10px;
+}
+// .home-container {
+//     width: 100%;
+//     height: 100%;
+//     display: flex; 
+//     flex-direction: row;
+//     flex-wrap: wrap-reverse;
+//     // justify-content: flex-start;
+//     // flex-direction: row-reverse;
+//     // justify-content: baseline;
+//   }
+//   .flex-item {
+//     // width: 25%;
+//     background-color: #4da6ff;
+//   }
+//   // .flex-center {
+//   //   width: 40%;
+//   // }
+
+  .leftpane {
+      width: 100%;
+      // height: 60%;
+      border-right: 2px solid black;
+    //   float: left;
+      background-color: darkgrey;
+      border-collapse: collapse;
+  } 
+  
+  .middlepane {
+      width: 100%;
+      background-color: darkgrey;
+      height: 100%;
+      // height: 50%;
+    //   float: left;
+      // background-color: royalblue;
+      border-collapse: collapse;
+  }
+  
+  .rightpane {
+    width: 100%;   
+    border-left: 2px solid black;
+    height: 100%;
+    background-color: darkgrey;
+    // height: 50%;   
+    // position: relative;  
+    // float: right;   
+    // background-color: yellow;   
+    border-collapse: collapse;    
+    text-align: center; 
+  }
+  
+  .toppane {
+    width: 100%;
+    height: 5%;
+    border-collapse: collapse;
+    // background-color: #4da6ff;
+    text-align: center;
+  }

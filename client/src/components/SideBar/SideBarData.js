@@ -60,6 +60,11 @@ export const SidebarData = [
 
     subNav: [
       {
+        title: "List",
+        path: "/events/list",
+        // icon: <IoIcons.IoIosPaper />,
+      },
+      {
         title: "Attendace",
         path: "/events/attendance",
         // icon: <IoIcons.IoIosPaper />,

@@ -1,9 +1,10 @@
 import React from "react";
 import Landingpage from "./components/Landingpage.jsx";
 import LoginError from "./components/LoginError";
-import Homepage from "./components/Homepage";
+import Homepage from "./components/Homepage/Homepage";
 import Timeline from "./components/Timeline.jsx"
 import Database from "./components/Admin/Database"
+import Footer from "./components/Footer/Footer"
 
 import EventsAttendance from "./components/events/EventsAttendance"
 
@@ -17,7 +18,7 @@ export const AppRouter = (props) => {
     <HashRouter  {...props} >
        <Route
         render={({ location }) => {
-          if (location.pathname !== "/") return <Header />;
+          if (location.pathname !== "/") {return <><Header /><Footer /></>};
         }}
       />
       <Route exact path={"/"} component={Landingpage} />
