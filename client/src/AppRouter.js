@@ -6,7 +6,7 @@ import Timeline from "./components/Timeline.jsx"
 import Database from "./components/Admin/Database"
 import Footer from "./components/Footer/Footer"
 
-import EventsAttendance from "./components/events/EventsAttendance"
+import EventsAttendance from "./components/Events/EventsAttendance"
 
 import {Header} from "./components/Header";
 import { HashRouter, Route } from "react-router-dom";
