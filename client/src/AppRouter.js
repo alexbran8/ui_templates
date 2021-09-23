@@ -16,17 +16,18 @@ import authGuard from "./HOCs/authGuard.js";
 export const AppRouter = (props) => {
   return (
     <HashRouter  {...props} >
-       <Route
-        render={({ location }) => {
-          if (location.pathname !== "/") {return <><Header /><Footer /></>};
-        }}
-      />
+ 
       <Route exact path={"/"} component={Landingpage} />
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/admin/database"} component={Database} />
       <Route exact path={"/events/attendance"} component={EventsAttendance} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
+      <Route
+        render={({ location }) => {
+          if (location.pathname !== "/") {return <><Header /><Footer /></>};
+        }}
+      />
     </HashRouter>
   );
 };

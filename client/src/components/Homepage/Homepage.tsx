@@ -41,6 +41,12 @@ const Homepage = () => {
         <div className="grid-item">9</div>
       </div> */}
       </div>
+      <section>
+        section 1
+      </section>
+      <aside>
+        aside 1 
+      </aside>
     </div>)
 
 }
