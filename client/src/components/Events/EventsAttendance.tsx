@@ -9,6 +9,7 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from "react-i18next";
 import { DataGrid } from '@mui/x-data-grid';
+import SimpleModal from "../common/Modal"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -139,6 +140,9 @@ const EventsAttendance = () => {
     <div className="report-container">
           <h5>Metrics about events</h5>
     </div>
+    <SimpleModal 
+        //formValidator={formCheck}
+        />
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Add</Button>
