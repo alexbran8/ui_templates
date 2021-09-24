@@ -127,8 +127,18 @@ ul {
   
   .toppane {
     width: 100%;
-    height: 5%;
+    height: 40%;
     border-collapse: collapse;
     // background-color: #4da6ff;
     text-align: center;
+  }
+
+  .home-container {
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+    border-collapse: collapse;
+    height: 70%;
+    border: 2px solid red;
+
   }

@@ -17,7 +17,7 @@ const Homepage = () => {
 
 
 
-  return (<div>
+  return (<div className="home-page">
 
     <div className="toppane">
       {!user.auth.isAuthenticated ? (<>
@@ -40,15 +40,18 @@ const Homepage = () => {
         <div className="grid-item">8</div>
         <div className="grid-item">9</div>
       </div> */}
-      </div>
+    </div>
+    <div className="home-container">
+      ssss
       <section>
         section 1
       </section>
       <aside>
-        aside 1 
+        aside 1
       </aside>
-    </div>)
+    </div>
+  </div>)
 
 }
 
-    export default Homepage
+export default Homepage
