@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-
+import Button from '@material-ui/core/Button';
 import FormPropsTextFields from "./Form";
 
 import CloseIcon from '@material-ui/icons/Close';
@@ -51,13 +51,13 @@ export default function SimpleModal(props:any) {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    props.handleModal
   };
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div>Create Item</div>
-     <button className={classes.button} type="button" onClick={handleClose}>
+      <div>{props.title}</div>
+     <button className={classes.button} type="button" onClick={props.handleModal}>
         <CloseIcon />
         Close
       </button>
@@ -77,11 +77,11 @@ export default function SimpleModal(props:any) {
   return (
     <div>
       
-      <button  type="button" onClick={handleOpen}>
-        Open Modal
-      </button>
+      <Button variant="contained" color="primary"  onClick={handleOpen}>
+        Add
+      </Button>
       <Modal
-        open={open}
+        open={props.handleModal}
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"

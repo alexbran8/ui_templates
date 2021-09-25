@@ -1,3 +1,3 @@
-const normsResolvers = require("./normsResolvers");
+const projects = require("./projects");
 
-module.exports = [normsResolvers]
+module.exports = [projects]

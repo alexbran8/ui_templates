@@ -2,6 +2,9 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 //import {useForm} from 'react-hook-form';
 
+import regeneratorRuntime from "regenerator-runtime";
+
+
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -219,7 +222,7 @@ export default function FormPropsTextFields(values:any) {
      
         
             
-        {/* <TextField
+        <TextField
           id="appel"
           select
           variant="outlined"
@@ -247,9 +250,9 @@ export default function FormPropsTextFields(values:any) {
               {option.label}
             </MenuItem>
           ))}
-        </TextField> */}
+        </TextField>
             
-        {/* <TextField
+        <TextField
           id="standard-select-currency"
           select
           variant="outlined"
@@ -934,7 +937,7 @@ export default function FormPropsTextFields(values:any) {
               {option.label}
             </MenuItem>
           ))}
-        </TextField> */}
+        </TextField>
 
       </div> 
 

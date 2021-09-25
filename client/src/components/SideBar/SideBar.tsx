@@ -24,10 +24,10 @@ const SidebarNav = styled.nav`
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 80px;
+  top:  50px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 490ms;
-  z-index: 999;
+  z-index: 998;
 `;
 
 const SidebarWrap = styled.div`

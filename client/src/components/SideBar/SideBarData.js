@@ -52,14 +52,14 @@ export const SidebarData = [
     path: "/services",
   },
   {
-    title: "Events",
+    title: "Projects",
     path: "#",
     restriction: 'admin',
     subNav: [
       {
         title: "List",
         restriction: 'admin',
-        path: "/events/list",
+        path: "/projects/list",
         // icon: <IoIcons.IoIosPaper />,
       },
       {

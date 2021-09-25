@@ -1,20 +1,10 @@
 const { gql } = require("apollo-server");
 
 module.exports = gql`
-type normCheck {
-    Date: String
-    to_email: String
-    Resource: String
-    wbsCustomer: String
-    Task: String
-    taskComments: String
-    timeWrittingComments: String
-    billableHours: String
-	  realHour: String
-	  normOK: String
-	  normNOK:  String
-	  status: String
-    variation: String
+type project {
+    projectName: String!
+    year: Int!
+    id: Int!
   }
   type Response {
     success: String!
@@ -39,8 +29,7 @@ type normCheck {
    }
 
 extend  type Query  {
-    normCheckQuery(department: String!): [normCheck]
-    normCheckQueryNA: [normCheck]
+    getAll: [project]
 } 
 
 extend type Mutation {

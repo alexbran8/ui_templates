@@ -23,9 +23,9 @@
     justify-content: center;
     overflow: hidden;
     // margin-top: 1rem;
-    padding: 0.25rem;
+    // padding: 0.25rem;
     background-color: #2196F3;
-    position: relative;
+    // position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -69,10 +69,16 @@
     .ft-main {
       justify-content: space-evenly;
     }
+    .footer {
+      position: relative;
+    }
   }
   @media only screen and (min-width: 77.5rem /* 1240px */) {
     .ft-main {
       justify-content: space-evenly;
+    }
+    .footer {
+      position: relative;
     }
   }
   .ft-main-item {
