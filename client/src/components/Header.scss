@@ -6,6 +6,11 @@
   //   margin-left: 10%;
   //   // position: relative;
   // }
+
+  header {
+    z-index: 999;
+    background-color: red;
+  }
   .navbar-text {
       margin-right: 10%
   }
