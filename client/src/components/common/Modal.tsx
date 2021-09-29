@@ -53,10 +53,10 @@ export default function SimpleModal(props:any) {
   const handleClose = () => {
     props.handleModal
   };
-
+  {console.log(props)}
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div>{props.title}</div>
+      <div>{props.item.title}</div>
      <button className={classes.button} type="button" onClick={props.handleModal}>
         <CloseIcon />
         Close

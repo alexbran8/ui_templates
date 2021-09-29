@@ -42,13 +42,13 @@ const Homepage = () => {
       </div> */}
     </div>
     <div className="home-container">
-      ssss
+      {/* ssss
       <section>
         section 1
       </section>
       <aside>
         aside 1
-      </aside>
+      </aside> */}
     </div>
   </div>)
 

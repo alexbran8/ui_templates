@@ -62,6 +62,7 @@ const ProjectsList = () => {
   const [weekList, setuWeeksList] = useState([]);
   const newDate = new Date()
   const [showModal, setShowModal] = React.useState(false);
+  const [selectedItem, setSelectedItem] = useState();
   const {data, loading, error } = useQuery(GET_ALL, {
     onCompleted: () => {
         console.log(data)
@@ -69,8 +70,10 @@ const ProjectsList = () => {
 });
 
 
-  const handleModal = () => {
+  const handleModal = (selectedItem) => {
     setShowModal(!showModal)
+    setSelectedItem(selectedItem)
+    console.log(selectedItem)
   }
   
 
@@ -101,7 +104,7 @@ const ProjectsList = () => {
             variant="contained"
             color="primary"
             onClick={(event) => {
-              handleModal();
+              handleModal({title:'Edit Item'});
             }}
           >
             Edit
@@ -110,7 +113,7 @@ const ProjectsList = () => {
             variant="contained"
             color="secondary"
             onClick={(event) => {
-              handleModal();
+              alert("Do you want to delete this item?")
             }}
           >
             Delete
@@ -215,11 +218,11 @@ const ProjectsList = () => {
  
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" onClick={() => { handleModal() }}>Add</Button>
+      <Button variant="contained" color="primary" onClick={() => { handleModal({title:'Add New Item'}) }}>Add</Button>
       {showModal ? (
       <SimpleModal
         //formValidator={formCheck}
-        title={"test"}
+        item={selectedItem}
         handleModal={handleModal}
         handleClose={handleModal}
         />
