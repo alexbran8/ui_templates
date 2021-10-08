@@ -67,9 +67,11 @@ const ProjectsList = () => {
   const newDate = new Date()
   const [showModal, setShowModal] = React.useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const [projects, setProjects] = useState([]);
   const {data, loading, error } = useQuery(GET_ALL, {
     onCompleted: () => {
-        console.log(data)
+        setProjects(data.getAll);
+        console.log(data.getAll)
     }
 });
 
@@ -85,19 +87,33 @@ const ProjectsList = () => {
     i18n.changeLanguage(event.target.value);
   };
   const columns = [
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 50 },
     {
-      field: 'projectName',
-      headerName: 'Name',
-      width: 150,
+      field: 'title',
+      headerName: 'Project Name',
+      width: 250,
+      editable: false,
+    },
+    {
+      field: 'description',
+      headerName: 'Description',
+      type: 'integer',
+      width: 500,
+      editable: false,
+    },
+    {
+      field: 'requirements',
+      headerName: 'Requirements',
+      type: 'integer',
+      width: 300,
       editable: true,
     },
     {
-      field: 'year',
-      headerName: 'Year',
+      field: 'coordinator',
+      headerName: 'Cooordinator',
       type: 'integer',
-      width: 110,
-      editable: true,
+      width: 500,
+      sortable: true,
     },
     // make col not available for users which are not admins
     {
@@ -108,7 +124,7 @@ const ProjectsList = () => {
             variant="contained"
             color="primary"
             onClick={(event) => {
-              handleModal({title:'Edit Item'});
+              handleModal({title:'Edit Item', data: cellValues.row});
             }}
           >
             Edit
@@ -135,9 +151,9 @@ const ProjectsList = () => {
     },
   ];
 
-  const rows = [
-    { id: 1, projectName: 'TechFlight', firstName: 'Jon', lastName: 'Jon', univeristy: '', year: 2021, fieldofStudy:'', comments: 35 },
-  ];
+  let rows = [];
+  // rows = projects && projects.map(row => {row.title})
+  console.log({rows})
 
   return (<div className="page-container"><h1>  {t("events.mainTitle")}
   </h1>
@@ -222,7 +238,7 @@ const ProjectsList = () => {
  
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" onClick={() => { handleModal({title:'Add New Item'}) }}>Add</Button>
+      <Button variant="contained" color="primary" onClick={() => { handleModal({title:'Add New Item',}) }}>Add</Button>
       {showModal ? (
       <SimpleModal
         //formValidator={formCheck}
@@ -235,7 +251,7 @@ const ProjectsList = () => {
     </div>
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
+        rows={projects}
         columns={columns}
         // pageSize={5}
         disableColumnFilter

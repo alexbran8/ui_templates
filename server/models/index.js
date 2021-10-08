@@ -26,7 +26,6 @@ db.Projects = require("./projects.model.js")(sequelize, Sequelize);
 // db.cartItem = require("./cartItem.js")(sequelize, Sequelize);
 // db.tags = require("./tags.js")(sequelize, Sequelize);
 // db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
-// db.comments = require("./comment.model.js")(sequelize, Sequelize);
 
 // db.tutorials.hasMany(db.comments, { as: "comments" });
 // db.comments.belongsTo(db.tutorials, {
