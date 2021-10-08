@@ -2,8 +2,12 @@ const { gql } = require("apollo-server");
 
 module.exports = gql`
 type project {
-    projectName: String!
-    year: Int!
+    title: String!
+    coordinator: String
+    details: String
+    requirements: String
+    description: String
+    year: Int
     id: Int!
   }
   type Response {

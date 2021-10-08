@@ -22,8 +22,11 @@ module.exports = {
   Query: {
     
     async getAll(root, args, context) {
-      console.log('x')
-      return result[0];
+      db.Projects.findAll({
+        // where: { [Op.and]: [dateFilter, weekFilter, itvFilter, statusFilter, siteFilter, responsibleFilter] },
+        // limit: args.first
+      });
+      return result;
 
     }
   },

@@ -69,7 +69,7 @@ export default function SimpleModal(props:any) {
         <DoneIcon />
         Create
       </button>
-     {/* <FormPropsTextFields /> */}
+     <FormPropsTextFields />
      
     </div>
   );

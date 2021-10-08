@@ -29,8 +29,12 @@ const GET_ALL = gql`
   query  { 
     getAll  {
         id
-        projectName
+        title
         year
+        coordinator
+        description
+        requirements
+        details
     }
   }
 `;

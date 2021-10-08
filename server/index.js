@@ -8,10 +8,7 @@ const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
 const session = require("express-session");
 const authRoutes = require("./routes/auth-routes");
-const { find } = require("./middlewares/mysql");
-const sequelize = require("sequelize");
-const DataTypes = sequelize.DataTypes;
-const Types = require("./models/types")(sequelize, DataTypes);
+
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
@@ -25,6 +22,18 @@ var { buildSchema } = require("graphql");
 const typeDefs = require("./graphql/schemas");
 const resolvers = require("./graphql/resolvers");
 const context = require("./graphql/context");
+
+const db = require("./models");
+
+db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
+
 
 const apolloServer = new ApolloServer({
   typeDefs,
@@ -97,10 +106,10 @@ const authCheck = (req, res, next) => {
 };
 
 const authCheckMiddleware = require('./middleware/auth-check')
-app.use("/users", authCheck,  require("./controllers/users"));
-app.use("/usersPrivate", authCheck, require("./controllers/usersPrivate"));
-app.use("/schedule",  authCheck, require("./controllers/schedule"));
-app.use("/types", find(Types));
+// app.use("/users", authCheck,  require("./controllers/users"));
+// app.use("/usersPrivate", authCheck, require("./controllers/usersPrivate"));
+// app.use("/schedule",  authCheck, require("./controllers/schedule"));
+// app.use("/types", find(Types));
 
 
 app.use("/", express.static(path.resolve(__dirname, "../client/public/dist")));
