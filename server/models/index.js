@@ -3,7 +3,7 @@
 
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("tacdb", "postgres", "fJdyP2Dyj@&6v!5hMM#VD", {
+const sequelize = new Sequelize("ecosystem", "postgres", "fJdyP2Dyj@&6v!5hMM#VD", {
     host: "10.129.210.150",
     dialect: "postgres",
     pool: {

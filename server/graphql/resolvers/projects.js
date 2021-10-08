@@ -1,6 +1,7 @@
 const e = require("cors");
 const nodemailer = require("nodemailer");
-const { db, transporterConfig } = require("../../config/configProvider")();
+const db = require("../../models");
+
 
 const errorHandler = (err, req, res, next) => {
   const { code, desc = err.message } = err;
@@ -22,7 +23,7 @@ module.exports = {
   Query: {
     
     async getAll(root, args, context) {
-      db.Projects.findAll({
+     let result = db.Projects.findAll({
         // where: { [Op.and]: [dateFilter, weekFilter, itvFilter, statusFilter, siteFilter, responsibleFilter] },
         // limit: args.first
       });
