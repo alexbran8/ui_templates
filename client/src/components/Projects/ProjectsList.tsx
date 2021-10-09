@@ -31,6 +31,7 @@ const GET_ALL = gql`
         id
         title
         year
+        type
         coordinator
         description
         requirements
@@ -95,25 +96,32 @@ const ProjectsList = () => {
       editable: false,
     },
     {
+      field: 'type',
+      headerName: 'Project Type ',
+      width: 250,
+      editable: false,
+    },
+    {
       field: 'description',
       headerName: 'Description',
       type: 'integer',
-      width: 500,
+      width: 250,
       editable: false,
     },
     {
       field: 'requirements',
       headerName: 'Requirements',
       type: 'integer',
-      width: 300,
-      editable: true,
+      width: 350,
+      editable: false,
     },
     {
       field: 'coordinator',
       headerName: 'Cooordinator',
-      type: 'integer',
+      // type: 'integer',
       width: 500,
       sortable: true,
+      editable: false,
     },
     // make col not available for users which are not admins
     {

@@ -53,23 +53,26 @@ export default function SimpleModal(props:any) {
   const handleClose = () => {
     props.handleModal
   };
-  {console.log(props)}
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <div>{props.item.title}</div>
+      <div><b>{props.item.data.title}</b></div>
+      
      <button className={classes.button} type="button" onClick={props.handleModal}>
         <CloseIcon />
         Close
       </button>
 
-      <button 
+      {/* <button 
       className={classes.button} 
-      type="button"
+      // type="button"
       >
         <DoneIcon />
         Create
-      </button>
-     <FormPropsTextFields />
+      </button> */}
+     <FormPropsTextFields 
+     values={props.item.data}
+     />
      
     </div>
   );

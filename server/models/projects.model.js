@@ -12,6 +12,9 @@ module.exports = (sequelize, type) => {
       title: {
         type: type.STRING,
       },
+      type: {
+        type: type.STRING,
+      },
       requirements: {
         type: type.STRING,
       },
