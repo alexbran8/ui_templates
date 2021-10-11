@@ -50,9 +50,16 @@ export default function SimpleModal(props:any) {
     setOpen(true);
   };
 
+//  pass to child to close form
   const handleClose = () => {
     props.handleModal
   };
+
+  // pass to child to get values
+  const handleInputValues = (data, field) => {
+    console.log(data.target.value)
+    console.log({field})
+  }
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -72,11 +79,12 @@ export default function SimpleModal(props:any) {
       </button> */}
      <FormPropsTextFields 
      values={props.item.data}
+     handleInputValues={handleInputValues}
      />
      
     </div>
   );
-  console.log(props);
+  // console.log(props);
   return (
     <div>
       

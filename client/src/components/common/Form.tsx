@@ -27,6 +27,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 import { useFormControls } from './Create';
+import { composeInitialProps } from 'react-i18next';
 
 // import { FormControl } from '@mui/material';
 // import Input from '@mui/material/Input';
@@ -120,11 +121,11 @@ type Profile = {
 }
 
 
-export default function FormPropsTextFields(values: any) {
+export default function FormPropsTextFields(props: any) {
   const classes = useStyles();
 
 
-  { console.log({ values }) }
+  { console.log({ props }) }
 
   // const {register, handleSubmit} = useForm<Profile>()
 
@@ -236,27 +237,27 @@ export default function FormPropsTextFields(values: any) {
           style={{ marginTop: 20 }}
           id="standard-basic"
           variant="outlined"
-          // {...register("tt")}
-          value={values.values.title}
-          onBlur={(e) => { handleInputValue(e, 'title') }}
-          onChange={(e) => { handleInputValue(e, 'title') }}
+          // {...register("title")}
+          defaultValue={props.values.title}
+          onBlur={(e) => { handleInputValues(e, 'title') }}
+          onChange={(e) => { props.handleInputValues(e, 'title') }}
           {...(errors["title"] && { error: true, helperText: errors["title"] })}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                {/* <div className={classes.label}> */}
-                <label>Project title</label>
-                {/* </div> */}
-              </InputAdornment>
-            )
-          }}
+          // InputProps={{
+          //   startAdornment: (
+          //     <InputAdornment position="start">
+          //       {/* <div className={classes.label}> */}
+          //       <label>Project title</label>
+          //       {/* </div> */}
+          //     </InputAdornment>
+          //   )
+          // }}
         />
         <TextField
           id="standard-select-currency"
           style={{ marginTop: 20, marginLeft: 20 }}
           select
           variant="outlined"
-          value={values.values.type}
+          value={props.values.type}
           // {...register("type")}
           onChange={(e) => { handleInputValue(e, 'type') }}
           onBlur={(e) => { handleInputValue(e, 'type') }}
@@ -280,7 +281,7 @@ export default function FormPropsTextFields(values: any) {
           select
           style={{ marginTop: 20, marginLeft: 20 }}
           variant="outlined"
-          value={values.values.coordinator}
+          value={props.values.coordinator}
           // {...register("flag")}
           onChange={(e) => { handleInputValue(e, 'flag') }}
           onBlur={(e) => { handleInputValue(e, 'flag') }}
@@ -318,7 +319,7 @@ export default function FormPropsTextFields(values: any) {
           id="outlined-multiline-static"
           label="Description"
           style={{ marginTop: 20 }}
-          value={values.values.description}
+          value={props.values.description}
           multiline
           rows={14}
           variant="outlined"
@@ -344,7 +345,7 @@ export default function FormPropsTextFields(values: any) {
           id="outlined-multiline-static"
           style={{ marginTop: 20 }}
           label="Requirements"
-          value={values.values.requirements}
+          value={props.values.requirements}
           multiline
           rows={14}
           variant="outlined"
