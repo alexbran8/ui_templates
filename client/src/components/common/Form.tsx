@@ -9,6 +9,10 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import { InputAdornment } from '@material-ui/core';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+
 import ListIcon from '@material-ui/icons/List';
 import FlagIcon from '@material-ui/icons/Flag';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
@@ -59,6 +63,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
       },
+    },
+    primaryColor: {
+      color: 'rgb(169,169,169)',
+    },
+    secondaryColor: {
+      color: 'blue'
     },
     label: {
       backgroundColor: 'rgb(169,169,169)',
@@ -114,7 +124,7 @@ export default function FormPropsTextFields(values: any) {
   const classes = useStyles();
 
 
-  {console.log({values})}
+  { console.log({ values }) }
 
   // const {register, handleSubmit} = useForm<Profile>()
 
@@ -211,83 +221,103 @@ export default function FormPropsTextFields(values: any) {
 
 
   return (
-    <form
-      className={classes.root}
-      autoComplete="off"
-      onSubmit={handleFormSubmit}
-    >
-
-
-
-
-      <TextField
-        required
-        id="standard-basic"
-        variant="outlined"
-        // {...register("tt")}
-        value={values.values.title}
-        onBlur={(e) => { handleInputValue(e, 'title') }}
-        onChange={(e) => { handleInputValue(e, 'title') }}
-        {...(errors["title"] && { error: true, helperText: errors["title"] })}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              {/* <div className={classes.label}> */}
+    <Grid container>
+      <Grid item xs={8}>
+        <Grid container direction="row" className={classes.mainHeader}>
+          <Grid item xs={8}>
+            <Typography className={classes.primaryColor} >
+              Main Info
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={20}>
+        <TextField
+          required
+          style={{ marginTop: 20 }}
+          id="standard-basic"
+          variant="outlined"
+          // {...register("tt")}
+          value={values.values.title}
+          onBlur={(e) => { handleInputValue(e, 'title') }}
+          onChange={(e) => { handleInputValue(e, 'title') }}
+          {...(errors["title"] && { error: true, helperText: errors["title"] })}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                {/* <div className={classes.label}> */}
                 <label>Project title</label>
-              {/* </div> */}
-            </InputAdornment>
-          )
-        }}
-      />
-            <TextField
-        id="standard-select-currency"
-        select
-        variant="outlined"
-        value={values.values.type}
-        // {...register("type")}
-        onChange={(e) => { handleInputValue(e, 'type') }}
-        onBlur={(e) => { handleInputValue(e, 'type') }}
-        {...(errors["type"] && { error: true, helperText: errors["type"] })}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <label>Project type</label>
-            </InputAdornment>
-          )
-        }}
-      >
-        {projectTypes.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      <TextField
-        id="standard-select-currency"
-        select
-        variant="outlined"
-        value={values.values.coordinator}
-        // {...register("flag")}
-        onChange={(e) => { handleInputValue(e, 'flag') }}
-        onBlur={(e) => { handleInputValue(e, 'flag') }}
-        {...(errors["flag"] && { error: true, helperText: errors["flag"] })}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <label>Project Coordinator</label>
-            </InputAdornment>
-          )
-        }}
-      >
-        {projectTypes.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-           <TextField
+                {/* </div> */}
+              </InputAdornment>
+            )
+          }}
+        />
+        <TextField
+          id="standard-select-currency"
+          style={{ marginTop: 20, marginLeft: 20 }}
+          select
+          variant="outlined"
+          value={values.values.type}
+          // {...register("type")}
+          onChange={(e) => { handleInputValue(e, 'type') }}
+          onBlur={(e) => { handleInputValue(e, 'type') }}
+          {...(errors["type"] && { error: true, helperText: errors["type"] })}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <label>Project type</label>
+              </InputAdornment>
+            )
+          }}
+        >
+          {projectTypes.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          id="standard-select-currency"
+          select
+          style={{ marginTop: 20, marginLeft: 20 }}
+          variant="outlined"
+          value={values.values.coordinator}
+          // {...register("flag")}
+          onChange={(e) => { handleInputValue(e, 'flag') }}
+          onBlur={(e) => { handleInputValue(e, 'flag') }}
+          {...(errors["flag"] && { error: true, helperText: errors["flag"] })}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <label>Project Coordinator</label>
+              </InputAdornment>
+            )
+          }}
+        >
+          {projectTypes.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Divider
+        style={{ marginTop: 20 }}
+         />
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container direction="row" className={classes.mainHeader}>
+          <Grid item xs={12}>
+            <Typography className={classes.primaryColor} >
+              Details
+            </Typography>
+          </Grid>
+        </Grid>
+        <TextField
           id="outlined-multiline-static"
           label="Description"
+          style={{ marginTop: 20 }}
           value={values.values.description}
           multiline
           rows={14}
@@ -298,41 +328,72 @@ export default function FormPropsTextFields(values: any) {
               <InputAdornment position="start">
                 {/* <div className={classes.label}> */}
 
-                  {/* <ChatBubbleOutlineIcon /> */}
+                {/* <ChatBubbleOutlineIcon /> */}
                 {/* </div> */}
 
               </InputAdornment>
             )
           }}
         />
-                 <TextField
+                 <Grid item xs={12}>
+        <Divider
+        style={{ marginTop: 20 }}
+         />
+      </Grid>
+        <TextField
           id="outlined-multiline-static"
-          label="Description"
+          style={{ marginTop: 20 }}
+          label="Requirements"
           value={values.values.requirements}
           multiline
           rows={14}
           variant="outlined"
-          onChange={(e) => { handleInputValue(e, 'description') }}
+          onChange={(e) => { handleInputValue(e, 'requirements') }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 {/* <div className={classes.label}> */}
 
-                  {/* <ChatBubbleOutlineIcon /> */}
+                {/* <ChatBubbleOutlineIcon /> */}
                 {/* </div> */}
 
               </InputAdornment>
             )
           }}
         />
+         <Grid item xs={12}>
+        <Divider
+        style={{ marginTop: 20 }}
+         />
+      </Grid>
+        <Grid item xs={8}>
+          <button type="submit" value="submit">Save</button>
 
-  
+        </Grid>
+      </Grid>
+      <form
+        className={classes.root}
+        autoComplete="off"
+        onSubmit={handleFormSubmit}
+      >
 
 
 
 
-      <button type="submit" value="submit">Save</button>
-      {/* { disabled={!formIsValid()} */}
-    </form>
+
+
+
+
+
+
+
+
+
+
+
+        <div></div>
+        {/* { disabled={!formIsValid()} */}
+      </form>
+    </Grid>
   );
 }

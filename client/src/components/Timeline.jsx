@@ -17,6 +17,7 @@ const DevelopmentTimeline = () =>
     </div>
   );
 
+
 const timelineData = [
   {
     text: "Implement SSO login",
