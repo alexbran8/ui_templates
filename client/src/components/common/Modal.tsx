@@ -67,7 +67,6 @@ export default function SimpleModal(props:any) {
       
      <button className={classes.button} type="button" onClick={props.handleModal}>
         <CloseIcon />
-        Close
       </button>
 
       {/* <button 

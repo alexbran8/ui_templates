@@ -12,6 +12,9 @@ import { InputAdornment } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
+import Icon from "@material-ui/core/Icon";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
 
 import ListIcon from '@material-ui/icons/List';
 import FlagIcon from '@material-ui/icons/Flag';
