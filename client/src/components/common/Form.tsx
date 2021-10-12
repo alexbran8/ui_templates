@@ -222,11 +222,11 @@ export default function FormPropsTextFields(props: any) {
   //   setForms({ ...forms, [name]: value });
   // };
 
-
+console.log(props)
 
   return (
     <Grid container>
-      <Grid item xs={8}>
+      <Grid item xs={12}>
         <Grid container direction="row" className={classes.mainHeader}>
           <Grid item xs={8}>
             <Typography className={classes.primaryColor} >
@@ -234,16 +234,17 @@ export default function FormPropsTextFields(props: any) {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={20}>
+        <Grid item xs={12}>
         <TextField
           required
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 20, width:350 }}
           id="standard-basic"
           variant="outlined"
+          
           // {...register("title")}
-          defaultValue={props.values.title}
-          onBlur={(e) => { handleInputValues(e, 'title') }}
-          onChange={(e) => { props.handleInputValues(e, 'title') }}
+          defaultValue={props.operation === 'edit' ? props.values.title : null}
+          onBlur={(e) => {props.handleInputValues(e.target.value, 'title', props.operation === 'edit' ? props.values.id : 0) }}
+          onChange={(e) => {props.handleInputValues(e.target.value, 'title', props.operation === 'edit' ? props.values.id : 0) }}
           {...(errors["title"] && { error: true, helperText: errors["title"] })}
           // InputProps={{
           //   startAdornment: (
@@ -260,10 +261,10 @@ export default function FormPropsTextFields(props: any) {
           style={{ marginTop: 20, marginLeft: 20 }}
           select
           variant="outlined"
-          value={props.values.type}
+          defaultValue={props.operation === 'edit' ? props.values.type : null}
           // {...register("type")}
-          onChange={(e) => { handleInputValue(e, 'type') }}
-          onBlur={(e) => { handleInputValue(e, 'type') }}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'type',props.operation === 'edit' ? props.values.id : 0) }}
+          onBlur={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
           {...(errors["type"] && { error: true, helperText: errors["type"] })}
           InputProps={{
             startAdornment: (
@@ -284,11 +285,11 @@ export default function FormPropsTextFields(props: any) {
           select
           style={{ marginTop: 20, marginLeft: 20 }}
           variant="outlined"
-          value={props.values.coordinator}
+          defaultValue={props.operation === 'edit' ? props.values.coordinator : null}
           // {...register("flag")}
-          onChange={(e) => { handleInputValue(e, 'flag') }}
-          onBlur={(e) => { handleInputValue(e, 'flag') }}
-          {...(errors["flag"] && { error: true, helperText: errors["flag"] })}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'coordinator',props.operation === 'edit' ? props.values.id : 0) }}
+          onBlur={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
+          {...(errors["coordinator"] && { error: true, helperText: errors["coordinator"] })}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -322,11 +323,11 @@ export default function FormPropsTextFields(props: any) {
           id="outlined-multiline-static"
           label="Description"
           style={{ marginTop: 20 }}
-          value={props.values.description}
+          defaultValue={props.operation === 'edit' ? props.values.description : null}
           multiline
           rows={14}
           variant="outlined"
-          onChange={(e) => { handleInputValue(e, 'description') }}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'description',props.operation === 'edit' ? props.values.id : 0) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -348,11 +349,11 @@ export default function FormPropsTextFields(props: any) {
           id="outlined-multiline-static"
           style={{ marginTop: 20 }}
           label="Requirements"
-          value={props.values.requirements}
+          defaultValue={props.operation === 'edit' ? props.values.requirements : null}
           multiline
           rows={14}
           variant="outlined"
-          onChange={(e) => { handleInputValue(e, 'requirements') }}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'requirements',  props.operation === 'edit' ? props.values.id : 0) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -371,7 +372,7 @@ export default function FormPropsTextFields(props: any) {
          />
       </Grid>
         <Grid item xs={8}>
-          <button type="submit" value="submit">Save</button>
+          <button type="submit" onClick={() =>{props.saveFunction()}}>Save</button>
 
         </Grid>
       </Grid>

@@ -68,21 +68,62 @@ const ProjectsList = () => {
   const newDate = new Date()
   const [showModal, setShowModal] = React.useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const [item,setItem] = useState([]);
   const [projects, setProjects] = useState([]);
-  const {data, loading, error } = useQuery(GET_ALL, {
+  const [operation, setOperation] = useState();
+  const { data, loading, error } = useQuery(GET_ALL, {
     onCompleted: () => {
-        setProjects(data.getAll);
-        console.log(data.getAll)
+      setProjects(data.getAll);
+      // console.log(data.getAll)
     }
-});
-
+  });
 
   const handleModal = (selectedItem) => {
     setShowModal(!showModal)
     setSelectedItem(selectedItem)
-    console.log(selectedItem)
   }
-  
+
+  const updateItem = (id) => {
+    console.log({operation})
+    console.log({ data })
+    const newProjects = [...projects]
+    let index = newProjects.findIndex((y) => y.id == id)
+    console.log(index)
+    newProjects[index] = item
+    setProjects(newProjects)
+  }
+
+  const addMoreItems = () => {
+    console.log(operation)
+    const newProjects = [...projects]
+    let newFreshId = 0;
+    newProjects.forEach((item) => {
+            item.id = item.id + 1;
+    });
+
+    setProjects(newProjects => [...newProjects, item]);
+    console.log({projects})
+    setShowModal(false)
+  }
+
+
+  const handleInputValues = (value, field, index) => {
+    // console.log({value})
+    // check if values are valid
+
+
+    // if yes, add values to state
+    setItem((item) => ({
+      ...item,
+      [field]: value,
+      id: index
+    }));
+
+    console.log(item)
+
+  }
+
+
 
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
@@ -131,13 +172,12 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={(event) => {
-              handleModal({title:'Edit Item', data: cellValues.row});
+            onClick={(event) => {setOperation('edit');handleModal({ title: 'Edit Item', data: cellValues.row });
             }}
           >
             Edit
           </Button>
-            <Button
+          <Button
             variant="contained"
             color="secondary"
             onClick={(event) => {
@@ -146,7 +186,7 @@ const ProjectsList = () => {
           >
             Delete
           </Button>
-          </>
+        </>
         );
       },
       headerName: 'Actions',
@@ -159,9 +199,6 @@ const ProjectsList = () => {
     },
   ];
 
-  let rows = [];
-  // rows = projects && projects.map(row => {row.title})
-  console.log({rows})
 
   return (<div className="page-container"><h1>  {t("events.mainTitle")}
   </h1>
@@ -241,25 +278,29 @@ const ProjectsList = () => {
       </>
     </div>
     <div className="report-container">
-          <h5>Metrics about events</h5>
+      <h5>Metrics about events</h5>
     </div>
- 
+
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" onClick={() => { handleModal({title:'Add New Item',}) }}>Add</Button>
+      <Button variant="contained" color="primary" onClick={() => { setOperation('add');handleModal({ title: 'Add New Item', }) }}>Add</Button>
       {showModal ? (
-      <SimpleModal
-        //formValidator={formCheck}
-        item={selectedItem}
-        handleModal={handleModal}
-        handleClose={handleModal}
+        <SimpleModal
+          //formValidator={formCheck}
+          // setShowModalOpen={showModal}
+          item={selectedItem}
+          handleModal={handleModal}
+          handleClose={handleModal}
+          saveFunction={operation==='add' ? addMoreItems : updateItem }
+          handleInputValues={handleInputValues}
+          operation={operation}
         />
-      ):null}
+      ) : null}
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Delete</Button>
     </div>
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={projects}
+        rows={projects ? projects : []}
         columns={columns}
         // pageSize={5}
         disableColumnFilter
