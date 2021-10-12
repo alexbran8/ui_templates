@@ -222,7 +222,7 @@ export default function FormPropsTextFields(props: any) {
   //   setForms({ ...forms, [name]: value });
   // };
 
-console.log(props)
+console.log({props})
 
   return (
     <Grid container>

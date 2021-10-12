@@ -83,13 +83,14 @@ const ProjectsList = () => {
     setSelectedItem(selectedItem)
   }
 
-  const updateItem = (id) => {
+  const updateItem = () => {
     console.log({operation})
-    console.log({ data })
+    console.log('update', item.id)
     const newProjects = [...projects]
-    let index = newProjects.findIndex((y) => y.id == id)
+    let index = newProjects.findIndex((y) => y.id === item.id)
     console.log(index)
     newProjects[index] = item
+    console.log({newProjects})
     setProjects(newProjects)
   }
 
@@ -172,7 +173,7 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={(event) => {setOperation('edit');handleModal({ title: 'Edit Item', data: cellValues.row });
+            onClick={(event) => {setOperation('edit');setItem(cellValues.row.data);handleModal({ title: 'Edit Item', data: cellValues.row });
             }}
           >
             Edit
