@@ -92,6 +92,7 @@ const ProjectsList = () => {
     newProjects[index] = item
     console.log({newProjects})
     setProjects(newProjects)
+    setShowModal(false)
   }
 
   const addMoreItems = () => {
@@ -111,16 +112,13 @@ const ProjectsList = () => {
   const handleInputValues = (value, field, index) => {
     // console.log({value})
     // check if values are valid
-
-
+    console.log('before',item)
     // if yes, add values to state
     setItem((item) => ({
       ...item,
       [field]: value,
       id: index
     }));
-
-    console.log(item)
 
   }
 
@@ -173,7 +171,7 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={(event) => {setOperation('edit');setItem(cellValues.row.data);handleModal({ title: 'Edit Item', data: cellValues.row });
+            onClick={(event) => {setOperation('edit');setItem(cellValues.row);handleModal({ title: 'Edit Item', data: cellValues.row });
             }}
           >
             Edit
