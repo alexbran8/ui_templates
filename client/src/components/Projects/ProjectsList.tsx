@@ -10,7 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from "react-i18next";
 import { DataGrid } from '@mui/x-data-grid';
 import SimpleModal from "../common/Modal"
-import { useMutation, useQuery, gql } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
+import gql from 'graphql-tag';
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({

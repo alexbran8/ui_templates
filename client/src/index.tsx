@@ -27,6 +27,7 @@ const userName = sessionStorage.getItem('email'),
   nokiaid = sessionStorage.getItem('nokiaid')
 
   const apiclient = new ApolloClient({ uri: config.baseURL + config.baseLOCATION + `/graphql`, });
+  console.log({apiclient})
 
 ReactDOM.render(  <ApolloProvider client={apiclient}><Provider
     store={createStore(
