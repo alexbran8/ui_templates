@@ -11,21 +11,27 @@ module.exports = (sequelize, type) => {
       // },
       title: {
         type: type.STRING,
+        required: true
       },
       type: {
         type: type.STRING,
+        required: true
       },
       requirements: {
         type: type.STRING,
+        required: true
       },
       details: {
-        type:type.BOOLEAN
+        type:type.STRING,
+        required: true
       },
       coordinator: {
-        type:type.BOOLEAN
+        type:type.STRING,
+        required: true
       },
       description: {
         type: type.STRING,
+        required: true
       },
       createdBy: { type: type.STRING },
     },

@@ -30,21 +30,20 @@ const GET_ALL = gql`
     getAll  {
         id
         title
-        year
         type
         coordinator
         description
         requirements
-        details
     }
   }
 `;
 
-const DELETE_ITEMS = gql`
-mutation ($data: [idArray]) {
-    deleteItems (data:$data){
+const DELETE_ITEM = gql`
+mutation ($id: Int) {
+    deleteItem (id:$id){
         success
         message
+        id
       }
     }
 
@@ -58,6 +57,26 @@ query {
 }
 `;
 
+const ADD_ITEM = gql`
+mutation ($data: Project) {
+    addItem (data:$data){
+        success
+        message
+      }
+    }
+
+`;
+
+
+const EDIT_ITEM = gql`
+mutation ($data: Project) {
+    editItem (data:$data){
+        success
+        message
+      }
+    }
+
+`;
 
 
 const ProjectsList = () => {
@@ -68,7 +87,7 @@ const ProjectsList = () => {
   const newDate = new Date()
   const [showModal, setShowModal] = React.useState(false);
   const [selectedItem, setSelectedItem] = useState();
-  const [item,setItem] = useState([]);
+  const [item, setItem] = useState([]);
   const [projects, setProjects] = useState([]);
   const [operation, setOperation] = useState();
   const { data, loading, error } = useQuery(GET_ALL, {
@@ -78,41 +97,77 @@ const ProjectsList = () => {
     }
   });
 
+
+  const [addItemMutation] = useMutation(ADD_ITEM, {
+    onCompleted: (dataRes) => {
+      // update state
+      const newProjects = [...projects]
+      newProjects.forEach((item) => {
+        item.id = item.id + 1;
+      });
+      setProjects(newProjects => [...newProjects, item]);
+      setShowModal(false)
+
+    },
+    onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
+  });
+
+  const [deleteItemMutation] = useMutation(DELETE_ITEM, {
+    onCompleted: (dataRes) => {
+      // update state after item is deleted from db
+      let newProjects = projects.filter(function (el) { return el.id != dataRes.deleteItem.id; });
+      setProjects(newProjects)
+    },
+    onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
+  });
+
+  const [updateItemMutation] = useMutation(EDIT_ITEM, {
+    onCompleted: (dataRes) => {
+      // update state
+      const newProjects = [...projects]
+      let index = newProjects.findIndex((y) => y.id === item.id)
+
+      newProjects[index] = item
+
+      setProjects(newProjects)
+      setShowModal(false)
+    },
+    onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
+  });
+
   const handleModal = (selectedItem) => {
     setShowModal(!showModal)
     setSelectedItem(selectedItem)
   }
 
   const updateItem = () => {
-    console.log({operation})
-    console.log('update', item.id)
-    const newProjects = [...projects]
-    let index = newProjects.findIndex((y) => y.id === item.id)
-    console.log(index)
-    newProjects[index] = item
-    console.log({newProjects})
-    setProjects(newProjects)
-    setShowModal(false)
+    console.log({ item })
+    // save to db
+    delete item["__typename"]
+    updateItemMutation({
+      variables: {
+        data: item
+      }
+    }
+    )
   }
 
   const addMoreItems = () => {
-    console.log(operation)
-    const newProjects = [...projects]
-    let newFreshId = 0;
-    newProjects.forEach((item) => {
-            item.id = item.id + 1;
-    });
-
-    setProjects(newProjects => [...newProjects, item]);
-    console.log({projects})
-    setShowModal(false)
+    console.log({ item })
+    // save to db
+    addItemMutation({
+      variables: {
+        data: item
+      }
+    }
+    )
   }
 
 
   const handleInputValues = (value, field, index) => {
     // console.log({value})
     // check if values are valid
-    console.log('before',item)
+    console.log('before', item)
     // if yes, add values to state
     setItem((item) => ({
       ...item,
@@ -121,8 +176,6 @@ const ProjectsList = () => {
     }));
 
   }
-
-
 
   const changeLanguage = (event) => {
     i18n.changeLanguage(event.target.value);
@@ -144,14 +197,14 @@ const ProjectsList = () => {
     {
       field: 'description',
       headerName: 'Description',
-      type: 'integer',
+      // type: 'integer',
       width: 250,
       editable: false,
     },
     {
       field: 'requirements',
       headerName: 'Requirements',
-      type: 'integer',
+      // type: 'integer',
       width: 350,
       editable: false,
     },
@@ -171,7 +224,8 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={(event) => {setOperation('edit');setItem(cellValues.row);handleModal({ title: 'Edit Item', data: cellValues.row });
+            onClick={(event) => {
+              setOperation('edit'); setItem(cellValues.row); handleModal({ title: 'Edit Item', data: cellValues.row });
             }}
           >
             Edit
@@ -180,7 +234,12 @@ const ProjectsList = () => {
             variant="contained"
             color="secondary"
             onClick={(event) => {
-              alert("Do you want to delete this item?")
+              deleteItemMutation({
+                variables: {
+                  id: cellValues.row.id
+                }
+              }
+              )
             }}
           >
             Delete
@@ -282,7 +341,7 @@ const ProjectsList = () => {
 
     <div className="button-container">
       <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" onClick={() => { setOperation('add');handleModal({ title: 'Add New Item', }) }}>Add</Button>
+      <Button variant="contained" color="primary" onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
       {showModal ? (
         <SimpleModal
           //formValidator={formCheck}
@@ -290,7 +349,7 @@ const ProjectsList = () => {
           item={selectedItem}
           handleModal={handleModal}
           handleClose={handleModal}
-          saveFunction={operation==='add' ? addMoreItems : updateItem }
+          saveFunction={operation === 'add' ? addMoreItems : updateItem}
           handleInputValues={handleInputValues}
           operation={operation}
         />

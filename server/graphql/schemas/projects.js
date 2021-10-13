@@ -14,23 +14,17 @@ type project {
   type Response {
     success: String!
     message: String!
+    id: Int
   }
 
-  input Norms {
+  input Project {
     id: Int
-    to_email: String
-    date: String
-    resource: String
-    wbsCustomer: String
-    task: String
-    taskComments: String
-    twc: String
-    bh: String
-	  rh: String
-	  normOK: String
-	  normNok:  String
-	  status: String
-    var: String
+    title: String!
+    type: String!
+    description: String!
+    requirements: String!
+    coordinator: String!
+    year: String
    }
 
 extend  type Query  {
@@ -38,6 +32,8 @@ extend  type Query  {
 } 
 
 extend type Mutation {
-  sendNotifications (data: [Norms]):Response!
+  addItem (data: Project):Response!
+  editItem (data: Project):Response!
+  deleteItem (id: Int):Response!
 }
 `;
