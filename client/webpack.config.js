@@ -52,7 +52,7 @@ module.exports = {
       },
       {
         test: /.*\.(gif|png|jp(e*)g|svg)$/i,
-        exclude:  path.resolve(__dirname, "node_modules"),
+        // exclude:  path.resolve(__dirname, "node_modules"),
         use: [
           {
             loader: "url-loader",
@@ -63,6 +63,11 @@ module.exports = {
           },
         ],
       },
+      { 
+        test: /\.(png|jpg)$/,
+        include: path.join(__dirname, 'assets/img'),
+        loader: 'file-loader' 
+     },
       // Vendor CSS loader
       // This is necessary to pack third party libraries like antd
       {

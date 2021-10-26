@@ -26,42 +26,31 @@ const ToggleSwitch = ({
   }
 
   return (
-    <div className={"toggle-switch" + (small ? " small-switch" : "")}>
-      <input
-        type="checkbox"
-        name={name}
-        className="toggle-switch-checkbox"
-        id={id}
-        checked={checked}
-        onChange={(e) => onChange(e.target.checked)}
-        disabled={disabled}
-      />
-      {id ? (
+    <center>
+      <div className="switch">
+        <input
+          type="checkbox"
+          name={name}
+          className="check-toggle check-toggle-round-flat"
+          id={id}
+          checked={checked}
+          onChange={(e) => onChange(e.target.checked)}
+          disabled={disabled}
+        />
+
+        {/* {id ? ( */}
         <label
-          className="toggle-switch-label"
+          className="language-toggle"
           tabIndex={disabled ? -1 : 1}
           onKeyDown={(e) => handleKeyPress(e)}
           htmlFor={id}
-        >
-          <span
-            className={
-              disabled
-                ? "toggle-switch-inner toggle-switch-disabled"
-                : "toggle-switch-inner"
-            }
-          ></span>
+        > </label>
+        <span className="on">RO</span>
+        <span className="off">EN</span>
 
-          <span
-            className={
-              disabled
-                ? "toggle-switch-switch toggle-switch-disabled"
-                : "toggle-switch-switch"
-            }
-            tabIndex={-1}
-          />
-        </label>
-      ) : null}
-    </div>
+        {/* ) : null} */}
+      </div>
+    </center>
   );
 };
 

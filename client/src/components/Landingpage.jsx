@@ -60,6 +60,7 @@ const Landingpage = () => {
                   </CardBody>
                 </Card>
               </a>
+              <img src={"./ro.jpg"} alt="Logo" />
             </div>
           </div>
 
