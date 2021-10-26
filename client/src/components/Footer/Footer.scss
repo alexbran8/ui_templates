@@ -70,7 +70,7 @@
       justify-content: space-evenly;
     }
     .footer {
-      position: relative;
+      position: absolute;
     }
   }
   @media only screen and (min-width: 77.5rem /* 1240px */) {
@@ -78,7 +78,7 @@
       justify-content: space-evenly;
     }
     .footer {
-      position: relative;
+      position: absolute;
     }
   }
   .ft-main-item {
