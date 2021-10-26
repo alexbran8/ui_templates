@@ -26,7 +26,6 @@ const ToggleSwitch = ({
   }
 
   return (
-    <center>
       <div className="switch">
         <input
           type="checkbox"
@@ -50,7 +49,6 @@ const ToggleSwitch = ({
 
         {/* ) : null} */}
       </div>
-    </center>
   );
 };
 
