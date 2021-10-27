@@ -24,7 +24,7 @@ const SidebarNav = styled.nav`
   display: flex;
   justify-content: center;
   position: fixed;
-  top:  64px;
+  top:  60px;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 490ms;
   order: 2
@@ -37,7 +37,7 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
+  const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(!sidebar);
 

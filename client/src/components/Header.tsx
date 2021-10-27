@@ -46,6 +46,9 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
+    customizeToolbar: {
+      minHeight: 60
+    },
     small: {
       width: theme.spacing(3),
       height: theme.spacing(3),
@@ -245,7 +248,7 @@ export const Header = () => {
     <div className={classes.root}>
       <AppBar className="nav-bar" position="fixed">
     
-        <Toolbar>
+        <Toolbar  className={classes.customizeToolbar}>
         <Sidebar />
           <Typography variant="h6" className={classes.title}>
             <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
