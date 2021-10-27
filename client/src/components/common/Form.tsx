@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-//import {useForm} from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form'
 
-import regeneratorRuntime from "regenerator-runtime";
+import Button from '@material-ui/core/Button';
 
 
 import TextField from '@material-ui/core/TextField';
@@ -12,25 +12,10 @@ import { InputAdornment } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import Icon from "@material-ui/core/Icon";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
 
-import ListIcon from '@material-ui/icons/List';
-import FlagIcon from '@material-ui/icons/Flag';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import PersonIcon from '@material-ui/icons/Person';
-import GpsFixedIcon from '@material-ui/icons/GpsFixed';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
-import LanguageIcon from '@material-ui/icons/Language';
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 
 import { useFormControls } from './Create';
-import { composeInitialProps } from 'react-i18next';
+
 
 // import { FormControl } from '@mui/material';
 // import Input from '@mui/material/Input';
@@ -126,9 +111,8 @@ type Profile = {
 
 export default function FormPropsTextFields(props: any) {
   const classes = useStyles();
+  const { register, handleSubmit, control } = useForm({});
 
-
-  { console.log({ props }) }
 
   // const {register, handleSubmit} = useForm<Profile>()
 
@@ -214,6 +198,9 @@ export default function FormPropsTextFields(props: any) {
     errors
   } = useFormControls();
 
+  const onSubmit = (data: any) => {console.log(data)}
+
+
   //const [forms, setForms] = useState<Profile>()
 
 
@@ -222,7 +209,7 @@ export default function FormPropsTextFields(props: any) {
   //   setForms({ ...forms, [name]: value });
   // };
 
-console.log({props})
+  console.log({ props })
 
   return (
     <Grid container>
@@ -235,81 +222,13 @@ console.log({props})
           </Grid>
         </Grid>
         <Grid item xs={12}>
-        <TextField
-          required
-          style={{ marginTop: 20, width:350 }}
-          id="standard-basic"
-          variant="outlined"
-          
-          // {...register("title")}
-          defaultValue={props.operation === 'edit' ? props.values.title : null}
-          onBlur={(e) => {props.handleInputValues(e.target.value, 'title', props.operation === 'edit' ? props.values.id : 0) }}
-          onChange={(e) => {props.handleInputValues(e.target.value, 'title', props.operation === 'edit' ? props.values.id : 0) }}
-          {...(errors["title"] && { error: true, helperText: errors["title"] })}
-          // InputProps={{
-          //   startAdornment: (
-          //     <InputAdornment position="start">
-          //       {/* <div className={classes.label}> */}
-          //       <label>Project title</label>
-          //       {/* </div> */}
-          //     </InputAdornment>
-          //   )
-          // }}
-        />
-        <TextField
-          id="standard-select-currency"
-          style={{ marginTop: 20, marginLeft: 20 }}
-          select
-          variant="outlined"
-          defaultValue={props.operation === 'edit' ? props.values.type : null}
-          // {...register("type")}
-          onChange={(e) => { props.handleInputValues(e.target.value, 'type',props.operation === 'edit' ? props.values.id : 0) }}
-          onBlur={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
-          {...(errors["type"] && { error: true, helperText: errors["type"] })}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <label>Project type</label>
-              </InputAdornment>
-            )
-          }}
-        >
-          {projectTypes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          id="standard-select-currency"
-          select
-          style={{ marginTop: 20, marginLeft: 20 }}
-          variant="outlined"
-          defaultValue={props.operation === 'edit' ? props.values.coordinator : null}
-          // {...register("flag")}
-          onChange={(e) => { props.handleInputValues(e.target.value, 'coordinator',props.operation === 'edit' ? props.values.id : 0) }}
-          onBlur={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
-          {...(errors["coordinator"] && { error: true, helperText: errors["coordinator"] })}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <label>Project Coordinator</label>
-              </InputAdornment>
-            )
-          }}
-        >
-          {projectTypes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
+
         </Grid>
       </Grid>
       <Grid item xs={12}>
         <Divider
-        style={{ marginTop: 20 }}
-         />
+          style={{ marginTop: 20 }}
+        />
       </Grid>
       <Grid item xs={12}>
         <Grid container direction="row" className={classes.mainHeader}>
@@ -327,7 +246,7 @@ console.log({props})
           multiline
           rows={14}
           variant="outlined"
-          onChange={(e) => { props.handleInputValues(e.target.value, 'description',props.operation === 'edit' ? props.values.id : 0) }}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'description', props.operation === 'edit' ? props.values.id : 0) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -340,11 +259,11 @@ console.log({props})
             )
           }}
         />
-                 <Grid item xs={12}>
-        <Divider
-        style={{ marginTop: 20 }}
-         />
-      </Grid>
+        <Grid item xs={12}>
+          <Divider
+            style={{ marginTop: 20 }}
+          />
+        </Grid>
         <TextField
           id="outlined-multiline-static"
           style={{ marginTop: 20 }}
@@ -353,7 +272,7 @@ console.log({props})
           multiline
           rows={14}
           variant="outlined"
-          onChange={(e) => { props.handleInputValues(e.target.value, 'requirements',  props.operation === 'edit' ? props.values.id : 0) }}
+          onChange={(e) => { props.handleInputValues(e.target.value, 'requirements', props.operation === 'edit' ? props.values.id : 0) }}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -366,38 +285,102 @@ console.log({props})
             )
           }}
         />
-         <Grid item xs={12}>
-        <Divider
-        style={{ marginTop: 20 }}
-         />
-      </Grid>
+        <Grid item xs={12}>
+          <Divider
+            style={{ marginTop: 20 }}
+          />
+        </Grid>
         <Grid item xs={8}>
-          <button type="submit" onClick={() =>{props.saveFunction()}}>Save</button>
+          <button type="submit" onClick={() => { props.saveFunction() }}>Save</button>
 
         </Grid>
       </Grid>
       <form
         className={classes.root}
         autoComplete="off"
-        onSubmit={handleFormSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
+        <Grid item xs={12}>
+          <Typography className={classes.primaryColor} >
+            Main Info
+          </Typography>
+          <Divider
+            style={{ marginTop: 20 }}
+          />
+          <Controller
+            name="title"
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <TextField
+                id="title"
+                type="text"
+                label="Project title"
+                className={classes.textField}
+                onChange={onChange}
+                error={!!error}
+                helperText={error ? error.message : null}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            )}
+            rules={{ required: 'Project Title is required' }}
+          />
 
+          <TextField
+            id="standard-select-currency"
+            style={{ marginTop: 20, marginLeft: 20 }}
+            select
+            variant="outlined"
+            defaultValue={props.operation === 'edit' ? props.values.type : null}
+            // {...register("type")}
+            onChange={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
+            onBlur={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
+            {...(errors["type"] && { error: true, helperText: errors["type"] })}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <label>Project type</label>
+                </InputAdornment>
+              )
+            }}
+          >
+            {projectTypes.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            id="standard-select-currency"
+            select
+            style={{ marginTop: 20, marginLeft: 20 }}
+            variant="outlined"
+            defaultValue={props.operation === 'edit' ? props.values.coordinator : null}
+            // {...register("flag")}
+            onChange={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
+            onBlur={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
+            {...(errors["coordinator"] && { error: true, helperText: errors["coordinator"] })}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <label>Project Coordinator</label>
+                </InputAdornment>
+              )
+            }}
+          >
+            {projectTypes.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+        </Grid>
+        <Button type="submit" variant="contained" color="primary">
+          Add
+        </Button>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div></div>
-        {/* { disabled={!formIsValid()} */}
       </form>
     </Grid>
   );
