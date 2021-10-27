@@ -22,7 +22,7 @@ ul {
   margin-top: 80px;
   margin-left: auto;
   margin-right: auto;
-  border: 3px solid black;
+  // border: 3px solid black;
   width: 30%;
   height: 100%;
 //   margin: auto;
@@ -96,7 +96,7 @@ ul {
   .leftpane {
       width: 100%;
       // height: 60%;
-      border-right: 2px solid black;
+      // border-right: 2px solid black;
     //   float: left;
       background-color: darkgrey;
       border-collapse: collapse;
@@ -114,7 +114,7 @@ ul {
   
   .rightpane {
     width: 100%;   
-    border-left: 2px solid black;
+    // border-left: 2px solid black;
     height: 100%;
     background-color: darkgrey;
     // height: 50%;   
@@ -139,6 +139,6 @@ ul {
     min-height: 550px;
     border-collapse: collapse;
     height: 70%;
-    border: 2px solid red;
+    // border: 2px solid red;
 
   }
