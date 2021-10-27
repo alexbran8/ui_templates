@@ -6,7 +6,7 @@
 }
 
 .page-container {
-    border: 2px solid orange;
+    // border: 2px solid orange;
     position: relative;
     min-height: 100%;
 }
@@ -15,7 +15,8 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    border: 2px solid black;
+    margin: 20px 0 20px 0 ;
+    // border: 2px solid black;
 }
 
 .filter-container {
@@ -35,7 +36,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    border: 2px solid black;
+    // border: 2px solid black;
   }
 
   .report-container {

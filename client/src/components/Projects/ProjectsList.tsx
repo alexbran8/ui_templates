@@ -335,12 +335,12 @@ const ProjectsList = () => {
         </>
       </>
     </div>
-    <div className="report-container">
+    {/* <div className="report-container">
       <h5>Metrics about events</h5>
-    </div>
+    </div> */}
 
     <div className="button-container">
-      <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Upload</Button>
+      <Button variant="contained" color="primary" disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
       <Button variant="contained" color="primary" onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
       {showModal ? (
         <SimpleModal
@@ -354,7 +354,7 @@ const ProjectsList = () => {
           operation={operation}
         />
       ) : null}
-      <Button variant="contained" color="primary" onClick={() => { alert("upload!") }}>Delete</Button>
+      <Button variant="contained" color="primary" disabled={true} onClick={() => { alert("upload!") }}>Delete</Button>
     </div>
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
