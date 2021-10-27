@@ -1,6 +1,6 @@
 import React from "react";
 import Landingpage from "./components/Landingpage.jsx";
-import LoginError from "./components/LoginError";
+import LoginError from "./components/common/LoginError/LoginError";
 import Homepage from "./components/Homepage/Homepage";
 import Timeline from "./components/Timeline.jsx"
 import Database from "./components/Admin/Database"
