@@ -140,24 +140,33 @@ const ProjectsList = () => {
     setSelectedItem(selectedItem)
   }
 
-  const updateItem = () => {
-    console.log({ item })
+  const updateItem = (data) => {
+    let inputData = data
+    // data.push({id:item.id})
     // save to db
-    delete item["__typename"]
+    // delete item["__typename"]
+    console.log({inputData})
+    setItem(inputData)
+    console.log('itme',{item})
     updateItemMutation({
       variables: {
-        data: item
+        data: inputData
       }
     }
     )
   }
 
-  const addMoreItems = () => {
-    console.log({ item })
+  const addMoreItems = (data, index) => {
+    let inputData = data
+    setItem((item) => ({
+      ...item, ...inputData,
+      id: 0, 
+
+    }));
     // save to db
     addItemMutation({
       variables: {
-        data: item
+        data: inputData
       }
     }
     )

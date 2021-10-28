@@ -3,7 +3,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useForm, Controller } from 'react-hook-form'
 
 import Button from '@material-ui/core/Button';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,6 +16,7 @@ import Divider from "@material-ui/core/Divider";
 
 import { useFormControls } from './Create';
 
+import "./Form.scss"
 
 // import { FormControl } from '@mui/material';
 // import Input from '@mui/material/Input';
@@ -41,6 +42,7 @@ const projectTypes = [
   },
 ];
 
+const projectTypes2 = ['Summer Practice', 'Individual Project']
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -198,190 +200,197 @@ export default function FormPropsTextFields(props: any) {
     errors
   } = useFormControls();
 
-  const onSubmit = (data: any) => {console.log(data)}
+  console.log(props)
 
-
-  //const [forms, setForms] = useState<Profile>()
-
-
-  // const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = event.target;
-  //   setForms({ ...forms, [name]: value });
-  // };
-
-  console.log({ props })
+  const onSubmit = (data: any) => { console.log(data);props.saveFunction(data) }
 
   return (
     <Grid container>
-      <Grid item xs={12}>
-        <Grid container direction="row" className={classes.mainHeader}>
-          <Grid item xs={8}>
+      <div className="add-from">
+        <form
+          className={classes.root}
+          autoComplete="off"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Grid item xs={12}>
             <Typography className={classes.primaryColor} >
               Main Info
             </Typography>
-          </Grid>
-        </Grid>
-        <Grid item xs={12}>
-
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Divider
-          style={{ marginTop: 20 }}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container direction="row" className={classes.mainHeader}>
-          <Grid item xs={12}>
-            <Typography className={classes.primaryColor} >
-              Details
-            </Typography>
-          </Grid>
-        </Grid>
-        <TextField
-          id="outlined-multiline-static"
-          label="Description"
-          style={{ marginTop: 20 }}
-          defaultValue={props.operation === 'edit' ? props.values.description : null}
-          multiline
-          rows={14}
-          variant="outlined"
-          onChange={(e) => { props.handleInputValues(e.target.value, 'description', props.operation === 'edit' ? props.values.id : 0) }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                {/* <div className={classes.label}> */}
-
-                {/* <ChatBubbleOutlineIcon /> */}
-                {/* </div> */}
-
-              </InputAdornment>
-            )
-          }}
-        />
-        <Grid item xs={12}>
-          <Divider
-            style={{ marginTop: 20 }}
-          />
-        </Grid>
-        <TextField
-          id="outlined-multiline-static"
-          style={{ marginTop: 20 }}
-          label="Requirements"
-          defaultValue={props.operation === 'edit' ? props.values.requirements : null}
-          multiline
-          rows={14}
-          variant="outlined"
-          onChange={(e) => { props.handleInputValues(e.target.value, 'requirements', props.operation === 'edit' ? props.values.id : 0) }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                {/* <div className={classes.label}> */}
-
-                {/* <ChatBubbleOutlineIcon /> */}
-                {/* </div> */}
-
-              </InputAdornment>
-            )
-          }}
-        />
-        <Grid item xs={12}>
-          <Divider
-            style={{ marginTop: 20 }}
-          />
-        </Grid>
-        <Grid item xs={8}>
-          <button type="submit" onClick={() => { props.saveFunction() }}>Save</button>
-
-        </Grid>
-      </Grid>
-      <form
-        className={classes.root}
-        autoComplete="off"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Grid item xs={12}>
-          <Typography className={classes.primaryColor} >
-            Main Info
-          </Typography>
-          <Divider
-            style={{ marginTop: 20 }}
-          />
-          <Controller
-            name="title"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => (
-              <TextField
-                id="title"
-                type="text"
-                label="Project title"
-                className={classes.textField}
-                onChange={onChange}
-                error={!!error}
-                helperText={error ? error.message : null}
-                InputLabelProps={{
-                  shrink: true,
-                }}
+            <Divider
+              style={{ marginTop: 20 }}
+            />
+            <Grid container direction="row" className={classes.mainHeader}>
+            <Controller
+                name="id"
+                control={control}
+            
+                defaultValue={props.operation === 'edit' ? props.values.id : null}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="id"
+                    type="text"
+                    label="Project id"
+                    className={classes.textField}
+                    onChange={onChange}
+                    disabled={true}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('id')}
+                  />
+                )}
+                // rules={{ required: 'Project ID is required' }}
               />
-            )}
-            rules={{ required: 'Project Title is required' }}
-          />
+              <Controller
+                name="title"
+                control={control}
+               
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="title"
+                    type="text"
+                    label="Project title"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.title : null}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('title')}
+                  />
+                )}
+                rules={{ required: 'Project Title is required' }}
+              />
 
-          <TextField
-            id="standard-select-currency"
-            style={{ marginTop: 20, marginLeft: 20 }}
-            select
-            variant="outlined"
-            defaultValue={props.operation === 'edit' ? props.values.type : null}
-            // {...register("type")}
-            onChange={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
-            onBlur={(e) => { props.handleInputValues(e.target.value, 'type', props.operation === 'edit' ? props.values.id : 0) }}
-            {...(errors["type"] && { error: true, helperText: errors["type"] })}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <label>Project type</label>
-                </InputAdornment>
-              )
-            }}
-          >
-            {projectTypes.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            id="standard-select-currency"
-            select
-            style={{ marginTop: 20, marginLeft: 20 }}
-            variant="outlined"
-            defaultValue={props.operation === 'edit' ? props.values.coordinator : null}
-            // {...register("flag")}
-            onChange={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
-            onBlur={(e) => { props.handleInputValues(e.target.value, 'coordinator', props.operation === 'edit' ? props.values.id : 0) }}
-            {...(errors["coordinator"] && { error: true, helperText: errors["coordinator"] })}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <label>Project Coordinator</label>
-                </InputAdornment>
-              )
-            }}
-          >
-            {projectTypes.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-        </Grid>
-        <Button type="submit" variant="contained" color="primary">
-          Add
-        </Button>
+              <Controller
+                control={control}
+                name="type"
+                rules={{ required: 'Type is required' }}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <Autocomplete
+                    onChange={(event, item) => {
+                      onChange(item.value);
+                    }}
+                    // error={!!error}
+                    inputValue={props.operation === 'edit' ? projectTypes.filter(item => item.value == props.values.type)[0].label : null}
+                    value={value}
+                    options={projectTypes}
+                    getOptionLabel={(item) => (item.label ? item.label : "")}
+                    // getOptionSelected={(option, value) =>
+                    //   value === undefined || value === "" || option.label === value.id
+                    // }
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Type"
+                        className={classes.textField}
+                        
+                        // margin="normal"
+                        // variant="outlined"
+                        // error={!!errors.item}
+                        // helperText={errors.item && "item required"}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        {...register('type')}
+                      />
+                    )}
+                  />
+                )}
+              />
+              <Controller
+                name="coordinator"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="coordinator"
+                    type="text"
+                    label="Project coordinator"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.coordinator : null}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('coordinator')}
+                  />
+                )}
+                rules={{ required: 'Project coordinator is required' }}
 
-      </form>
+              />
+            </Grid>
+          </Grid>
+          <Grid container direction="row" className={classes.mainHeader}>
+            <Grid item xs={12}>
+              <Typography className={classes.primaryColor} >
+                Details
+              </Typography>
+              <Divider
+              style={{ marginTop: 20 }}
+            />
+             <Controller
+                name="description"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="description"
+                    type="text"
+                    label="Project description"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.description : null}
+                    onChange={onChange}
+                    multiline
+                    rows={14}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('description')}
+                  />
+                )}
+                rules={{ required: 'Project description is required' }}
+              />
+                <Controller
+                name="requirements"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="requirements"
+                    type="text"
+                    label="Project requirements"
+                    defaultValue={props.operation === 'edit' ? props.values.requirements : null}
+                    className={classes.textField}
+                    onChange={onChange}
+                    multiline
+                    rows={14}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('requirements')}
+                  />
+                )}
+                rules={{ required: 'Project requirements are required' }}
+
+              />
+            </Grid>
+          </Grid>
+          <Button type="submit" variant="contained" color="primary">
+            Add
+          </Button>
+
+        </form>
+      </div>
     </Grid>
   );
 }
