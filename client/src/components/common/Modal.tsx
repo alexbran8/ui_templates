@@ -12,13 +12,21 @@ import DoneIcon from '@material-ui/icons/Done';
 // }
 
 function getModalStyle() {
-  const top = 40;
-  const left = 40;
+  const top = 10;
+  const left = 10;
 
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    // margin:'auto',
+    // left: `${left}%`,
+    // transform: `translate(-${top}%, -${left}%)`,
+    width: '100%',
+    maxWidth: '100vw',
+    maxHeight: '100%',
+    position: 'fixed',
+    top: '50%',
+    left: '0',
+    transform: 'translate(0, -50%)',
+    overflowY: 'auto'
   };
 }
 
@@ -90,6 +98,7 @@ console.log(props)
         Add
       </Button>
       <Modal
+       style={{display:'flex',alignItems:'center',justifyContent:'center'}}
         // setShowModalOpen={open}
         open={props.handleModal}
         onClose={handleClose}
