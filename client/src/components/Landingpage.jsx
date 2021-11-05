@@ -1,9 +1,11 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { UPDATE_PROFILE_TYPE } from '../redux/reducers/types'
 import { useSelector, useDispatch } from "react-redux";
 import { config } from "../config"
+import { motion } from 'framer-motion'
+import { useIsSmall } from '../hooks/utils'
 
 import LogOut from  "../middlewares/LogOut"
 
@@ -23,6 +25,34 @@ const Landingpage = () => {
   const history = useHistory();
   const user = useSelector((state) => ({ auth: state.auth }));
 
+  const isSmall = useIsSmall()
+
+  const variants = isSmall
+    ? {
+        animate: {
+          opacity: 1,
+          scale: 1,
+                y: 0,
+        },
+        exit: {
+          opacity: 1,
+          scale: 1,
+                y: 500,
+        },
+      }
+    : {
+        animate: {
+          opacity: 1,
+          scale: 1,
+          y: 0,
+        },
+        exit: {
+          opacity: 0,
+          scale: 0.9,
+          y: -10,
+        },
+      };
+
   const cardClick = (resource_origin) => {
     dispatch({
       type: UPDATE_PROFILE_TYPE,
@@ -39,28 +69,46 @@ const Landingpage = () => {
   }
 
   return (
+
     <div className="home-container">
+      
       <div>
         {!user.auth.token ? (
           <div>
+                 
             <div className="card-container">
-              <a style={{ cursor: 'pointer' }} onClick={() => { cardClick('student') }}>
+              <motion.a style={{ cursor: 'pointer' }} onClick={() => { cardClick('student') }}
+                initial={{opacity: 0, y: 180}}
+                // animate={{opacity: [0, 1], y: [140, 0]}}
+                animate={isSmall ? {opacity: [0, 1], y: [140, 0], x: [0, 0]} : {opacity: [0, 1], x: [-500, 0]}}
+                transition={{ ease: "easeOut", delay: 0.7, duration: 0.7 }}
+                >
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">student</CardTitle>
-                    <CardText className="text-muted">Select this if you are stundent at University</CardText>
+                    <CardText className="text-muted">You are stundent at University</CardText>
                   </CardBody>
                 </Card>
-              </a>
-              <a style={{ cursor: 'pointer' }} onClick={() => { cardClick('nokia') }}>
+              </motion.a>
+              <motion.a style={{ cursor: 'pointer' }} onClick={() => { cardClick('nokia') }}
+                initial={{opacity: 0, y: 180}}
+                animate={isSmall ? {opacity: [0, 1], y: [140, 0], x: [0, 0]} : {opacity: [0, 1], x: [500, 0]}}
+                transition={{ ease: "easeOut", delay: 0.7, duration: 0.7 }}
+                >
                 <Card className="card-item">
                   <CardBody>
                     <CardTitle className="card-title">Nokia tentant</CardTitle>
-                    <CardText className="text-muted">Select this if you are a nokia employee / guest </CardText>
+                    <CardText className="text-muted">You are a nokia employee / guest </CardText>
                   </CardBody>
                 </Card>
-              </a>
+              </motion.a>
             </div>
+            <motion.p
+       animate={isSmall ? { y: 150} : { y: 150}}
+       transition={{ ease: 'easeIn', duration: 0.5 }}
+      >
+        Please select one of the cards order to continue:
+      </motion.p>  
           </div>
 
         ) : (

@@ -3,6 +3,7 @@ import "./Homepage.scss"
 import { withTranslation } from "react-i18next";
 import "../../services/i18n";
 import LanguageSelector from "../LanguageSelector";
+import { motion } from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -26,20 +27,37 @@ const Homepage = () => {
       ) : (
         <div>
           <h2>Welcome, {user.auth.name}!</h2>
+          <div className="getStarted">
+            <motion.h1
+              className="title"
+              initial={{ x: 100, y: -100 }}
+              animate={{ x: 0, y: 0 }}
+              transition={{ ease: 'easeOut', duration: 1.3 }}
+              drag={true}
+              dragConstraints={{ top: 1, bottom: 1, right: 1, left: 1 }}
+              dragElastic={1}
+              whileHover={{ cursor: "pointer" }}
+            >
+               <h2>Welcome, {user.auth.name}!</h2>
+              Your Plan, &nbsp; &nbsp; <br /> &nbsp; &nbsp; &nbsp; Your Planet
+            </motion.h1>
+
+            {/* <Link to='/' className="button">Home</Link> */}
+
+            <motion.div animate={{ opacity: [0, 1] }}>
+              <div className="circle c1" />
+              <div className="circle c1 ripple" />
+              <div className="circle c2" />
+              <div className="circle c2 ripple" />
+              <div className="circle c3" />
+              <div className="circle c3 ripple" />
+              <div className="circle c4" />
+              <div className="circle c4 ripple" />
+            </motion.div>
+          </div>
         </div>
       )}
       <h5>This web application is still under development!</h5>
-      {/* <div className="grid-container">
-        <div className="grid-item">1</div>
-        <div className="grid-item">2</div>
-        <div className="grid-item">3</div>
-        <div className="grid-item">4</div>
-        <div className="grid-item">5</div>
-        <div className="grid-item">6</div>
-        <div className="grid-item">7</div>
-        <div className="grid-item">8</div>
-        <div className="grid-item">9</div>
-      </div> */}
     </div>
     <div className="home-container">
       {/* ssss

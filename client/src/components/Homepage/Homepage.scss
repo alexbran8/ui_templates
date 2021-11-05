@@ -142,3 +142,78 @@ ul {
     // border: 2px solid red;
 
   }
+
+  .getStarted {
+    text-align: center;
+  
+    .title {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 3.5em;
+      font-weight: 500;
+      text-align: center;
+      padding-top: 32vh;
+    }
+  
+    .circle {
+      position: absolute;
+      width: 7em;
+      height: 7em;
+      border: 1px solid;
+      border-radius: 100%;
+  
+      &:hover {
+        cursor: pointer;
+        background: #fff;
+      }
+    }
+  
+    .c1 {
+      top: 15em;
+      left: 25%;
+      background: #ceead6;
+      border-color: #ceead6;
+    }
+  
+    .c2 {
+      top: 10em;
+      right: 20%;
+      background: #d2e3fc;
+      border-color: #d2e3fc;
+    }
+  
+    .c3 {
+      bottom: 20em;
+      left: 10%;
+      background: #ffefc3;
+      border-color: #ffefc3;
+    }
+  
+    .c4 {
+      bottom: 15em;
+      right: 20%;
+      background: #f8d2ce;
+      border-color: #f8d2ce;
+    }
+  
+    .ripple {
+      transform: scale(2);
+      background: none;
+      animation-name: rippleAnimation;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+    }
+  }
+  
+  @keyframes rippleAnimation {
+    0% {
+      transform: scale(1.5);
+    }
+    70% {
+      transform: scale(2.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }

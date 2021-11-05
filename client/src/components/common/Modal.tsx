@@ -12,19 +12,13 @@ import DoneIcon from '@material-ui/icons/Done';
 // }
 
 function getModalStyle() {
-  const top = 10;
-  const left = 10;
-
   return {
-    // margin:'auto',
-    // left: `${left}%`,
-    // transform: `translate(-${top}%, -${left}%)`,
     width: '100%',
     maxWidth: '100vw',
     maxHeight: '100%',
     position: 'fixed',
     top: '50%',
-    left: '0',
+    left:  '0%',
     transform: 'translate(0, -50%)',
     overflowY: 'auto'
   };
