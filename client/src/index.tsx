@@ -19,12 +19,14 @@ import "./services/i18n";
 
 import { composeWithDevTools } from "redux-devtools-extension";
 
+
 const userName = sessionStorage.getItem('email'),
   role = JSON.parse(sessionStorage.getItem('permisiuni')),
   name = sessionStorage.getItem('name'),
   user = sessionStorage.getItem('userEmail'),
   jwtToken = sessionStorage.getItem('id'),
-  nokiaid = sessionStorage.getItem('nokiaid')
+  nokiaid = sessionStorage.getItem('nokiaid'),
+  type = sessionStorage.getItem('type')
 
   const apiclient = new ApolloClient({ uri: config.baseURL + config.baseLOCATION + `/graphql`, });
   console.log({apiclient})
@@ -40,6 +42,7 @@ ReactDOM.render(  <ApolloProvider client={apiclient}><Provider
                 user: user,
                 token: jwtToken,
                 nokiaid: nokiaid,
+                type: type,
                 isAuthenticated: user ? true : false
             }
         },

@@ -60,6 +60,7 @@ const Landingpage = () => {
         type: resource_origin,
       },
     });
+    sessionStorage.setItem('type', resource_origin)
     history.push('/home');
   }
 

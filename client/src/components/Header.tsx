@@ -7,15 +7,10 @@ import { AUTH_SIGN_IN, AUTH_SIGN_OUT, AUTH_ERROR } from '../redux/reducers/types
 import { ExitToApp, ThreeDRotation } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
+import GeneralModal from "../designSystems/Modal";
+
 import Sidebar from "./SideBar/SideBar"
 
-import {
-  Collapse,
-  Navbar,
-  Button,
-  Nav,
-  UncontrolledPopover, PopoverHeader, PopoverBody
-} from 'reactstrap'
 import { withTranslation } from "react-i18next";
 import "../services/i18n";
 import LanguageSelector from "./LanguageSelector";
@@ -24,22 +19,15 @@ import { useTranslation } from "react-i18next";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+
 import Avatar from '@material-ui/core/Avatar';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+import GenericModal from "../designSystems/genericModal";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,27 +50,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-
-
-const PopoverContent = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <>
-      <PopoverHeader>NOKIA {config.AppName} WEB APPLICATION {config.appVersion}</PopoverHeader>
-      <PopoverBody>
-        LATEST UPDATES:
-      </PopoverBody>
-    </>
-  );
-}
-
 export const Header = () => {
   const user = useSelector((state) => ({ auth: state.auth }));
   const [auth, setAuth] = React.useState(true);
   const classes = useStyles();
   const [state, setState] = useState();
-  // const [token, setToken] = useState(null);
+  const [modalLoginShow, setModalLoginShow] = useState<boolean>(null);
   const [pic, setPic] = useState();
 
   const { t, i18n } = useTranslation();
@@ -105,13 +78,9 @@ export const Header = () => {
   };
 
 
-  const handleClickMenu = (event) => {
-    setAnchorElMenu(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => {
-    setAnchorElMenu(null);
-  };
+  const handleModal = () => {
+    setModalLoginShow(!modalLoginShow)
+  }
 
   const StyledMenu = withStyles({
     paper: {
@@ -224,9 +193,11 @@ export const Header = () => {
   }
 
   const _handleSignInClick = () => {
+    // check if user is student or nokia employee
     // Authenticate using via passport api in the backend
     // Open Twitter login page
     // Upon successful login, a cookie session will be stored in the client
+    user.auth.type === "student" ? setModalLoginShow(true) :    
     window.open(config.baseURL + config.baseLOCATION + "/auth/azure", "_self");
   };
 
@@ -249,7 +220,7 @@ export const Header = () => {
       <AppBar className="nav-bar" position="fixed">
     
         <Toolbar  className={classes.customizeToolbar}>
-        <Sidebar />
+        { user.auth.type !== "student" ? <Sidebar /> : null }
           <Typography variant="h6" className={classes.title}>
             <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
               <b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div> : null}
@@ -293,9 +264,13 @@ export const Header = () => {
               </Menu>
 
             </div>
-          ) : (<div><Button variant="contained" color="primary" onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
+          ) : (<div><Button variant="text"  onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
         </Toolbar>
       </AppBar>
+      <GenericModal
+      open={modalLoginShow}
+      handleModal={handleModal} 
+      />
     </div>
 
   );

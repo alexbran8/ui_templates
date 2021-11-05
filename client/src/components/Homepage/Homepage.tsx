@@ -19,14 +19,13 @@ const Homepage = () => {
 
 
   return (<div className="home-page">
-
+    
     <div className="toppane">
       {!user.auth.isAuthenticated ? (<>
         <h1>Welcome, please login in order to continue!</h1>
       </>
       ) : (
         <div>
-          <h2>Welcome, {user.auth.name}!</h2>
           <div className="getStarted">
             <motion.h1
               className="title"
@@ -57,7 +56,11 @@ const Homepage = () => {
           </div>
         </div>
       )}
-      <h5>This web application is still under development!</h5>
+      <motion.h5
+      initial={{ x: 0, y: -100 }}
+      animate={{ x: 0, y: 0}}
+      transition={{ ease: 'easeOut', duration: 1.3 }}
+      >This web application is still under development!</motion.h5>
     </div>
     <div className="home-container">
       {/* ssss
