@@ -142,12 +142,8 @@ const ProjectsList = () => {
 
   const updateItem = (data) => {
     let inputData = data
-    // data.push({id:item.id})
-    // save to db
-    // delete item["__typename"]
     console.log({inputData})
     setItem(inputData)
-    console.log('itme',{item})
     updateItemMutation({
       variables: {
         data: inputData

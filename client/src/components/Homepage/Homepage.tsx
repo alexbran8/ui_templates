@@ -38,7 +38,7 @@ const Homepage = () => {
               whileHover={{ cursor: "pointer" }}
             >
                <h2>Welcome, {user.auth.name}!</h2>
-              Your Plan, &nbsp; &nbsp; <br /> &nbsp; &nbsp; &nbsp; Your Planet
+              "Your Plan, &nbsp; &nbsp; <br /> &nbsp; &nbsp; &nbsp; Your Planet"
             </motion.h1>
 
             {/* <Link to='/' className="button">Home</Link> */}
@@ -57,8 +57,8 @@ const Homepage = () => {
         </div>
       )}
       <motion.h5
-      initial={{ x: 0, y: -100 }}
-      animate={{ x: 0, y: 0}}
+      initial={{ x: 100, y: -100 }}
+      animate={{ x: 0, y: 100}}
       transition={{ ease: 'easeOut', duration: 1.3 }}
       >This web application is still under development!</motion.h5>
     </div>

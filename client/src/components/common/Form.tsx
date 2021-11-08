@@ -42,7 +42,7 @@ const projectTypes = [
   },
 ];
 
-const projectTypes2 = ['Summer Practice', 'Individual Project']
+const projectTypes2 = ['Summer Practice', 'Individual Project', 'Team Project', 'Single Day Event']
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -202,7 +202,7 @@ export default function FormPropsTextFields(props: any) {
 
   console.log(props)
 
-  const onSubmit = (data: any) => { console.log(data);props.saveFunction(data) }
+  const onSubmit = (data: any) => { console.log(data); props.saveFunction(data) }
 
   return (
     <Grid container>
@@ -220,10 +220,10 @@ export default function FormPropsTextFields(props: any) {
               style={{ marginTop: 20 }}
             />
             <Grid container direction="row" className={classes.mainHeader}>
-            <Controller
+              <Controller
                 name="id"
                 control={control}
-            
+
                 defaultValue={props.operation === 'edit' ? props.values.id : null}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
@@ -241,12 +241,12 @@ export default function FormPropsTextFields(props: any) {
                     {...register('id')}
                   />
                 )}
-                // rules={{ required: 'Project ID is required' }}
+              // rules={{ required: 'Project ID is required' }}
               />
               <Controller
                 name="title"
                 control={control}
-               
+
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
                     id="title"
@@ -265,8 +265,31 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project Title is required' }}
               />
-
               <Controller
+                control={control}
+                name="type"
+                defaultValue={props.operation === 'edit' ? props.values.type : null}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <Autocomplete
+                    value={value}
+                    onChange={(event, item) => {
+                      onChange(item);
+                    }}
+                    id="type"
+                    options={projectTypes2}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                        label="type"
+                      />
+                    )}
+                  />
+                )}
+                rules={{ required: 'Project type is required' }}
+              />
+              {/* <Controller
                 control={control}
                 name="type"
                 rules={{ required: 'Type is required' }}
@@ -303,7 +326,7 @@ export default function FormPropsTextFields(props: any) {
                     )}
                   />
                 )}
-              />
+              /> */}
               <Controller
                 name="coordinator"
                 control={control}
@@ -334,9 +357,9 @@ export default function FormPropsTextFields(props: any) {
                 Details
               </Typography>
               <Divider
-              style={{ marginTop: 20 }}
-            />
-             <Controller
+                style={{ marginTop: 20 }}
+              />
+              <Controller
                 name="description"
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -359,7 +382,7 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project description is required' }}
               />
-                <Controller
+              <Controller
                 name="requirements"
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (

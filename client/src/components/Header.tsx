@@ -55,7 +55,7 @@ export const Header = () => {
   const [auth, setAuth] = React.useState(true);
   const classes = useStyles();
   const [state, setState] = useState();
-  const [modalLoginShow, setModalLoginShow] = useState<boolean>(null);
+  const [modalLoginShow, setModalLoginShow] = useState<boolean>(false);
   const [pic, setPic] = useState();
 
   const { t, i18n } = useTranslation();
