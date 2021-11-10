@@ -166,12 +166,14 @@ const ProjectsList = () => {
   }
 
   const addMoreItems = (data, index) => {
+   alert('add')
     let inputData = data
     setItem((item) => ({
       ...item, ...inputData,
       id: 0,
 
     }));
+    console.log('add')
     // save to db
     addItemMutation({
       variables: {
@@ -413,7 +415,7 @@ const ProjectsList = () => {
 
     <div className="button-container">
       <Button variant="contained" color="primary" hidden={isStudent} disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" hidden={isStudent} onClick={() => { setOperation('application'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
+      <Button variant="contained" color="primary" hidden={isStudent} onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
       {showModal ? (
         <SimpleModal
           //formValidator={formCheck}

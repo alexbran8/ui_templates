@@ -202,7 +202,7 @@ export default function FormPropsTextFields(props: any) {
 
   console.log(props)
 
-  const onSubmit = (data: any) => { console.log(data); props.saveFunction(data) }
+  const onSubmit = (data: any) => { console.log({props}); props.saveFunction(data) }
 
   return (
     <Grid container>
