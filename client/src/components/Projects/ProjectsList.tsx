@@ -429,6 +429,7 @@ const ProjectsList = () => {
       {showRegister ? (
         <GenericModal
           getModalStyle={getModalStyle}
+          open={true}
           title= {`Apply for ${item.title} ${item.type} (id:${item.id})`}
           handleModal={handleRegisterModal}
           handleClose={handleRegisterModal}
