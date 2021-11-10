@@ -20,7 +20,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/"} component={Landingpage} />
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/admin/database"} component={Database} />
-      <Route exact path={"/projects/list"} component={ProjectsList} />
+      <Route exact path={"/projects/list"} component={authGuard(ProjectsList)} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
       <Route

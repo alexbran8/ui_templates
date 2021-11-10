@@ -9,6 +9,10 @@ import { withStyles } from '@material-ui/core/styles';
 
 import GeneralModal from "../designSystems/Modal";
 
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
 import Sidebar from "./SideBar/SideBar"
 
 import { withTranslation } from "react-i18next";
@@ -77,6 +81,20 @@ export const Header = () => {
     setAnchorElMenu(null);
   };
 
+
+  function getModalStyle() {
+    return {
+      width: '50%',
+      maxWidth: '100vw',
+      maxHeight: '100%',
+      position: 'fixed',
+      top: '50%',
+      left: '25%',
+      transform: 'translate(0, -50%)',
+      overflowY: 'auto'
+    };
+  }
+  
 
   const handleModal = () => {
     setModalLoginShow(!modalLoginShow)
@@ -192,6 +210,24 @@ export const Header = () => {
       });
   }
 
+  const body = (
+    <div>
+            <List component="nav" className={classes.root} aria-label="mailbox-folders">
+             <h5>Please login in order to continue:</h5>
+             <Button variant="contained" color="primary">
+               <LinkedInIcon />LinkedIn
+             </Button>
+             <div className="container">
+               <div className="border" />
+               <span className="content">
+                or
+               </span>
+               <div className="border" />
+             </div>
+           </List>
+    </div>
+  );
+
   const _handleSignInClick = () => {
     // check if user is student or nokia employee
     // Authenticate using via passport api in the backend
@@ -267,10 +303,16 @@ export const Header = () => {
           ) : (<div><Button variant="text"  onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
         </Toolbar>
       </AppBar>
+      {modalLoginShow ?
       <GenericModal
       open={modalLoginShow}
-      handleModal={handleModal} 
-      />
+      getModalStyle={getModalStyle}
+      title="Sign In Methods"
+      handleModal={handleModal}
+      handleClose={handleClose}
+      body={body}
+      /> : null
+}
     </div>
 
   );

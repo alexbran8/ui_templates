@@ -45,19 +45,7 @@ export default function SimpleModal(props:any) {
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
-  const [open, setOpen] = React.useState<boolean>(false);
 
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-//  pass to child to close form
-  const handleClose = () => {
-    props.handleModal
-  };
-
-  // pass to child to get values
 
 console.log(props)
   const body = (
@@ -87,15 +75,11 @@ console.log(props)
   // console.log(props);
   return (
     <div>
-      
-      <Button variant="contained" color="primary"  onClick={handleOpen}>
-        Add
-      </Button>
       <Modal
-       style={{display:'flex',alignItems:'center',justifyContent:'center'}}
+      //  style={{display:'flex',alignItems:'center',justifyContent:'center'}}
         // setShowModalOpen={open}
         open={props.handleModal}
-        onClose={handleClose}
+        onClose={props.handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
       >

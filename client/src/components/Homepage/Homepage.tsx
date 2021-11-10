@@ -6,7 +6,7 @@ import LanguageSelector from "../LanguageSelector";
 import { motion } from 'framer-motion'
 import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 
 const Homepage = () => {
   const { t, i18n } = useTranslation();
@@ -16,6 +16,7 @@ const Homepage = () => {
     i18n.changeLanguage(event.target.value);
   };
 
+  const history = useHistory();
 
 
   return (<div className="home-page">
@@ -44,13 +45,13 @@ const Homepage = () => {
             {/* <Link to='/' className="button">Home</Link> */}
 
             <motion.div animate={{ opacity: [0, 1] }}>
-              <div className="circle c1" />
-              <div className="circle c1 ripple" />
-              <div className="circle c2" />
+              <div className="circle c1"  >Apply to a project</div>
+              <div className="circle c1 ripple" onClick={e => history.push('/projects/list')} />
+              <div className="circle c2" >View newsletter</div>
               <div className="circle c2 ripple" />
-              <div className="circle c3" />
+              <div className="circle c3" >Update your profile</div>
               <div className="circle c3 ripple" />
-              <div className="circle c4" />
+              <div className="circle c4" >Check application results</div>
               <div className="circle c4 ripple" />
             </motion.div>
           </div>

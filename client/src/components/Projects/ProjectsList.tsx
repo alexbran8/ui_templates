@@ -12,7 +12,10 @@ import { DataGrid } from '@mui/x-data-grid';
 import SimpleModal from "../common/Modal"
 import { useMutation, useQuery, gql } from "@apollo/client";
 // import gql from 'graphql-tag';
+import GenericModal from "../../designSystems/genericModal"
 import { useSelector } from "react-redux";
+
+import ApplicationForm from "./ApplicationForm"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -81,11 +84,13 @@ mutation ($data: Project) {
 
 const ProjectsList = () => {
   const user = useSelector((state) => ({ auth: state.auth }));
+  const isStudent = user.auth.roles === 'student' ? true : false
   const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [weekList, setuWeeksList] = useState([]);
   const newDate = new Date()
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = React.useState<boolean>(false);
+  const [showRegister, setShowRegister] = React.useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState();
   const [item, setItem] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -96,6 +101,8 @@ const ProjectsList = () => {
       // console.log(data.getAll)
     }
   });
+
+
 
 
   const [addItemMutation] = useMutation(ADD_ITEM, {
@@ -138,11 +145,17 @@ const ProjectsList = () => {
   const handleModal = (selectedItem) => {
     setShowModal(!showModal)
     setSelectedItem(selectedItem)
+    // operation === 'edit' || operation === 'add' ? setShowModal(!showModal) :  setShowRegister(!showRegister)
+  }
+
+  const handleRegisterModal = (selectedItem) => {
+    setShowRegister(!showRegister)
+    setSelectedItem(selectedItem)
   }
 
   const updateItem = (data) => {
     let inputData = data
-    console.log({inputData})
+    console.log({ inputData })
     setItem(inputData)
     updateItemMutation({
       variables: {
@@ -156,7 +169,7 @@ const ProjectsList = () => {
     let inputData = data
     setItem((item) => ({
       ...item, ...inputData,
-      id: 0, 
+      id: 0,
 
     }));
     // save to db
@@ -180,6 +193,19 @@ const ProjectsList = () => {
       id: index
     }));
 
+  }
+
+  function getModalStyle() {
+    return {
+      width: '50%',
+      maxWidth: '100vw',
+      maxHeight: '100%',
+      position: 'fixed',
+      top: '50%',
+      left: '25%',
+      transform: 'translate(0, -50%)',
+      overflowY: 'auto'
+    };
   }
 
   const changeLanguage = (event) => {
@@ -217,7 +243,7 @@ const ProjectsList = () => {
       field: 'coordinator',
       headerName: 'Cooordinator',
       // type: 'integer',
-      width: 500,
+      width: 400,
       sortable: true,
       editable: false,
     },
@@ -229,6 +255,7 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="primary"
+            hidden={isStudent}
             onClick={(event) => {
               setOperation('edit'); setItem(cellValues.row); handleModal({ title: 'Edit Item', data: cellValues.row });
             }}
@@ -238,6 +265,7 @@ const ProjectsList = () => {
           <Button
             variant="contained"
             color="secondary"
+            hidden={isStudent}
             onClick={(event) => {
               deleteItemMutation({
                 variables: {
@@ -249,18 +277,57 @@ const ProjectsList = () => {
           >
             Delete
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            hidden={isStudent}
+            onClick={(event) => {
+              setOperation('application'); setItem(cellValues.row); handleRegisterModal({ title: 'application', data: cellValues.row });
+            }}
+          >
+            {isStudent ? <>Apply</> : <>Register</>}
+          </Button>
+
         </>
         );
       },
       headerName: 'Actions',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
-      width: 160,
+      width: 250,
       valueGetter: (params) =>
         `${params.getValue(params.id, 'firstName') || ''} ${params.getValue(params.id, 'lastName') || ''
         }`,
-    },
+    }
   ];
+
+  const body = (
+    <div>
+     <p>Please fill in the following fields:</p>
+     <ApplicationForm 
+     handleInputValues={handleInputValues}
+     item={selectedItem}
+     values={item}
+     operation={operation}/>
+     
+    </div>
+
+    //       <List component="nav" className={classes.root} aria-label="mailbox 
+    //  folders">
+    //         <h5>Please login in order to continue:</h5>
+    //         <Button variant="contained" color="primary">
+    //           <LinkedInIcon />LinkedIn
+    //         </Button>
+    //         <div className="container">
+    //           <div className="border" />
+    //           <span className="content">
+    //            or
+    //           </span>
+    //           <div className="border" />
+    //         </div>
+    //       </List>
+    // </div>
+  );
 
 
   return (<div className="page-container"><h1>  {t("events.mainTitle")}
@@ -345,8 +412,8 @@ const ProjectsList = () => {
     </div> */}
 
     <div className="button-container">
-      <Button variant="contained" color="primary" disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
+      <Button variant="contained" color="primary" hidden={isStudent} disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
+      <Button variant="contained" color="primary" hidden={isStudent} onClick={() => { setOperation('application'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
       {showModal ? (
         <SimpleModal
           //formValidator={formCheck}
@@ -354,6 +421,18 @@ const ProjectsList = () => {
           item={selectedItem}
           handleModal={handleModal}
           handleClose={handleModal}
+          saveFunction={operation === 'add' ? addMoreItems : updateItem}
+          handleInputValues={handleInputValues}
+          operation={operation}
+        />
+      ) : null}
+      {showRegister ? (
+        <GenericModal
+          getModalStyle={getModalStyle}
+          title= {`Apply for ${item.title} ${item.type} (id:${item.id})`}
+          handleModal={handleRegisterModal}
+          handleClose={handleRegisterModal}
+          body={body}
           saveFunction={operation === 'add' ? addMoreItems : updateItem}
           handleInputValues={handleInputValues}
           operation={operation}
