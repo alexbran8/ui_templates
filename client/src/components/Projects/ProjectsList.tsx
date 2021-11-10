@@ -166,7 +166,6 @@ const ProjectsList = () => {
   }
 
   const addMoreItems = (data, index) => {
-   alert('add')
     let inputData = data
     setItem((item) => ({
       ...item, ...inputData,
