@@ -23,7 +23,7 @@ export default function register() {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(
-      "https://ecosystem.eecloud.dynamic.nsn-net.net/",
+      process.env.PUBLIC_URL!,
       window.location.toString()
     );
     if (publicUrl.origin !== window.location.origin) {
@@ -32,10 +32,9 @@ export default function register() {
       // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
       return;
     }
-    console.log('public,',process.env.PUBLIC_URL)
 
     window.addEventListener('load', () => {
-      const swUrl = `https://ecosystem.eecloud.dynamic.nsn-net.net/service-worker.js`;
+      const swUrl = `/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
