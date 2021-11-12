@@ -108,7 +108,7 @@ const Landingpage = () => {
        animate={isSmall ? { y: 150} : { y: 150}}
        transition={{ ease: 'easeIn', duration: 0.5 }}
       >
-        Please select one of the cards order to continue:
+        Please select one of the cards in order to continue:
       </motion.p>  
           </div>
 

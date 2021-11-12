@@ -14,8 +14,10 @@ import { useMutation, useQuery, gql } from "@apollo/client";
 // import gql from 'graphql-tag';
 import GenericModal from "../../designSystems/genericModal"
 import { useSelector } from "react-redux";
-
+import axios from 'axios'
 import ApplicationForm from "./ApplicationForm"
+
+import { ExportToExcel } from "../common/ExportExcel";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -94,6 +96,7 @@ const ProjectsList = () => {
   const [selectedItem, setSelectedItem] = useState();
   const [item, setItem] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [fileData, setFileData] = useState();
   const [operation, setOperation] = useState();
   const { data, loading, error } = useQuery(GET_ALL, {
     onCompleted: () => {
@@ -101,6 +104,8 @@ const ProjectsList = () => {
       // console.log(data.getAll)
     }
   });
+
+
 
 
 
@@ -230,21 +235,21 @@ const ProjectsList = () => {
       field: 'description',
       headerName: 'Description',
       // type: 'integer',
-      width: 250,
+      width: 200,
       editable: false,
     },
     {
       field: 'requirements',
       headerName: 'Requirements',
       // type: 'integer',
-      width: 350,
+      width: 200,
       editable: false,
     },
     {
       field: 'coordinator',
       headerName: 'Cooordinator',
       // type: 'integer',
-      width: 400,
+      width: 350,
       sortable: true,
       editable: false,
     },
@@ -288,14 +293,15 @@ const ProjectsList = () => {
           >
             {isStudent ? <>Apply</> : <>Register</>}
           </Button>
-
+          <Button variant="contained" color="primary" hidden={isStudent} disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
+          <Button variant="contained" color="primary" hidden={isStudent} disabled={true} onClick={() => { alert("upload!") }}>Applications(2)</Button>
         </>
         );
       },
       headerName: 'Actions',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
-      width: 250,
+      width: 500,
       valueGetter: (params) =>
         `${params.getValue(params.id, 'firstName') || ''} ${params.getValue(params.id, 'lastName') || ''
         }`,
@@ -304,32 +310,15 @@ const ProjectsList = () => {
 
   const body = (
     <div>
-     <p>Please fill in the following fields:</p>
-     <ApplicationForm 
-     handleInputValues={handleInputValues}
-     item={selectedItem}
-     values={item}
-     operation={operation}/>
-     
+      <p>Please fill in the following fields:</p>
+      <ApplicationForm
+        handleInputValues={handleInputValues}
+        item={selectedItem}
+        values={item}
+        operation={operation} />
+
     </div>
-
-    //       <List component="nav" className={classes.root} aria-label="mailbox 
-    //  folders">
-    //         <h5>Please login in order to continue:</h5>
-    //         <Button variant="contained" color="primary">
-    //           <LinkedInIcon />LinkedIn
-    //         </Button>
-    //         <div className="container">
-    //           <div className="border" />
-    //           <span className="content">
-    //            or
-    //           </span>
-    //           <div className="border" />
-    //         </div>
-    //       </List>
-    // </div>
   );
-
 
   return (<div className="page-container"><h1>  {t("events.mainTitle")}
   </h1>
@@ -412,9 +401,16 @@ const ProjectsList = () => {
       <h5>Metrics about events</h5>
     </div> */}
 
+
+
     <div className="button-container">
-      <Button variant="contained" color="primary" hidden={isStudent} disabled={true} onClick={() => { alert("upload!") }}>Upload</Button>
-      <Button variant="contained" color="primary" hidden={isStudent} onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add</Button>
+      <ExportToExcel
+        apiData={[{ 'left': '', 'right': '' }]}
+        fileName='test'
+        operationName='Get template'
+      />
+{/* TODO: make it visible only for admins  */}
+      <Button variant="contained" color="primary" hidden={isStudent} onClick={() => { setOperation('add'); handleModal({ title: 'Add New Item', }) }}>Add new project</Button>
       {showModal ? (
         <SimpleModal
           //formValidator={formCheck}
@@ -431,7 +427,7 @@ const ProjectsList = () => {
         <GenericModal
           getModalStyle={getModalStyle}
           open={true}
-          title= {`Apply for ${item.title} ${item.type} (id:${item.id})`}
+          title={`Apply for ${item.title} ${item.type} (id:${item.id})`}
           handleModal={handleRegisterModal}
           handleClose={handleRegisterModal}
           body={body}
