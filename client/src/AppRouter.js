@@ -5,6 +5,7 @@ import Homepage from "./components/Homepage/Homepage";
 import Timeline from "./components/Timeline.jsx"
 import Database from "./components/Admin/Database"
 import Footer from "./components/Footer/Footer"
+import {Credits} from "./components/Credits/Credits"
 
 import ProjectsList from "./components/Projects/ProjectsList"
 
@@ -23,6 +24,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/projects/list"} component={authGuard(ProjectsList)} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
+      <Route exact path={"/credits"} component={Credits} />
       <Route
         render={({ location }) => {
           if (location.pathname !== "/") {return <><Header /><Footer /></>};
