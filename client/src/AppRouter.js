@@ -2,7 +2,7 @@ import React from "react";
 import Landingpage from "./components/Landingpage.jsx";
 import LoginError from "./components/common/LoginError/LoginError";
 import Homepage from "./components/Homepage/Homepage";
-import Timeline from "./components/Timeline.jsx"
+import Timeline from "./components/Timeline/Timeline"
 import Database from "./components/Admin/Database"
 import Footer from "./components/Footer/Footer"
 import {Credits} from "./components/Credits/Credits"
@@ -25,6 +25,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
       <Route exact path={"/credits"} component={Credits} />
+      <Route exact path={"/timeline"} component={Timeline} />
       <Route
         render={({ location }) => {
           if (location.pathname !== "/") {return <><Header /><Footer /></>};
