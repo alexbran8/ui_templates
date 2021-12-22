@@ -29,6 +29,7 @@ type project {
 
 extend  type Query  {
     getAll: [project]
+    getCollumns: [String]
 } 
 
 extend type Mutation {

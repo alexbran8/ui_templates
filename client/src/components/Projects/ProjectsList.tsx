@@ -401,12 +401,18 @@ const ProjectsList = () => {
       <h5>Metrics about events</h5>
     </div> */}
 
-
-
     <div className="button-container">
       <ExportToExcel
-        apiData={[{ 'left': '', 'right': '' }]}
-        fileName='test'
+        apiData={[{ 
+        "title" :'',
+        "description": '',
+        "requirements":"",
+        "department":"",
+        "coordinator":"",
+        "details":"",
+        "type": ''
+       }]}
+        fileName='upload_template'
         operationName='Get template'
       />
 {/* TODO: make it visible only for admins  */}
