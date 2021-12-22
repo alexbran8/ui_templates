@@ -14,6 +14,8 @@ import { HashRouter, Route } from "react-router-dom";
 import { config } from "./config"
 import authGuard from "./HOCs/authGuard.js";
 
+
+
 export const AppRouter = (props) => {
   return (
     <HashRouter  {...props} >
@@ -28,7 +30,9 @@ export const AppRouter = (props) => {
       <Route exact path={"/timeline"} component={Timeline} />
       <Route
         render={({ location }) => {
-          if (location.pathname !== "/") {return <><Header /><Footer /></>};
+          if (location.pathname !== "/") {return <><Header />
+          {/* <Footer /> */}
+          </>};
         }}
       />
     </HashRouter>
