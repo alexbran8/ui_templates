@@ -1,15 +1,24 @@
 import React from "react"
 
 import "./Credits.css"
-
-
+import { config } from "../../config";
+import ReactAudioPlayer from "react-audio-player";
 
 
 export const Credits = () => {
 
 
+    const url = config.baseURL + "/158066369-space-wars.m4a";
+
     return (
         <div className="credits-container">
+             <ReactAudioPlayer
+            src={url}
+            autoPlay
+            loop={false}
+            volume={0.8}
+          />
+
             <div className="wrapper">
                 <div className="scroll-text">
                     <h1>STAR WARS</h1>
