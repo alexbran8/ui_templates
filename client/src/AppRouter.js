@@ -9,6 +9,8 @@ import {Credits} from "./components/Credits/Credits"
 
 import ProjectsList from "./components/Projects/ProjectsList"
 
+import {NewsFeed} from "./components/NewsFeed/NewsFeed"
+
 import {Header} from "./components/Header";
 import { HashRouter, Route } from "react-router-dom";
 import { config } from "./config"
@@ -24,6 +26,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/admin/database"} component={Database} />
       <Route exact path={"/projects/list"} component={authGuard(ProjectsList)} />
+      <Route exact path={"/newsfeed"} component={authGuard(NewsFeed)} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
       <Route exact path={"/credits"} component={Credits} />

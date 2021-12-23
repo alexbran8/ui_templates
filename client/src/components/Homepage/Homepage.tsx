@@ -47,8 +47,8 @@ const Homepage = () => {
             <motion.div animate={{ opacity: [0, 1] }}>
               <div className="circle c1"  >Apply to a project</div>
               <div className="circle c1 ripple" onClick={e => history.push('/projects/list')} />
-              <div className="circle c2" >View newsletter</div>
-              <div className="circle c2 ripple" />
+              <div className="circle c2" >View NewsFeed</div>
+              <div className="circle c2 ripple" onClick={e => history.push('/newsfeed')}/>
               <div className="circle c3" >Credits</div>
               <div className="circle c3 ripple" onClick={e => history.push('/credits')} />
               <div className="circle c4" >Check application results</div>
