@@ -1,12 +1,12 @@
 {
-  "name": "twitter-authentication",
+  "name": "ecosystem-web-portal",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dev": "cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "test": "jest --config ./jest.config.js",
-    "test:watch": "npm run test -- --watch",
+    "test": "tsc --module commonjs && jest ",
+    "test:watch": "jest --watch",
     "start": "cross-env NODE_ENV=development webpack  serve --port 3000  --config ./webpack.config.js"
   },
   "devDependencies": {
@@ -36,6 +36,7 @@
     "source-map-loader": "^3.0.0",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.6",
+    "ts-node": "^10.4.0",
     "tslint": "^6.1.3",
     "tslint-react": "^5.0.0",
     "typescript": "^4.4.4",

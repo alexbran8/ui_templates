@@ -16,7 +16,7 @@ export const Credits = () => {
             src={url}
             autoPlay
             loop={false}
-            volume={0.8}
+            volume={0.3}
           />
 
             <div className="wrapper">
