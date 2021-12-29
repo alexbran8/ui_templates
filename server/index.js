@@ -1,9 +1,11 @@
+require('dotenv').config();
+
 const cookieSession = require("cookie-session");
 
 const bodyParser = require('body-parser')
 const express = require("express");
 const app = express();
-const port = 4000;
+
 const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
 const session = require("express-session");
@@ -33,6 +35,9 @@ db.sequelize
   .catch((err) => {
     console.error("Unable to connect to the database:", err);
   });
+
+
+  console.log('env',process.env.ALLOWED_HOSTS)
 
 
 const apolloServer = new ApolloServer({
@@ -132,4 +137,4 @@ apolloServer.applyMiddleware({ app, path: "/graphql" });
 
 
 // connect react to nodejs express server
-app.listen(port, () => console.log(`Server is running on port ${port}!`));
+app.listen(process.env.SERVER_PORT, () => console.log(`Server is running on port ${process.env.SERVER_PORT}!`));
