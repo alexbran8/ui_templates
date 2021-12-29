@@ -1,12 +1,15 @@
 # Dockerfile
+
 FROM node:16
+
 # copy source and install dependencies
 RUN mkdir -p /opt/app
 RUN cd ..
-# COPY start-server.sh /opt/app/
-# COPY build.sh /opt/app/
+
+# cody in installation folder
 COPY . /opt/app/
-# build frontendk
+
+# build frontend
 WORKDIR /opt/app/client
 RUN ls -l
 RUN pwd
