@@ -5,23 +5,23 @@ node {
     try {
         stage 'Checkout'
 
-            dir('/apps/ecosystem'){
-            sh "pwd"
+            // dir('/apps/ecosystem'){
+            // sh "pwd"
        
-            checkout scm
+            // checkout scm
 
-            sh 'git log HEAD^..HEAD --pretty="%h %an - %s" > GIT_CHANGES'
-            def lastChanges = readFile('GIT_CHANGES')
-            // slackSend color: "warning", message: "Started `${env.JOB_NAME}#${env.BUILD_NUMBER}`\n\n_The changes:_\n${lastChanges}"
-                         }
-            sh "pwd"
+            // sh 'git log HEAD^..HEAD --pretty="%h %an - %s" > GIT_CHANGES'
+            // def lastChanges = readFile('GIT_CHANGES')
+            // // slackSend color: "warning", message: "Started `${env.JOB_NAME}#${env.BUILD_NUMBER}`\n\n_The changes:_\n${lastChanges}"
+            //              }
+            // sh "pwd"
         
         stage 'Test'
             sh 'echo "test implementation in progress"'
            
             // load "/var/lib/jenkins/testfile"
                 writeFile(file: 'zorg.txt', text: 'TEST')
-                sh "ls -a /jenkins_volume"
+                sh "ls -a"
                 sh "pwd"
                     // echo "${env.env_var1}"
                     // echo "${env.env_var2}"
