@@ -21,7 +21,7 @@ node {
            
             // load "/var/lib/jenkins/testfile"
                 writeFile(file: 'zorg.txt', text: 'TEST')
-                sh "ls -l"
+                sh "ls -a /var/lib/jenkins"
                 sh "pwd"
                     // echo "${env.env_var1}"
                     // echo "${env.env_var2}"
