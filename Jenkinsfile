@@ -19,6 +19,8 @@ node {
         stage 'Test'
             sh 'echo "test implementation in progress"'
             sh "ls /var/jenkins_home/"
+            sh "ls $JENKINS_HOME"
+            sh "cat $JENKINS_HOME/testfile"
             // load "/jenkins_home/.env"
             // sh '. env/bin/activate'
             // sh 'env/bin/pip install -r requirements.txt'
