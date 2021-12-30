@@ -18,6 +18,7 @@ node {
         
         stage 'Test'
             sh 'echo "test implementation in progress"'
+            dir('var/lib/jenkins/')
             load " var/lib/jenkins/nodes/env.groovy"
                     echo "${env.env_var1}"
                     echo "${env.env_var2}"
