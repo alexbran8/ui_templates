@@ -19,9 +19,9 @@ node {
         stage 'Test'
             sh 'echo "test implementation in progress"'
            
-            load " /var/lib/jenkins/.test"
-                    echo "${env.env_var1}"
-                    echo "${env.env_var2}"
+            load "/var/lib/jenkins/.test"
+                    // echo "${env.env_var1}"
+                    // echo "${env.env_var2}"
             // load "/jenkins_home/.env"
             // sh '. env/bin/activate'
             // sh 'env/bin/pip install -r requirements.txt'
