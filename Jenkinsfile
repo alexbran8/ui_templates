@@ -15,8 +15,8 @@ node {
             // slackSend color: "warning", message: "Started `${env.JOB_NAME}#${env.BUILD_NUMBER}`\n\n_The changes:_\n${lastChanges}"
                          }
             sh "pwd"
-            sh "cat /secrets/.env"
-            sh "echo /secrets/.env"
+            sh "cat secrets/.env"
+            sh "echo enf filesecrets/.env"
 
         stage 'Test'
             sh 'echo "test implementation in progress"'
