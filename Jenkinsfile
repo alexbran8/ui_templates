@@ -18,18 +18,18 @@ node {
         
         stage 'Test'
             sh 'echo "test implementation in progress"'
-            sh "cat testfile"
+            sh "ls /var/jenkins_home/"
             // load "/jenkins_home/.env"
             // sh '. env/bin/activate'
             // sh 'env/bin/pip install -r requirements.txt'
             // sh 'env/bin/python3.5 manage.py test --testrunner=djtrump.tests.test_runners.NoDbTestRunner'
 
-        stage 'Deploy'
-         dir('/apps/ecosystem'){
-            sh 'chmod +x deploy_prod.sh'
-            sh 'cat deploy_prod.sh'
-            sh './deploy_prod.sh'
-         }
+        // stage 'Deploy'
+        //  dir('/apps/ecosystem'){
+        //     sh 'chmod +x deploy_prod.sh'
+        //     sh 'cat deploy_prod.sh'
+        //     sh './deploy_prod.sh'
+        //  }
         stage 'Publish results'
             // slackSend color: "good", message: "Build successful: `${env.JOB_NAME}#${env.BUILD_NUMBER}` <${env.BUILD_URL}|Open in Jenkins>"
     }
