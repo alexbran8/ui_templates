@@ -17,8 +17,9 @@ node {
             sh "pwd"
         
         stage 'Test'
-            sh 'echo "test implementation in progress"'
             dir('var/lib/jenkins/')
+            sh 'echo "test implementation in progress"'
+           
             load " var/lib/jenkins/nodes/env.groovy"
                     echo "${env.env_var1}"
                     echo "${env.env_var2}"
