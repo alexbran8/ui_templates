@@ -19,7 +19,9 @@ node {
         stage 'Test'
             sh 'echo "test implementation in progress"'
            
-            load "/var/lib/jenkins/testfile"
+            // load "/var/lib/jenkins/testfile"
+                writeFile(file: 'zorg.txt', text: 'TEST')
+                sh "ls -l"
                     // echo "${env.env_var1}"
                     // echo "${env.env_var2}"
             // load "/jenkins_home/.env"
