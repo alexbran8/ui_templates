@@ -1,7 +1,7 @@
 #!groovy
 
 node {
-
+    
     try {
         stage 'Checkout'
 
@@ -19,7 +19,7 @@ node {
         stage 'Test'
             sh 'echo "test implementation in progress"'
            
-            load "/var/lib/jenkins/.test"
+            load "/var/lib/jenkins/testfile"
                     // echo "${env.env_var1}"
                     // echo "${env.env_var2}"
             // load "/jenkins_home/.env"
