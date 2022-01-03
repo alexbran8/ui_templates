@@ -11,6 +11,7 @@ COPY . /opt/app/
 
 # build frontend
 WORKDIR /opt/app/client
+RUN ls -l
 RUN pwd
 
 RUN rm -rf node_modules
@@ -20,8 +21,6 @@ RUN npm run dev
 
 # backend
 WORKDIR /opt/app/server
-RUN cd .. 
-RUN ls -a
 RUN npm install
 RUN npm install --save-dev cross-env
 RUN npm install pm2 -g
