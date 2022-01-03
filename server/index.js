@@ -7,7 +7,7 @@ const express = require("express");
 const app = express();
 
 const passport = require("passport");
-// const passportSetup = require("./config/passport-setup");
+const passportSetup = require("./config/passport-setup");
 // const session = require("express-session");
 const authRoutes = require("./routes/auth-routes");
 
@@ -118,14 +118,14 @@ app.use("/", express.static(path.resolve(__dirname, "../client/public")));
 // if it's already login, send the profile response,
 // otherwise, send a 401 response that the user is not authenticated
 // authCheck before navigating to home page
-app.get("/", authCheck, (req, res) => {
-  res.status(200).json({
-    authenticated: true,
-    message: "user successfully authenticated",
-    user: req.user,
-    cookies: req.cookies
-  });
-});
+// app.get("/", authCheck, (req, res) => {
+//   res.status(200).json({
+//     authenticated: true,
+//     message: "user successfully authenticated",
+//     user: req.user,
+//     cookies: req.cookies
+//   });
+// });
 
 
 apolloServer.applyMiddleware({ app, path: "/graphql" });
