@@ -20,10 +20,10 @@ node {
             sh 'echo "test implementation in progress"'
            
             // load "/var/lib/jenkins/testfile"
-                writeFile(file: 'zorg.txt', text: 'TEST')
-                sh "ls -a"
-                sh "cat .testEnv"
-                sh "pwd"
+                // writeFile(file: 'zorg.txt', text: 'TEST')
+                // sh "ls -a"
+                // sh "cat .testEnv"
+                // sh "pwd"
                     // echo "${env.env_var1}"
                     // echo "${env.env_var2}"
             // load "/jenkins_home/.env"
@@ -31,12 +31,12 @@ node {
             // sh 'env/bin/pip install -r requirements.txt'
             // sh 'env/bin/python3.5 manage.py test --testrunner=djtrump.tests.test_runners.NoDbTestRunner'
 
-        // stage 'Deploy'
-        //  dir('/apps/ecosystem'){
-        //     sh 'chmod +x deploy_prod.sh'
-        //     sh 'cat deploy_prod.sh'
-        //     sh './deploy_prod.sh'
-        //  }
+        stage 'Deploy'
+         dir('/apps/ecosystem'){
+            sh 'chmod +x deploy_prod.sh'
+            sh 'cat deploy_prod.sh'
+            sh './deploy_prod.sh'
+         }
         stage 'Publish results'
             // slackSend color: "good", message: "Build successful: `${env.JOB_NAME}#${env.BUILD_NUMBER}` <${env.BUILD_URL}|Open in Jenkins>"
     }
