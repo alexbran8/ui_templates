@@ -16,6 +16,11 @@ node {
             //              }
             // sh "pwd"
             }
+
+            dir('/apps/env'){
+                sh "ls -a"
+            }
+
         
         stage 'Test'
             sh 'echo "test implementation in progress"'
