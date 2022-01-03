@@ -28,6 +28,8 @@ const config = require('../config/config')
     done(null, profile)
   })
 
+  console.log(config.azureApp)
+
 
 passport.use(
   'adfs',
