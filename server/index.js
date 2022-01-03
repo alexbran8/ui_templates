@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '../../env/.env' });
 
 const cookieSession = require("cookie-session");
 
