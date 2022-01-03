@@ -1,8 +1,4 @@
-// console.log('ENV',process.env.NODE_ENV)
-// const envPath = process.env.NODE_ENV === 'development' ? '../.env' : '../../env/.env'
 require('dotenv').config({ path: '../.env' });
-
-
 
 const cookieSession = require("cookie-session");
 
@@ -39,9 +35,6 @@ db.sequelize
   .catch((err) => {
     console.error("Unable to connect to the database:", err);
   });
-
-
-  console.log('env',process.env.ALLOWED_HOSTS)
 
 
 const apolloServer = new ApolloServer({
@@ -98,9 +91,7 @@ app.use(
 
 // set up routes
 app.use("/auth", authRoutes);
-require("./routes/dailyTasks.routes")(app);
-require("./routes/competence.routes")(app);
-require("./routes/resource.routes")(app);
+// require("./routes/dailyTasks.routes")(app);
 
 
 const authCheck = (req, res, next) => {

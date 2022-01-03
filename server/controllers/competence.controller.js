@@ -1,4 +1,4 @@
-const { db } = require("../config/configProvider")();
+// const { db } = require("../config/configProvider")();
 // const Competence = db.competences;
 const sequelize = require("sequelize");
 const { DataTypes, Op } = sequelize;

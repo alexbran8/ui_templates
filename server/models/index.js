@@ -1,10 +1,9 @@
-// const dbConfig = require("../config/config.js");
-// console.log(dbConfig.db)
+require('dotenv').config({ path: '../.env' });
 
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("ecosystem", "postgres", "fJdyP2Dyj@&6v!5hMM#VD", {
-    host: "10.129.210.150",
+const sequelize = new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: "postgres",
     pool: {
       max: 5,

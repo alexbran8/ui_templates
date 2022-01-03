@@ -1,9 +1,10 @@
 const Sequelize = require("sequelize");
+require('dotenv').config({ path: '../.env' });
 /* 
  * create a `.env` file with environment variables in order to laod at runtime.
 */
 
-const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:4000/auth/azure/redirect" :  'https://ecosystem.eecloud.dynamic.nsn-net.net/auth/azure/redirect';
+const hostUrl = process.env.NODE_ENV === `development` ? "http://localhost:4000/auth/azure/redirect" :  process.env.HOST_URL;
 const baseLocation = process.env.NODE_ENV === `development` ? "" :  '';
 
 
@@ -14,29 +15,29 @@ var config = {
   CLIENT_LANDING_PAGE_URL:process.env.NODE_ENV === `development` ? "http://localhost:3000/" :  'https://ecosystem.eecloud.dynamic.nsn-net.net/',
   azureApp: {
     // Azure Application details
-    base: process.env.AAD_AUTH_URL || 'https://login.microsoftonline.com/',
-    clientID: process.env.AAD_AUTH_CLIENTID || '6181870f-f95d-482e-9956-0ccc95ae9789',
-    clientSecret: process.env.AAD_AUTH_CLIENTSECRET || 'B6rFwdW6-adys1~-jj.1FJcP2~D..zL9XD',
+    base: process.env.AAD_AUTH_URL,
+    clientID: process.env.AAD_AUTH_CLIENTID,
+    clientSecret: process.env.AAD_AUTH_CLIENTSECRET,
     callbackUri: hostUrl + '/auth/cbAdfs',
-    resource: process.env.MS_GRAPH_URL || 'https://graph.microsoft.com/',
-    tenant: process.env.AAD_AUTH_TENANT || '5d471751-9675-428d-917b-70f44f9630b0'
+    resource: process.env.MS_GRAPH_URL,
+    tenant: process.env.AAD_AUTH_TENANT
   },
   baseLocation: baseLocation,
   jwtSecret: process.env.APP_SESSION_SECRET || 'big Secret',
   cookieSettings: {
     maxAge: 360000
   },
-  serverPort: process.env.PORT || 8080,
-  db: new Sequelize("npt", "postgres", "fJdyP2Dyj@&6v!5hMM#VD", {
-    host: "10.129.210.150",
-    dialect: "postgres",
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
-    },
-  }),
+  serverPort: process.env.DB_PORT || 8080,
+  // db: new Sequelize(process.env.DB, process.env.DB_USER, process.env.DB_PASSWORD, {
+  //   host: process.env.DB_HOST,
+  //   dialect: "postgres",
+  //   pool: {
+  //     max: 5,
+  //     min: 0,
+  //     acquire: 30000,
+  //     idle: 10000,
+  //   },
+  // }),
 }
 
 module.exports = config
