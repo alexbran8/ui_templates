@@ -16,7 +16,7 @@ var config = {
   azureApp: {
     // Azure Application details
     base: process.env.AAD_AUTH_URL,
-    clientID: process.env.AAD_AUTH_CLIENTID,
+    clientID: process.env.AAD_AUTH_CLIENTID || '6181870f-f95d-482e-9956-0ccc95ae9789',
     clientSecret: process.env.AAD_AUTH_CLIENTSECRET,
     callbackUri: hostUrl + '/auth/cbAdfs',
     resource: process.env.MS_GRAPH_URL,
