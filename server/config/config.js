@@ -1,5 +1,8 @@
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
 require('dotenv').config({ path: '../../.env' });
+
+
+console.log(process.ENV)
 /* 
  * create a `.env` file with environment variables in order to laod at runtime.
 */
@@ -16,7 +19,7 @@ var config = {
   azureApp: {
     // Azure Application details
     base: process.env.AAD_AUTH_URL,
-    clientID: process.env.AAD_AUTH_CLIENTID || '6181870f-f95d-482e-9956-0ccc95ae9789',
+    clientID: process.env.AAD_AUTH_CLIENTID,
     clientSecret: process.env.AAD_AUTH_CLIENTSECRET,
     callbackUri: hostUrl + '/auth/cbAdfs',
     resource: process.env.MS_GRAPH_URL,
