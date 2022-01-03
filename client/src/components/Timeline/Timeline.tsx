@@ -11,7 +11,13 @@ const Timeline = () => (
 const DevelopmentTimeline = () =>
   timelineData.length > 0 && (
     <div className="timeline-container">
-      {timelineData.map((data, idx) => (
+      {timelineData.sort(function(a,b){ 
+        console.log(typeof a.date)
+        var c = new Date(a.date);
+        var d = new Date(b.date);
+        return c-d;
+      }
+        ).map((data, idx) => (
         <TimelineItem data={data} key={idx} />
       ))}
     </div>
@@ -20,34 +26,56 @@ const DevelopmentTimeline = () =>
 
 const timelineData = [
   {
-    text: "Implement SSO login",
-    date: "12/08/2020",
+    text: "Implement SSO login for stundents using Linkedin login",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "",
+    issues: "waiting for approval for creating Linkedin application for login",
     status: "waiting",
-    release: "1.9",
+    release: "1.0",
+    progress: '50%',
     priority: {
       priority_text: "P0",
       priority_color: "#FF0000",
     },
     link: {
       url: "mailto:alexandru.bran@nokia.com",
-      text: "contact developer",
+      text: "contact responsible",
     },
   },
   {
-    text: "Update/Review BIG Scheduler",
-    date: "12/07/2020",
+    text: "develop local login strategy",
+    date: "Mar 10 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "",
-    status: "researching",
-    release: "1.8",
+    issues: "needs GDPR to be in place when in production",
+    status: "waiting",
+    progress: '50%',
+    release: "1.1",
+    priority: {
+      priority_text: "P0",
+      priority_color: "#FF0000",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact responsible",
+    },
+  },
+  {
+    text: "Implement home page developed during individual projects",
+    date: "Mar 12 2012 10:00:00 AM",
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "footer needs to be reviewed for position in page; home page animations still under development",
+    status: "on-going",
+    progress: "60%",
+    release: "1.2",
     priority: {
       priority_text: "P1",
       priority_color: "#018f69",
@@ -58,15 +86,16 @@ const timelineData = [
     },
   },
   {
-    text: "Add feature for updating by L1 and L2 approved requests",
-    date: "12/06/2020",
+    text: "Implement modal developed during individual project and responsive table for projects list",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "",
+    issues: "components still under development: 70% final progress",
     release: "1.7",
     status: "Waiting",
+    progress: "70%",
     priority: {
       priority_text: "P2",
       priority_color: "#018f69",
@@ -77,15 +106,15 @@ const timelineData = [
     },
   },
   {
-    text: "Add name instead of created by in approval",
-    date: "12/05/2020",
+    text: "Finalize import and export project features",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
     issues: "",
     status: "In progress",
-    release: "1.6.2",
+    release: "1.3",
     priority: {
       priority_text: "P2",
       priority_color: "#018f69",
@@ -96,32 +125,35 @@ const timelineData = [
     },
   },
   {
-    text: "Review EMAIL handler to work on delete API/without TPM/LM",
-    date: "30/04/2020",
+    text: "Finalize credits page",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    release: "1.6.1",
+    release: "1.4",
     priority: {
       priority_text: "P0",
       priority_color: "#018f69",
     },
     status: "95%",
+    issues:"design in progress",
+    progress: "40%",
     link: {
       url: "mailto:alexandru.bran@nokia.com",
       text: "contact developer",
     },
   },
   {
-    text: "Update event form",
-    date: "30/03/2020",
+    text: "MICRO FRONTEND IMPLEMENTATION",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
-      color: "#018f69",
+      color: "#F27719",
     },
-    issues: "",
-    status: "50%",
+    issues: "to be part of team projects",
+    status: "5%",
+    progress: "5%",
     release: "1.6",
     priority: {
       priority_text: "P2",
@@ -133,11 +165,11 @@ const timelineData = [
     },
   },
   {
-    text: "Add filter for engineer in Schedule page",
-    date: "14/05/2020",
+    text: "Implement container scalability",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
-      tag: "implemented",
-      color: "#018f69",
+      tag: "future planned update",
+      color: "#F27719",
     },
     issues: "",
     status: "ok",
@@ -152,14 +184,14 @@ const timelineData = [
     },
   },
   {
-    text: "Migrate from MySQL to MSSQL",
-    date: "13/05/2020",
+    text: "Develop Automated Testing Procedures",
+    date: "Mar 12 2012 10:00:00 AM",
     category: {
-      tag: "implemented",
-      color: "#018f69",
+      tag: "future planned update",
+      color: "#F27719",
     },
-    issues: "app strange behaviour after test implementation",
-    status: "ok",
+    issues: "wip",
+    status: "on going research",
     release: "1.4",
     priority: {
       priority_text: "P1",
@@ -170,61 +202,7 @@ const timelineData = [
       text: "contact developer",
     },
   },
-  {
-    text: "Update event form",
-    date: "30/03/2020",
-    category: {
-      tag: "future planned update",
-      color: "#018f69",
-    },
-    issues: "",
-    status: "temp implementation",
-    release: "1.3",
-    priority: {
-      priority_text: "P2",
-      priority_color: "#018f69",
-    },
-    link: {
-      url: "mailto:alexandru.bran@nokia.com",
-      text: "contact developer",
-    },
-  },
-  {
-    text: "Event add status review",
-    date: "18/03/2020",
-    release: "1.2",
-    category: {
-      tag: "IMPLEMENTED",
-      color: "#018f69",
-    },
-    status: "ok",
-    priority: {
-      priority_text: "P1",
-      priority_color: "#018f69",
-    },
-    link: {
-      url: "mailto:alexandru.bran@nokia.com",
-      text: "contact developer",
-    },
-  },
-  {
-    text: "DNS implementation",
-    date: "01/03/2020",
-    release: "1.1",
-    priority: {
-      priority_text: "P1",
-      priority_color: "#018f69",
-    },
-    category: {
-      tag: "IMPLEMENTED",
-      color: "#018f69",
-    },
-    status: "ok",
-    link: {
-      url: "mailto:alexandru.bran@nokia.com",
-      text: "contact developer",
-    },
-  },
+  
 ];
 
 const TimelineItem = ({ data }) => (
@@ -239,7 +217,7 @@ const TimelineItem = ({ data }) => (
         className="priority"
         style={{ color: data.priority.priority_color }}
       >
-        {data.priority.priority_text} - {data.status}
+        {data.priority.priority_text}[{data.progress}] - {data.status} - {data.issues}
       </span>
       {data.link && (
         <a href={data.link.url} target="_blank" rel="noopener noreferrer">

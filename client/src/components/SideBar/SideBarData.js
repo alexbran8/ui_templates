@@ -48,8 +48,9 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Services",
-    path: "/services",
+    title: "Dev Timeline",
+    path: "/devtimeline",
+    restriction: 'admin',
   },
   {
     title: "Projects",

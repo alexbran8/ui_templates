@@ -2,7 +2,7 @@
 require('dotenv').config({ path: '../../.env' });
 
 
-console.log(process.ENV)
+
 /* 
  * create a `.env` file with environment variables in order to laod at runtime.
 */

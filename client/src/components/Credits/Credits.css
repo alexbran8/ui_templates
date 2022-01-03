@@ -1,9 +1,22 @@
+@media(max-width:1000px) {
+    :root {
+        --top: 1000px
+    }
+}
+
+@media(min-width:1000px) {
+    :root {
+        --top:-100px
+    }
+}
+
+
 .credits-container {
     /* margin-top: 60px; */
     background: rgb(20,20,20);
     overflow: hidden;
     font-family: 'Roboto';
-    position: relative;
+    position: fixed;
 }
 
 .credits-container::after {
@@ -27,8 +40,8 @@
     line-height:1.53em;
     font-weight: bold;
     text-align:justify;
-    position: relative;
-    animation: scroll 60s linear forwards;
+    position: relative; 
+    animation: scroll 120s linear forwards;
     /* transform: translateZ(-250px) rotateX(20deg); */
 
 }
@@ -37,6 +50,6 @@ h1, h2 {
 }
 
 @keyframes scroll {
-    from {top:-400px; transform: translateZ(0) rotateX(20deg)}
+    from {top: var(--top); transform: translateZ(0) rotateX(20deg)}
     to {top: -7550px; transform: translateZ(-2500px) rotateX(22deg) }
 }
