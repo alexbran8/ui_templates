@@ -1,4 +1,6 @@
-require('dotenv').config({ path: '../../env/.env' });
+console.log('ENV',process.env.NODE_ENV)
+const envPath = process.env.NODE_ENV === 'development' ? '../.env' : '../../env/.env'
+require('dotenv').config({ path: envPath });
 
 const cookieSession = require("cookie-session");
 
