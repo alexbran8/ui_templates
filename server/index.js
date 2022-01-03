@@ -11,23 +11,23 @@ const express = require("express");
 const app = express();
 
 const passport = require("passport");
-const passportSetup = require("./config/passport-setup");
-const session = require("express-session");
+// const passportSetup = require("./config/passport-setup");
+// const session = require("express-session");
 const authRoutes = require("./routes/auth-routes");
 
 const keys = require("./config/keys");
 const cors = require("cors");
 const cookieParser = require("cookie-parser"); // parse cookie header
 const path = require("path");
-const config = require("./config/configProvider")();
+// const config = require("./config/configProvider")();
 
 const { ApolloServer } = require("apollo-server-express");
-var { graphqlHTTP } = require("express-graphql");
-var { buildSchema } = require("graphql");
+// var { graphqlHTTP } = require("express-graphql");
+// var { buildSchema } = require("graphql");
 
 const typeDefs = require("./graphql/schemas");
 const resolvers = require("./graphql/resolvers");
-const context = require("./graphql/context");
+// const context = require("./graphql/context");
 
 const db = require("./models");
 
