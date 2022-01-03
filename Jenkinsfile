@@ -18,7 +18,7 @@ node {
             }
             dir('/apps/env'){
                 sh "ls -a"
-                sh "cp .env /apps/ecosystem"
+                sh "cp .env /apps/ecosystem/.env"
             }
           
 
