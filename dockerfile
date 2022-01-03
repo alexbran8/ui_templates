@@ -4,6 +4,7 @@ FROM node:16
 
 # copy source and install dependencies
 RUN mkdir -p /opt/app
+COPY ../env /opt/app
 RUN cd ..
 
 # cody in installation folder

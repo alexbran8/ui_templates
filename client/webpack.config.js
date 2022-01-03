@@ -11,10 +11,6 @@ const enableBundleAnalyzer = process.env.ENABLE_ANALYZER === "true";
 const watch = process.env.NODE_ENV !== 'production'
 console.log('ENV',process.env.NODE_ENV)
 
-
-const envPath = process.env.NODE_ENV === 'development' ? '../.env' : '../../env/.env'
-require('dotenv').config({ path: envPath });
-
 console.log(process.env.SERVER_PORT)
 
 
