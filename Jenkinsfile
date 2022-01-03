@@ -4,7 +4,7 @@ node {
     
     try {
         stage 'Checkout'
-
+      
             dir('/apps/ecosystem'){
             // sh "pwd"
        
@@ -16,10 +16,11 @@ node {
             //              }
             // sh "pwd"
             }
-
             dir('/apps/env'){
                 sh "ls -a"
+                sh "cp .env /apps/ecosystem"
             }
+          
 
         
         stage 'Test'
