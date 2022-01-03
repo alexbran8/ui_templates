@@ -7,7 +7,7 @@ RUN mkdir -p /opt/app
 RUN cd ..
 
 # cody in installation folder
-COPY . /opt/app/
+COPY . /opt/app/    
 
 # build frontend
 WORKDIR /opt/app/client
