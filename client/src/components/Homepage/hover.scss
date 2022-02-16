@@ -1,0 +1,137 @@
+
+
+.box{
+    margin: 5vw auto;
+    
+    position:relative;
+    
+    //line-height:10em;
+    
+    //overflow:hidden;
+    left: 45vw;
+    top: 0vw;
+  }
+  
+  %box__dir{
+    position:absolute;
+     width:inherit;
+     height:inherit;
+    
+    text-align:center;
+    //line-height:inherit;
+    
+    transition:transform .4s ease;
+    
+    &:before{
+      position:absolute;
+        
+      content:'';
+      
+      width:70.71%;
+      height:70.71%;
+      transform: rotate(45deg);
+    }  
+    
+    &:hover{
+      //transform:translateX(0);
+      transform: translateX(5) rotateY(20deg);
+      z-index:1;
+    }
+      
+    &:hover:before{
+      width:100%;
+      height:100%;
+      transform: none;  
+    }  
+  }
+  
+  .box__right{
+     @extend %box__dir;
+     background:pink;
+     transform:translateX(100%);
+     width:10vw;
+     height:15vw;
+     left: 10vw;
+     top: 5vw;
+     z-index: 3;
+    
+     &:before{   
+        right:50%;bottom:0;
+        transform-origin: 100% 100%;
+     }
+     
+     &:hover ~ .box__center{
+      //transform: translate3d(20vw, -20vw, 20vw) rotateY(20deg); 
+      transform:translateX(900%);  
+     }
+  } 
+  
+  .box__left{
+     @extend %box__dir;
+
+     background:green;
+     transform:translateX(-100%);
+     width:10vw;
+     height:15vw;
+     z-index:3;
+     top: 5vw;
+     &:before{   
+        left:100%;
+        transform-origin: 0 0;  
+     }   
+      
+     &:hover ~ .box__center{
+       transform:translateX(1000%);   
+     }
+  }
+  
+  .box__top{
+     @extend %box__dir;
+     background:red;
+     transform:translateY(-100%);
+     width:20vw;
+     height:10vw;
+     top: 5vw;
+    
+     &:before{   
+        top:100%;right:0;
+        transform-origin:100% 0; 
+     }
+      
+     &:hover ~ .box__center{
+       transform:translateY(1000%);   
+     }
+  }
+  
+  
+  .box__bottom{
+     @extend %box__dir;
+     background:yellow;
+     transform:translateY(100%);
+     width:20vw;
+     height:10vw;
+     top: 10vw;
+     z-index:3;
+    
+     &:before{   
+        bottom:100%;left:0;
+        transform-origin:0 100%;
+     }
+      
+     &:hover ~ .box__center{
+       transform:translateY(-900%);   
+     }
+  }
+  
+  .box__center{
+     @extend %box__dir;
+     background:orange;
+     z-index:1;
+     width:1vw;
+     height:1vw;
+     left: -15vw;
+     align-items: center;
+     align-content: center;
+     display: block;
+  }
+  
