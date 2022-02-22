@@ -147,7 +147,7 @@ export const timelineData = [
     },
     status: "",
     issues:"",
-    progress: "40%",
+    progress: "0%",
     link: {
       url: "mailto:alexandru.bran@nokia.com",
       text: "contact developer",
@@ -211,6 +211,50 @@ export const timelineData = [
     progress: "0%",
     priority: {
       priority_text: "P1",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:10,
+    text: "Make application PWA",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'alexandru.bran@nokia.com',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "75%",
+    priority: {
+      priority_text: "P1",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:11,
+    text: "CRUD for project application (frontend+backend+email-notifications)",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "0%",
+    priority: {
+      priority_text: "P0",
       priority_color: "#018f69",
     },
     link: {
