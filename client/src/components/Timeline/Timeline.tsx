@@ -27,16 +27,16 @@ const DevelopmentTimeline = () =>
 export const timelineData = [
   {
     id: 1,
-    text: "Implement SSO login for stundents using Linkedin login",
+    text: "Implement SSO login using LinkedIn OAUTH2",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "waiting for approval for creating Linkedin application for login",
-    status: "waiting",
+    issues: "needs GDPR to be in place when in production",
+    status: "In progress",
     release: "1.0",
-    respponsible:'alexandru.bran@nokia.com',
+    responsible:'alexandru.bran@nokia.com',
     progress: '50%',
     priority: {
       priority_text: "P0",
@@ -49,14 +49,14 @@ export const timelineData = [
   },
   {
     id: 2,
-    text: "develop local login strategy",
+    text: "Develop local login strategy using node.JS Passport",
     date: "Mar 10 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
     issues: "needs GDPR to be in place when in production",
-    status: "waiting",
+    status: "",
     progress: '50%',
     release: "1.1",
     priority: {
@@ -70,18 +70,18 @@ export const timelineData = [
   },
   {
     id:3,
-    text: "Implement home page developed during individual projects",
+    text: "Home page responsiveness refactoring",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "footer needs to be reviewed for position in page; home page animations still under development",
-    status: "on-going",
-    progress: "60%",
+    issues: "does not have responsive behaviour",
+    status: "In progress",
+    progress: "0%",
     release: "1.2",
     priority: {
-      priority_text: "P1",
+      priority_text: "P3",
       priority_color: "#018f69",
     },
     link: {
@@ -91,16 +91,16 @@ export const timelineData = [
   },
   {
     id:4,
-    text: "Implement modal developed during individual project and responsive table for projects list",
+    text: "Modal for project application implementation",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "components still under development: 70% final progress",
+    issues: "",
     release: "1.7",
-    status: "Waiting",
-    progress: "70%",
+    status: "",
+    progress: "0%",
     priority: {
       priority_text: "P2",
       priority_color: "#018f69",
@@ -119,8 +119,10 @@ export const timelineData = [
       color: "#F27719",
     },
     issues: "",
-    status: "In progress",
+    responsible:'alexandru.bran@nokia.com',
+    status: "",
     release: "1.3",
+    progress:'75%',
     priority: {
       priority_text: "P2",
       priority_color: "#018f69",
@@ -132,7 +134,7 @@ export const timelineData = [
   },
   {
     id:6,
-    text: "Finalize credits page",
+    text: "Development of credits page (animation is in place, text needs to be prepared",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
@@ -140,11 +142,11 @@ export const timelineData = [
     },
     release: "1.4",
     priority: {
-      priority_text: "P0",
+      priority_text: "P3",
       priority_color: "#018f69",
     },
-    status: "95%",
-    issues:"design in progress",
+    status: "",
+    issues:"",
     progress: "40%",
     link: {
       url: "mailto:alexandru.bran@nokia.com",
@@ -153,20 +155,22 @@ export const timelineData = [
   },
   {
     id:7,
-    text: "MICRO FRONTEND IMPLEMENTATION",
+    text: "MICRO-FRONTEND IMPLEMENTATION",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "to be part of team projects",
-    status: "5%",
+    responsible:'alexandru.bran@nokia.com',
+    issues: "Subject of 2022 Summer Practice",
+    status: "Research on going",
     progress: "5%",
     release: "1.6",
     priority: {
       priority_text: "P2",
       priority_color: "#018f69",
     },
+    
     link: {
       url: "mailto:alexandru.bran@nokia.com",
       text: "contact developer",
@@ -174,19 +178,20 @@ export const timelineData = [
   },
   {
     id:8,
-    text: "Implement container scalability",
+    text: "Update each existing component to be multilangual (RO/ENG)",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
       color: "#F27719",
     },
     issues: "",
-    status: "ok",
+    status: "",
     release: "1.5",
     priority: {
       priority_text: "P3",
       priority_color: "#018f69",
     },
+    progress: "0%",
     link: {
       url: "mailto:alexandru.bran@nokia.com.com",
       text: "contact developer",
@@ -200,9 +205,10 @@ export const timelineData = [
       tag: "future planned update",
       color: "#F27719",
     },
-    issues: "wip",
-    status: "on going research",
+    issues: "",
+    status: "",
     release: "1.4",
+    progress: "0%",
     priority: {
       priority_text: "P1",
       priority_color: "#018f69",

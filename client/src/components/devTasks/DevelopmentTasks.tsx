@@ -29,7 +29,7 @@ export const DevelopmentTasks = () => {
                         <td>{item.issues}</td>
                         <td>{item.progress}</td>
                         {/* <td>{item.date}</td> */}
-                        <td>{item.respponsible}</td>
+                        <td>{item.responsible}</td>
                     </tr>
                 })}
               </tbody>
