@@ -29,12 +29,16 @@ const Homepage = () => {
   const history = useHistory();
 
   function getCenter(element) {
+    // if (element) {
     const { left, top, width, height } = element.getBoundingClientRect();
     return { x: left + width / 2, y: top + height / 2 }
+    // }
   }
 
 
   useEffect(() => {
+    if(user.auth.isAuthenticated){
+   
     const arrowCenter = getCenter(rocket);
     // let arrowRects = rocket.getBoundingClientRect();
 
@@ -44,7 +48,7 @@ const Homepage = () => {
       degAngle >= 360 ? setRotation(90 + rotation - degAngle) : setRotation(90 + rotation + degAngle)
     }
     )
-
+  }
   }, [])
 
 
@@ -99,7 +103,7 @@ const Homepage = () => {
                   </div>
                   <div className="left-fin-end">
                     <div className="rocket-text1">
-                      {user.auth.name}
+                      {/* {user.auth && user.auth.name} */}
                     </div>
                   </div>
                   <div className="right-fin"></div>
