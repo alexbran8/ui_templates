@@ -15,8 +15,7 @@ export const DevelopmentTasks = () => {
                   <th>Status</th>
                   <th>Issues</th>
                   <th>Progress</th>
-                  <th>Planned implementation</th>
-                  <th>Details</th>
+                  {/* <th>Planned implementation</th> */}
                   <th>Responsible</th>
                 </tr>
               </thead>
@@ -29,9 +28,8 @@ export const DevelopmentTasks = () => {
                         <td>{item.status}</td>
                         <td>{item.issues}</td>
                         <td>{item.progress}</td>
-                        <td>{item.date}</td>
-                        <td>{item.details}</td>
-                        <td>{item.responsible}</td>
+                        {/* <td>{item.date}</td> */}
+                        <td>{item.respponsible}</td>
                     </tr>
                 })}
               </tbody>

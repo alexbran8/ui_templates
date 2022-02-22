@@ -36,6 +36,7 @@ export const timelineData = [
     issues: "waiting for approval for creating Linkedin application for login",
     status: "waiting",
     release: "1.0",
+    respponsible:'alexandru.bran@nokia.com',
     progress: '50%',
     priority: {
       priority_text: "P0",

@@ -1,14 +1,17 @@
 #dev-table td {
     border: 1px solid black;
-    // padding: 1% 1% 0% 0%;
+    padding: 1% 1% 1% 1%;
+    min-width: 50px;
+    max-width: 250px;
     text-align: center;
 }
 
 #dev-table thead th {
     border: 2px solid black;
-    // padding: 1% 1% 0% 0%;
+    padding: 1% 1% 1% 1%;
     background-color: #66d3fa;
     text-align: center;
+
 }
 #dev-table {
     text-align: center;
