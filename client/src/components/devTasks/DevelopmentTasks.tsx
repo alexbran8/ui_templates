@@ -11,13 +11,13 @@ export const DevelopmentTasks = () => {
                 <tr>
                   <th>Id</th>
                   <th>Task</th>
-                  <th>Title</th>
-                  <th>Replacement Resource</th>
-                  <th>Type</th>
-                  <th>Start</th>
-                  <th>End</th>
+                  <th>Priority</th>
                   <th>Status</th>
-                  <th>Check</th>
+                  <th>Issues</th>
+                  <th>Progress</th>
+                  <th>Planned implementation</th>
+                  <th>Details</th>
+                  <th>Responsible</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,6 +26,12 @@ export const DevelopmentTasks = () => {
                         <td>{item.id}</td>
                         <td>{item.text}</td>
                         <td>{item.priority.priority_text}</td>
+                        <td>{item.status}</td>
+                        <td>{item.issues}</td>
+                        <td>{item.progress}</td>
+                        <td>{item.date}</td>
+                        <td>{item.details}</td>
+                        <td>{item.responsible}</td>
                     </tr>
                 })}
               </tbody>

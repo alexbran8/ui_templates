@@ -26,6 +26,7 @@ const DevelopmentTimeline = () =>
 
 export const timelineData = [
   {
+    id: 1,
     text: "Implement SSO login for stundents using Linkedin login",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -46,6 +47,7 @@ export const timelineData = [
     },
   },
   {
+    id: 2,
     text: "develop local login strategy",
     date: "Mar 10 2012 10:00:00 AM",
     category: {
@@ -57,7 +59,7 @@ export const timelineData = [
     progress: '50%',
     release: "1.1",
     priority: {
-      priority_text: "P0",
+      priority_text: "P3",
       priority_color: "#FF0000",
     },
     link: {
