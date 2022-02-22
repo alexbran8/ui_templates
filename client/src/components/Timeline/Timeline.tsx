@@ -24,7 +24,7 @@ const DevelopmentTimeline = () =>
   );
 
 
-const timelineData = [
+export const timelineData = [
   {
     text: "Implement SSO login for stundents using Linkedin login",
     date: "Mar 12 2012 10:00:00 AM",
@@ -224,7 +224,7 @@ const TimelineItem = ({ data }) => (
           {data.link.text}
         </a>
       )}
-      <span className="circle" />
+      <span className="circle2" />
     </div>
   </div>
 );

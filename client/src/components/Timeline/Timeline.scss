@@ -108,7 +108,7 @@
     font-size: 12px;
 }
 
-.timeline-item-content .circle {
+.timeline-item-content .circle2 {
     background-color: #fff;
     border: 3px solid #e17b77;
     border-radius: 50%;
@@ -120,7 +120,7 @@
     z-index: 100;
 }
 
-.timeline-item:nth-child(odd) .timeline-item-content .circle {
+.timeline-item:nth-child(odd) .timeline-item-content .circle2 {
     right: auto;
     left: -40px;
 }

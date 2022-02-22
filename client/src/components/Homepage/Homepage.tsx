@@ -8,6 +8,9 @@ import { useTranslation } from "react-i18next";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import Button from '@material-ui/core/Button';
+
+
 import { config } from "../../config";
 
 // TODO: 1. create object of arrays with alert messages {message: 'Update #4', type: 'success'} (type depending on material ui alert types)
@@ -37,18 +40,18 @@ const Homepage = () => {
 
 
   useEffect(() => {
-    if(user.auth.isAuthenticated){
-   
-    const arrowCenter = getCenter(rocket);
-    // let arrowRects = rocket.getBoundingClientRect();
+    if (user.auth.isAuthenticated) {
 
-    addEventListener("mousemove", ({ clientX, clientY }) => {
-      const radAngle = Math.atan2(clientY - arrowCenter.y, clientX - arrowCenter.x);
-      const degAngle = radAngle * (180 / Math.PI)
-      degAngle >= 360 ? setRotation(90 + rotation - degAngle) : setRotation(90 + rotation + degAngle)
+      const arrowCenter = getCenter(rocket);
+      // let arrowRects = rocket.getBoundingClientRect();
+
+      addEventListener("mousemove", ({ clientX, clientY }) => {
+        const radAngle = Math.atan2(clientY - arrowCenter.y, clientX - arrowCenter.x);
+        const degAngle = radAngle * (180 / Math.PI)
+        degAngle >= 360 ? setRotation(90 + rotation - degAngle) : setRotation(90 + rotation + degAngle)
+      }
+      )
     }
-    )
-  }
   }, [])
 
 
@@ -140,7 +143,13 @@ const Homepage = () => {
           animate={{ x: 0, y: 100 }}
           transition={{ ease: 'easeOut', duration: 1.3 }}
         >
-          <div className="development">This web application is still under development!</div>
+          <div className="development">
+            <Button style={{
+              borderRadius: 15,
+              backgroundColor: "#FF0000",
+            }}
+              onClick={() => { history.push('/development-tasks') }}>This application is still under development. Check here available tasks</Button>
+          </div>
         </motion.h5>}
       </div>
 

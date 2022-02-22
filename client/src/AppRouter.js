@@ -6,7 +6,7 @@ import Timeline from "./components/Timeline/Timeline"
 import Database from "./components/Admin/Database"
 import Footer from "./components/Footer/Footer"
 import {Credits} from "./components/Credits/Credits"
-
+import {DevelopmentTasks} from "./components/devTasks/DevelopmentTasks"
 import ProjectsList from "./components/Projects/ProjectsList"
 
 import {NewsFeed} from "./components/NewsFeed/NewsFeed"
@@ -21,7 +21,6 @@ import authGuard from "./HOCs/authGuard.js";
 export const AppRouter = (props) => {
   return (
     <HashRouter  {...props} >
- 
       <Route exact path={"/"} component={Landingpage} />
       <Route exact path={"/error"} component={LoginError} />
       <Route exact path={"/admin/database"} component={Database} />
@@ -29,6 +28,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/newsfeed"} component={authGuard(NewsFeed)} />
       <Route exact path={"/home"} component={Homepage} />
       <Route exact path={"/devtimeline"} component={Timeline} />
+      <Route exact path={"/development-tasks"} component={DevelopmentTasks} />
       <Route exact path={"/credits"} component={Credits} />
       <Route exact path={"/timeline"} component={Timeline} />
       <Route
