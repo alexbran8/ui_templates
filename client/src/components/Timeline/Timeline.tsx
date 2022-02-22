@@ -69,6 +69,7 @@ export const timelineData = [
     },
   },
   {
+    id:3,
     text: "Implement home page developed during individual projects",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -89,6 +90,7 @@ export const timelineData = [
     },
   },
   {
+    id:4,
     text: "Implement modal developed during individual project and responsive table for projects list",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -109,6 +111,7 @@ export const timelineData = [
     },
   },
   {
+    id:5,
     text: "Finalize import and export project features",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -128,6 +131,7 @@ export const timelineData = [
     },
   },
   {
+    id:6,
     text: "Finalize credits page",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -148,6 +152,7 @@ export const timelineData = [
     },
   },
   {
+    id:7,
     text: "MICRO FRONTEND IMPLEMENTATION",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -168,6 +173,7 @@ export const timelineData = [
     },
   },
   {
+    id:8,
     text: "Implement container scalability",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
@@ -187,6 +193,7 @@ export const timelineData = [
     },
   },
   {
+    id:9,
     text: "Develop Automated Testing Procedures",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
