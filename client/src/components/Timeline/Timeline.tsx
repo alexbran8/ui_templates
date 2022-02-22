@@ -134,7 +134,7 @@ export const timelineData = [
   },
   {
     id:6,
-    text: "Development of credits page (animation is in place, text needs to be prepared",
+    text: "Development of credits page (animation is in place, TSX/JSX needs to be developed)",
     date: "Mar 12 2012 10:00:00 AM",
     category: {
       tag: "future planned update",
@@ -243,6 +243,94 @@ export const timelineData = [
   {
     id:11,
     text: "CRUD for project application (frontend+backend+email-notifications)",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "0%",
+    priority: {
+      priority_text: "P0",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:12,
+    text: "Make footer position fixed/relative, depending on the page structure",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "0%",
+    priority: {
+      priority_text: "P3",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:13,
+    text: "Install VPS on Nokia Hybrid Azure resources, to make application accessible outside the Intranet",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "0%",
+    priority: {
+      priority_text: "P0",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:14,
+    text: "Styling of homepage to a minimalistic concept",
+    date: "Mar 12 2012 10:00:00 AM",
+    responsible:'',
+    category: {
+      tag: "future planned update",
+      color: "#F27719",
+    },
+    issues: "",
+    status: "",
+    release: "1.4",
+    progress: "0%",
+    priority: {
+      priority_text: "P0",
+      priority_color: "#018f69",
+    },
+    link: {
+      url: "mailto:alexandru.bran@nokia.com",
+      text: "contact developer",
+    },
+  },
+  {
+    id:15,
+    text: "CRUD for newsletter/blog page",
     date: "Mar 12 2012 10:00:00 AM",
     responsible:'',
     category: {
