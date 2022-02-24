@@ -8,7 +8,7 @@ import Footer from "./components/Footer/Footer"
 import {Credits} from "./components/Credits/Credits"
 import {DevelopmentTasks} from "./components/devTasks/DevelopmentTasks"
 import ProjectsList from "./components/Projects/ProjectsList"
-
+import {Details} from "./components/Projects/Details"
 import {NewsFeed} from "./components/NewsFeed/NewsFeed"
 
 import {Header} from "./components/Header";
@@ -31,6 +31,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/development-tasks"} component={DevelopmentTasks} />
       <Route exact path={"/credits"} component={Credits} />
       <Route exact path={"/timeline"} component={Timeline} />
+      <Route exact path={"/details"} component={Details} />
       <Route
         render={({ location }) => {
           if (location.pathname !== "/") {return <><Header />
