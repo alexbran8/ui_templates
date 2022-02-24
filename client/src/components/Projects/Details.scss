@@ -1,69 +1,79 @@
 .details-container {
-    width: 80%;
-    max-width: 2000px;
-    display: grid;
-    place-items : center;
-    margin: 0 auto;
-    margin-top: 100px;
-    border: 1px solid black;
+  width: 100%;
+  max-width: 2000px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto;
+  padding-top: 100px;
+  height: 100%;
+  
+  background-color: #F0FFF0;
 }
 
+.title-section h1 {
+    text-transform: uppercase;
+    font-family: fantasy;
+}
 .header-section {
-    background-color: bisque;
-    display: flex;
-    width: 100%;
-    gap: 2%;
-    border: 1px solid black;
-    align-items: center;
-    justify-content: center;
+  background-color: bisque;
+  display: flex;
+  width: 100%;
+  gap: 2%;
+//   border: 1px solid black;
+  align-items: center;
+  justify-content: center;
 }
 
-.body-section{
-    max-width: 80%;
-    padding-top: 4rem;
-    text-align: center;
-    // margin-top: 2%;
-    .details {
-        text-align: justify;
-    }
-
+.body-section {
+  max-width: 80%;
+  padding-top: 4rem;
+  text-align: center;
+  // margin-top: 2%;
+  .details {
+    text-align: justify;
+    margin-left: 20%;
+    max-width: 60%;
+  }
 }
 
 .lists-container {
-    margin-top: 2%;
-    text-align: center;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    --gap: 50px;
-    padding: 4rem 0;    
+  margin-top: 2%;
+  text-align: center;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  --gap: 50px;
+  padding: 4rem 0;
 }
 
 .list {
-    // place-items: ;
-    min-width: 30%;
-    text-align: center;
-    h4 {
-        text-transform: uppercase;
-        background-color: antiquewhite;
-    }
-    ul {
-        list-style-position: inside;
-        padding-left: 0;
-      }
+  // place-items: ;
+  min-width: 30%;
+  text-align: center;
+  h4 {
+    text-transform: uppercase;
+    background-color: bisque;
+  }
+  ul {
+    list-style-position: inside;
+    padding-left: 0;
+    list-style-type: circle;
+  }
 }
 .details-container .title-section {
-    // border: 1px solid black;
-    padding: 10px 10px 10px 10px;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    
+  // border: 1px solid black;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .header-picture {
-    width: auto;
-    height: 200px;
+  width: auto;
+  height: 200px;
+}
 
+.list + .list {
+    border-left: solid 3px white;
 }

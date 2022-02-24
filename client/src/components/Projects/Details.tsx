@@ -46,6 +46,7 @@ export const Details = (props) => {
                             <li>understand SSR (Server Side Rendering)</li>
                             <li>create reusable components for the CRUD process</li>
                         </ul>
+                        
                     </div>
 
                     <div className="list">
