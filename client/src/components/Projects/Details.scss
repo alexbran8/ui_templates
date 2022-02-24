@@ -19,16 +19,38 @@
 }
 
 .body-section{
-    max-width: 60%;
+    max-width: 80%;
     padding-top: 2%;
     text-align: center;
     // margin-top: 2%;
+    .details {
+        text-align: justify;
+    }
 
 }
 
-.details-container .tasks {
-    margin-top: 1%;
+.lists-container {
+    margin-top: 2%;
     text-align: center;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    
+}
+
+.list {
+    // place-items: ;
+    min-width: 30%;
+    
+    text-align: center;
+    h4 {
+        text-transform: uppercase;
+        background-color: antiquewhite;
+    }
+    ul {
+        list-style-position: inside;
+        padding-left: 0;
+      }
 }
 .details-container .title-section {
     // border: 1px solid black;
