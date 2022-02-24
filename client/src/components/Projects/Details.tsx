@@ -21,18 +21,33 @@ export const Details = () => {
                 <div className="tags"><b>React.JS / JS / CSS</b></div>
             </div>
             <div className="body-section">
-                <div className="details">Dezvoltarea unei aplicatii web folosind framework-ul Next.JS:
-                    CRUD pentru managementul incidentelor &&
-                    CRUD pentru dezvoltarea unui landing page (unde for fi iterate toate aplicatiile intr-un CSS grid)
+                <div className="details">
+                    Develop next.JS web application having the following CRUD components: tools support / incident management / landing page
                 </div>
 
                 <div className="tasks">
                     <b>Project Tasks: </b>
                     <div className="task-list">
                         <ol>
-                            <li>get familiarized with next.JS, by being able to compare it with it's parent (react.JS)</li>
+                            <li>get familiarized with next.JS framework, by being able to compare it with it's parent library (react.JS)</li>
                             <li>understand how next.JS works</li>
-                            <li>create components for the CRUD process</li>
+                            <li>understand SSR (Server Side Rendering)</li>
+                            <li>create reusable components for the CRUD process</li>
+                        </ol>
+                    </div>
+                    <b>Constraints: </b>
+                    <div className="task-list">
+                        <ol>
+                            <li>project needs to use fake database provider</li>
+                            <li>REST protocol shall not be used; only graphQL queries;</li>
+                            <li>project infrastructure (webpack / babel / etc.) needs to be prepared for TypeScript implmentation</li>
+                        </ol>
+                    </div>
+                    <b>Training: </b>
+                    <div className="task-list">
+                        <ol>
+                            <li>next.JS documentation</li>
+                            <li>...</li>
                         </ol>
                     </div>
                 </div>
