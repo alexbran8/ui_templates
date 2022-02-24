@@ -20,7 +20,7 @@
 
 .body-section{
     max-width: 80%;
-    padding-top: 2%;
+    padding-top: 4rem;
     text-align: center;
     // margin-top: 2%;
     .details {
@@ -35,13 +35,13 @@
     display: flex;
     align-items: stretch;
     justify-content: center;
-    
+    --gap: 50px;
+    padding: 4rem 0;    
 }
 
 .list {
     // place-items: ;
     min-width: 30%;
-    
     text-align: center;
     h4 {
         text-transform: uppercase;
