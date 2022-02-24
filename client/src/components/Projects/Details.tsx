@@ -18,7 +18,7 @@ export const Details = () => {
                 <div className="published">published: <b>24/02/2022</b></div>
                 <div className="subject"> subject: <b>Fullstack Web Development</b></div>
                 <div className="team-size"> team-size: <b>3-4 students</b></div>
-                <div className="tags"><b>React.JS / JS / CSS</b></div>
+                <div className="tags">tags: <b>React.JS / JS / CSS</b></div>
             </div>
             <div className="body-section">
                 <div className="details">
