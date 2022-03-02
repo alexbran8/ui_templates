@@ -106,7 +106,8 @@ const ProjectsList = () => {
     onCompleted: () => {
       setProjects(data.getAll);
       // console.log(data.getAll)
-    }
+    },
+    onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
   });
 
 

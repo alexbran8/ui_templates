@@ -1,7 +1,7 @@
 const e = require("cors");
 const nodemailer = require("nodemailer");
 const db = require("../../models");
-
+const { sendNotificationError, notificationEmail } = require("../../middleware/notification")
 
 const errorHandler = (err, req, res, next) => {
   const { code, desc = err.message } = err;
@@ -21,16 +21,26 @@ const emailHandler = async (metadata) => {
 
 module.exports = {
   Query: {
-    
     async getAll(root, args, context) {
+      try{
      let result = db.Projects.findAll({
         // where: { [Op.and]: [dateFilter, weekFilter, itvFilter, statusFilter, siteFilter, responsibleFilter] },
         // limit: args.first
-      });
-      return result;
-
+      })
+      return result
+     
     }
-  },
+      catch(err) {
+        console.log(err)
+        // send notification error
+        sendNotificationError(err);
+        return { message: err, success: false }
+
+      }
+      
+    }
+   
+},
   Mutation: {
     async addItem(root, data, context) {
       try {
