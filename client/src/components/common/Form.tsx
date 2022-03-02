@@ -289,44 +289,29 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project type is required' }}
               />
-              {/* <Controller
+               <Controller
+                name="team_size"
                 control={control}
-                name="type"
-                rules={{ required: 'Type is required' }}
+
+                defaultValue={props.operation === 'edit' ? props.values.team_size : null}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
-                  <Autocomplete
-                    onChange={(event, item) => {
-                      onChange(item.value);
+                  <TextField
+                    id="team_size"
+                    type="number"
+                    label="Team Size"
+                    className={classes.textField}
+                    onChange={onChange}
+                    disabled={false}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
                     }}
-                    // error={!!error}
-                    inputValue={props.operation === 'edit' ? projectTypes.filter(item => item.value == props.values.type)[0].label : null}
-                    value={value}
-                    options={projectTypes}
-                    getOptionLabel={(item) => (item.label ? item.label : "")}
-                    // getOptionSelected={(option, value) =>
-                    //   value === undefined || value === "" || option.label === value.id
-                    // }
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Type"
-                        className={classes.textField}
-                        
-                        // margin="normal"
-                        // variant="outlined"
-                        // error={!!errors.item}
-                        // helperText={errors.item && "item required"}
-                        error={!!error}
-                        helperText={error ? error.message : null}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        {...register('type')}
-                      />
-                    )}
+                    {...register('team_size')}
                   />
                 )}
-              /> */}
+              // rules={{ required: 'Project ID is required' }}
+              />
               <Controller
                 name="coordinator"
                 control={control}
@@ -405,6 +390,75 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project requirements are required' }}
 
+              />
+                      <Controller
+                name="tasks"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="description"
+                    type="text"
+                    label="Project Tasks"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.tasks : null}
+                    onChange={onChange}
+                    multiline
+                    rows={14}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('tasks')}
+                  />
+                )}
+                rules={{ required: 'Project tasks is required' }}
+              />
+                      <Controller
+                name="constraints"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="constraints"
+                    type="text"
+                    label="Project Constraints"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.constraints : null}
+                    onChange={onChange}
+                    multiline
+                    rows={14}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('constraints')}
+                  />
+                )}
+                rules={{ required: 'Project constraints is required' }}
+              />
+                      <Controller
+                name="training"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="training"
+                    type="text"
+                    label="Project Training"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.training : null}
+                    onChange={onChange}
+                    multiline
+                    rows={14}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('training')}
+                  />
+                )}
+                rules={{ required: 'Project training is required' }}
               />
             </Grid>
           </Grid>

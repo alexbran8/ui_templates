@@ -10,6 +10,10 @@ type project {
     description: String
     year: Int
     id: Int!
+    team_size:String
+    tasks: String
+    constraints: String
+    training: String
   }
   type Response {
     success: String!
@@ -25,6 +29,10 @@ type project {
     requirements: String!
     coordinator: String!
     year: String
+    team_size:String
+    tasks: String
+    constraints: String
+    training: String
    }
 
 extend  type Query  {

@@ -19,6 +19,8 @@ import ApplicationForm from "./ApplicationForm"
 
 import { ExportToExcel } from "../common/ExportExcel";
 
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
@@ -85,6 +87,8 @@ mutation ($data: Project) {
 
 
 const ProjectsList = () => {
+  const history = useHistory();
+
   const user = useSelector((state) => ({ auth: state.auth }));
   const isStudent = user.auth.roles === 'student' ? true : false
   const { t, i18n } = useTranslation();
@@ -258,6 +262,16 @@ const ProjectsList = () => {
       field: 'Actions',
       renderCell: (cellValues) => {
         return (<>
+          <Button
+            variant="contained"
+            color="primary"
+            // hidden={isStudent}
+            onClick={() => {
+              history.push(`/details/${cellValues.row.title}`)
+            }}
+          >
+            View
+          </Button>
           <Button
             variant="contained"
             color="primary"

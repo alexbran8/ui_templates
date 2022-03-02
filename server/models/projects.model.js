@@ -33,6 +33,22 @@ module.exports = (sequelize, type) => {
         type: type.STRING,
         required: true
       },
+      team_size: {
+        type: type.STRING,
+        required: true
+      },
+      constraints: {
+        type: type.STRING,
+        required: true
+      },
+      training: {
+        type: type.STRING,
+        required: true
+      },
+      tasks: {
+        type: type.STRING,
+        required: true
+      },
       createdBy: { type: type.STRING },
     },
     { timestamps: false }
