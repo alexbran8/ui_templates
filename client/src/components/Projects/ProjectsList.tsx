@@ -42,6 +42,10 @@ const GET_ALL = gql`
         coordinator
         description
         requirements
+        constraints
+        tasks
+        team_size
+        training
     }
   }
 `;
@@ -70,6 +74,18 @@ mutation ($data: Project) {
     addItem (data:$data){
         success
         message
+        data {
+          id
+          title
+          type
+          coordinator
+          description
+          requirements
+          constraints
+          tasks
+          team_size
+          training
+      }
       }
     }
 
@@ -81,7 +97,19 @@ mutation ($data: Project) {
     editItem (data:$data){
         success
         message
+        data {
+          id
+          title
+          type
+          coordinator
+          description
+          requirements
+          constraints
+          tasks
+          team_size
+          training
       }
+      } 
     }
 `;
 
@@ -118,11 +146,8 @@ const ProjectsList = () => {
   const [addItemMutation] = useMutation(ADD_ITEM, {
     onCompleted: (dataRes) => {
       // update state
-      const newProjects = [...projects]
-      newProjects.forEach((item) => {
-        item.id = item.id + 1;
-      });
-      setProjects(newProjects => [...newProjects, item]);
+     console.log(dataRes)
+      setProjects([...projects, dataRes.addItem.data]);
       setShowModal(false)
 
     },

@@ -19,6 +19,7 @@ type project {
     success: String!
     message: String!
     id: Int
+    data: project
   }
 
   input Project {

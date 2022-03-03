@@ -43,36 +43,47 @@ module.exports = {
 },
   Mutation: {
     async addItem(root, data, context) {
-      try {
-        console.log(data.data)      
-        db.Projects.create(data.data)  
-        const response = {message: 'Notifications have been successfully sent!', success: true}
-        return  response  
-      }
-               
-      catch (error) {
-        console.log(error)
-        const response = {message: error, success: false}
-        return  response
-      }
+      let new_id = await db.sequelize.query("Select nextval(pg_get_serial_sequence('projects', 'id')) as new_id;")
+      data.data.id = new_id[0][0].new_id
+
+      return new Promise((resolve, reject) => {
+
+        db.Projects.create(data.data).then(res => {
+
+          return resolve({ message: 'OK', success: true, data: data.data })
+        }).catch(function (err) {
+          console.log(err)
+          // send notification error
+          sendNotificationError(err, data.data.createdBy);
+          return reject({ message: err, success: false })
+
+        });
+      })
     },
     async editItem(root, data, context) {
-      try {
-        const { id, title, requirements, type, description,  coordinator } = data.data  
-        console.log(title, requirements, type, description,  coordinator)   
+      return new Promise((resolve, reject) => {
+        const dataToUpdate = data.data
+        // console.log (dataToUpdate.uid)
+        let uid = dataToUpdate.id
+       
+        // console.log(dataToUpdate.process_status,'xxxx')
         db.Projects.update(
-          { title, requirements, type, description,  coordinator },
-          { where: { id: id  } }
-        );
-        const response = {message: 'Notifications have been successfully sent!', success: true}
-        return  response  
-      }
-               
-      catch (error) {
-        console.log(error)
-        const response = {message: error, success: false}
-        return  response
-      }
+          dataToUpdate,
+          { where: { id: uid } }
+        )
+          .then(res => {
+            console.log(res)
+            return resolve({ message: 'OK', success: true, data: dataToUpdate });
+          }
+          )
+          .catch(function (err) {
+            // handle error;
+            console.log(err);
+            console.log(data.data)
+            sendNotificationError(err, data.data.createdBy);
+            return reject({ message: err, success: false, data:null })
+          });
+      })
     },
     async deleteItem(root, data, context) {
       try {

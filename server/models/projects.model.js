@@ -3,12 +3,10 @@ module.exports = (sequelize, type) => {
   const Project = sequelize.define(
     "projects",
     {
-      // id: {
-      //   type: type.INTEGER,
-      //   required: true,
-      //   unique: true,
-      //   primaryKey: true,
-      // },
+      id: {
+        type: type.INTEGER,
+        primaryKey: true
+      },
       title: {
         type: type.STRING,
         required: true
