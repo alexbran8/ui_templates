@@ -33,22 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GET_ALL = gql`
-  query  { 
-    getAll  {
-        id
-        title
-        type
-        coordinator
-        description
-        requirements
-        constraints
-        tasks
-        team_size
-        training
-    }
-  }
-`;
+import { GET_ALL } from "./queries.tsx"
 
 const DELETE_ITEM = gql`
 mutation ($id: Int) {
@@ -130,7 +115,7 @@ const ProjectsList = () => {
   const [projects, setProjects] = useState([]);
   const [fileData, setFileData] = useState();
   const [operation, setOperation] = useState();
-  const { data, loading, error } = useQuery(GET_ALL, {
+  const { data, loading, error } = useQuery(GET_ALL,  {variables:{ },
     onCompleted: () => {
       setProjects(data.getAll);
       // console.log(data.getAll)

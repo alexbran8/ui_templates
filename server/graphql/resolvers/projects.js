@@ -2,6 +2,7 @@ const e = require("cors");
 const nodemailer = require("nodemailer");
 const db = require("../../models");
 const { sendNotificationError, notificationEmail } = require("../../middleware/notification")
+const { Op } = require("sequelize");
 
 const errorHandler = (err, req, res, next) => {
   const { code, desc = err.message } = err;
@@ -23,8 +24,9 @@ module.exports = {
   Query: {
     async getAll(root, args, context) {
       try{
+        let idFilter = args.id ? { id: args.id } : null
      let result = db.Projects.findAll({
-        // where: { [Op.and]: [dateFilter, weekFilter, itvFilter, statusFilter, siteFilter, responsibleFilter] },
+        where: { [Op.and]: [idFilter] },
         // limit: args.first
       })
       return result

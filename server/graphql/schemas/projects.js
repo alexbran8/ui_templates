@@ -38,7 +38,7 @@ type project {
    }
 
 extend  type Query  {
-    getAll: [project]
+    getAll(id:Int): [project]
     getCollumns: [String]
 } 
 

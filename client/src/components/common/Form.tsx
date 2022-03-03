@@ -246,7 +246,6 @@ export default function FormPropsTextFields(props: any) {
               <Controller
                 name="title"
                 control={control}
-
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
                     id="title"
@@ -292,14 +291,14 @@ export default function FormPropsTextFields(props: any) {
                <Controller
                 name="team_size"
                 control={control}
-
-                defaultValue={props.operation === 'edit' ? props.values.team_size : null}
+                
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
                     id="team_size"
                     type="number"
                     label="Team Size"
                     className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.team_size : null}
                     onChange={onChange}
                     disabled={false}
                     error={!!error}
@@ -310,7 +309,7 @@ export default function FormPropsTextFields(props: any) {
                     {...register('team_size')}
                   />
                 )}
-              // rules={{ required: 'Project ID is required' }}
+              rules={{ required: 'Team Size is required' }}
               />
               <Controller
                 name="coordinator"
