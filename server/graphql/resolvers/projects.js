@@ -45,7 +45,8 @@ module.exports = {
     async addItem(root, data, context) {
       let new_id = await db.sequelize.query("Select nextval(pg_get_serial_sequence('projects', 'id')) as new_id;")
       data.data.id = new_id[0][0].new_id
-
+      data.data.createdBy = context.user.username
+      console.log(context)
       return new Promise((resolve, reject) => {
 
         db.Projects.create(data.data).then(res => {
@@ -65,7 +66,7 @@ module.exports = {
         const dataToUpdate = data.data
         // console.log (dataToUpdate.uid)
         let uid = dataToUpdate.id
-       
+        dataToUpdate.createdBy = context.user.username
         // console.log(dataToUpdate.process_status,'xxxx')
         db.Projects.update(
           dataToUpdate,

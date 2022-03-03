@@ -31,7 +31,7 @@ export const AppRouter = (props) => {
       <Route exact path={"/development-tasks"} component={DevelopmentTasks} />
       <Route exact path={"/credits"} component={Credits} />
       <Route exact path={"/timeline"} component={Timeline} />
-      <Route exact path={"/details/:title"} component={Details} />
+      <Route exact path={"/details/:id/:title"} component={Details} />
       <Route
         render={({ location }) => {
           if (location.pathname !== "/") {return <><Header />

@@ -14,6 +14,7 @@ type project {
     tasks: String
     constraints: String
     training: String
+    createdBy: String!
   }
   type Response {
     success: String!

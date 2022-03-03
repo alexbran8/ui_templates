@@ -293,7 +293,7 @@ const ProjectsList = () => {
             color="primary"
             // hidden={isStudent}
             onClick={() => {
-              history.push(`/details/${cellValues.row.title}`)
+              history.push(`/details/${cellValues.row.id}/${cellValues.row.title}`)
             }}
           >
             View
