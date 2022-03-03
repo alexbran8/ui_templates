@@ -23,31 +23,36 @@ const emailHandler = async (metadata) => {
 module.exports = {
   Query: {
     async getAll(root, args, context) {
-      try{
+      try {
         let idFilter = args.id ? { id: args.id } : null
-     let result = db.Projects.findAll({
-        where: { [Op.and]: [idFilter] },
-        // limit: args.first
-      })
-      return result
-     
-    }
-      catch(err) {
+        let subjectFilter = args.subject ? { subject: args.subject } : null
+        let titleFilter = args.title ? { title: args.title } : null
+        let coordinatorFilter = args.coordinator ? { coordinator: args.coordinator } : null
+        let result = db.Projects.findAll({
+          where: { [Op.and]: [idFilter, subjectFilter, coordinatorFilter,titleFilter] },
+          // limit: args.first
+        })
+        return result
+
+      }
+      catch (err) {
         console.log(err)
         // send notification error
         sendNotificationError(err);
         return { message: err, success: false }
 
       }
-      
+
     }
-   
-},
+
+  },
   Mutation: {
     async addItem(root, data, context) {
+      const now = new Date()
       let new_id = await db.sequelize.query("Select nextval(pg_get_serial_sequence('projects', 'id')) as new_id;")
       data.data.id = new_id[0][0].new_id
       data.data.createdBy = context.user.username
+      data.data.creationDate = now
       console.log(context)
       return new Promise((resolve, reject) => {
 
@@ -84,7 +89,7 @@ module.exports = {
             console.log(err);
             console.log(data.data)
             sendNotificationError(err, data.data.createdBy);
-            return reject({ message: err, success: false, data:null })
+            return reject({ message: err, success: false, data: null })
           });
       })
     },
@@ -92,14 +97,14 @@ module.exports = {
       try {
         let id = data.id
         db.Projects.destroy({ where: { id } });
-        const response = {id:id, message: 'Notifications have been successfully sent!', success: true}
-        return  response  
+        const response = { id: id, message: 'Notifications have been successfully sent!', success: true }
+        return response
       }
-               
+
       catch (error) {
         console.log(error)
-        const response = {message: error, success: false}
-        return  response
+        const response = { message: error, success: false }
+        return response
       }
     }
   }

@@ -2,8 +2,8 @@
 import { gql } from "@apollo/client";
 
 export const GET_ALL = gql`
-  query ($id:Int) { 
-    getAll (id:$id)  {
+  query ($id:Int, $subject:String, $coordinator:String, $title:String) { 
+    getAll (id:$id, subject:$subject, coordinator:$coordinator, title:$title)  {
         id
         title
         type
@@ -14,6 +14,8 @@ export const GET_ALL = gql`
         tasks
         team_size
         training
+        creationDate
+        subject
     }
   }
 `;

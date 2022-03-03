@@ -14,7 +14,7 @@ export const Details = (props) => {
           console.log(data.getAll)
           data.getAll && setCurrentProject(data.getAll[0])
         },
-        onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
+        onError: (error) => { console.error("Error", error, error.message); alert("Error" + error.message) },
       });
     
 
@@ -27,17 +27,19 @@ export const Details = (props) => {
     return (
         <div className="details-container">
             <div className="title-section">
+                { currentPorject && currentPorject.url ?
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/800px-Nextjs-logo.svg.png"
                     className="header-picture" />
+                    : null }
 
                 <h1>{currentPorject && currentPorject.title}</h1>
             </div>
             <div className="header-section">
-                <div className="coordinator">coordinator: <b>{currentPorject && currentPorject.coordinator}</b></div>
-                <div className="published">published: <b>24/02/2022</b></div>
-                <div className="subject"> subject: <b>Fullstack Web Development</b></div>
+                <div className="coordinator">coordinator: <b>createdBy: { currentPorject && currentPorject.coordinator },</b></div>
+                <div className="published">published: <b>{currentPorject && currentPorject.creationDate}</b></div>
+                <div className="subject"> subject: <b>{currentPorject && currentPorject.subject}</b></div>
                 <div className="team-size"> team-size: <b>{currentPorject && currentPorject.team_size} students</b></div>
-                <div className="tags">tags: <b>{currentPorject && currentPorject.tags ? currentPorject.tags :'tags not definted' }</b></div>
+                {currentPorject && currentPorject.tags  ?<div className="tags">tags: <b>{currentPorject.tags ? currentPorject.tags :'tags not definted' }</b></div> : null }
             </div>
             <div className="body-section">
                 <div className="details">

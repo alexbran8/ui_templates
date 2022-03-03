@@ -47,7 +47,9 @@ module.exports = (sequelize, type) => {
         type: type.STRING,
         required: true
       },
+      subject: { type: type.STRING },
       createdBy: { type: type.STRING },
+      creationDate: { type: type.DATE },
     },
     { timestamps: false }
   );

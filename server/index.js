@@ -26,6 +26,7 @@ const resolvers = require("./graphql/resolvers");
 // const context = require("./graphql/context");
 const jwt = require('jsonwebtoken')
 const db = require("./models");
+const { AuthenticationError } = require('apollo-server-express')
 
 db.sequelize
   .authenticate()

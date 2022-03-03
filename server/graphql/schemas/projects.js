@@ -15,6 +15,8 @@ type project {
     constraints: String
     training: String
     createdBy: String!
+    subject: String
+    creationDate: String
   }
   type Response {
     success: String!
@@ -35,10 +37,11 @@ type project {
     tasks: String
     constraints: String
     training: String
+    subject: String
    }
 
 extend  type Query  {
-    getAll(id:Int): [project]
+    getAll(id:Int, subject: String, coordinator: String, title:String): [project]
     getCollumns: [String]
 } 
 

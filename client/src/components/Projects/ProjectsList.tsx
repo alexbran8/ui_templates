@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 import { GET_ALL } from "./queries.tsx"
+import { set } from "lodash";
 
 const DELETE_ITEM = gql`
 mutation ($id: Int) {
@@ -114,11 +115,25 @@ const ProjectsList = () => {
   const [item, setItem] = useState([]);
   const [projects, setProjects] = useState([]);
   const [fileData, setFileData] = useState();
+  const [selectedSuject, setSelectedSuject] = useState<string>('');
+  const [selectedCoordinator, setSelectedCoordinator] = useState<string>('');
+  const [selectedTitle, setSelectedTitle] = useState<string>('');
+  const [subjectList, setSubjectList] = useState([])
+  const [titlesList, setTitlesList] = useState([])
+  const [coordinatorList, setCoordinatorList] = useState([])
   const [operation, setOperation] = useState();
-  const { data, loading, error } = useQuery(GET_ALL,  {variables:{ },
+  const { data, loading, error, refetch } = useQuery(GET_ALL,  {variables:{subject:selectedSuject, coordinator: selectedCoordinator, title: selectedTitle },
     onCompleted: () => {
       setProjects(data.getAll);
-      // console.log(data.getAll)
+      let subjects = data.getAll.map(item => { return item.subject})
+      let coordinators = data.getAll.map(item => { return item.coordinator})
+      let titles = data.getAll.map(item => { return item.title})
+      coordinators = [...new Set(coordinators)];
+      subjects = [...new Set(subjects)];
+      titles = [...new Set(titles)];
+      setCoordinatorList(coordinators)
+      setSubjectList(subjects)
+      setTitlesList(titles)
     },
     onError: (error) => { console.error("Error creating a post", error); alert("Error creating a post request " + error.message) },
   });
@@ -351,15 +366,53 @@ const ProjectsList = () => {
       <>
         <Autocomplete
           id="combo-box-demo"
-          options={weekList}
-          disabled={true}
-          getOptionLabel={(option) => option.week}
+          options={subjectList}
+          // getOptionLabel={(option) => option}
           style={{ width: 300 }}
-          onChange={(e, v) => { setWeek(v); refetch() }}
+          onInputChange={(event, newInputValue, reason) => {
+            if (reason === 'clear') {
+                setSelectedSuject(''); refetch()
+                return
+            } else {
+                setSelectedSuject(newInputValue); refetch()
+            }
+        }}
           className={classes.textField}
-          renderInput={(params) => <TextField {...params} label="select year" variant="outlined" />}
+          renderInput={(params) => <TextField {...params} label="select subject" variant="outlined" />}
         />
-      </>
+         <Autocomplete
+          id="combo-box-demo"
+          options={coordinatorList}
+          // getOptionLabel={(option) => option}
+          style={{ width: 300 }}
+          onInputChange={(event, newInputValue, reason) => {
+            if (reason === 'clear') {
+                setSelectedCoordinator(''); refetch()
+                return
+            } else {
+                setSelectedCoordinator(newInputValue); refetch()
+            }
+        }}
+          className={classes.textField}
+          renderInput={(params) => <TextField {...params} label="select coordinator" variant="outlined" />}
+        />
+                 <Autocomplete
+          id="combo-box-demo"
+          options={titlesList}
+          // getOptionLabel={(option) => option}
+          style={{ width: 300 }}
+          onInputChange={(event, newInputValue, reason) => {
+            if (reason === 'clear') {
+                setSelectedTitle(''); refetch()
+                return
+            } else {
+              setSelectedTitle(newInputValue); refetch()
+            }
+        }}
+          className={classes.textField}
+          renderInput={(params) => <TextField {...params} label="select title" variant="outlined" />}
+        />
+      {/* </>
       <>
         <Autocomplete
           id="combo-box-demo"
@@ -419,7 +472,7 @@ const ProjectsList = () => {
             onChange={(e, v) => { setResponsible(v.responsible_entity); refetch() }}
             renderInput={(params) => <TextField {...params} label="select responsible" variant="outlined" />}
           />
-        </>
+        </> */}
       </>
     </div>
     {/* <div className="report-container">

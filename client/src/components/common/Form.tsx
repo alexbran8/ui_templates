@@ -202,7 +202,7 @@ export default function FormPropsTextFields(props: any) {
 
   console.log(props)
 
-  const onSubmit = (data: any) => { console.log({props}); props.saveFunction(data) }
+  const onSubmit = (data: any) => { console.log({ props }); props.saveFunction(data) }
 
   return (
     <Grid container>
@@ -288,10 +288,31 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project type is required' }}
               />
-               <Controller
+              <Controller
+                name="subject"
+                control={control}
+                render={({ field: { onChange, value }, fieldState: { error } }) => (
+                  <TextField
+                    id="subject"
+                    type="text"
+                    label="Project subject"
+                    className={classes.textField}
+                    defaultValue={props.operation === 'edit' ? props.values.subject : null}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    {...register('subject')}
+                  />
+                )}
+                rules={{ required: 'Project subject is required' }}
+              />
+              <Controller
                 name="team_size"
                 control={control}
-                
+
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
                   <TextField
                     id="team_size"
@@ -309,7 +330,7 @@ export default function FormPropsTextFields(props: any) {
                     {...register('team_size')}
                   />
                 )}
-              rules={{ required: 'Team Size is required' }}
+                rules={{ required: 'Team Size is required' }}
               />
               <Controller
                 name="coordinator"
@@ -331,7 +352,6 @@ export default function FormPropsTextFields(props: any) {
                   />
                 )}
                 rules={{ required: 'Project coordinator is required' }}
-
               />
             </Grid>
           </Grid>
@@ -390,7 +410,7 @@ export default function FormPropsTextFields(props: any) {
                 rules={{ required: 'Project requirements are required' }}
 
               />
-                      <Controller
+              <Controller
                 name="tasks"
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -413,7 +433,7 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project tasks is required' }}
               />
-                      <Controller
+              <Controller
                 name="constraints"
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
@@ -436,7 +456,7 @@ export default function FormPropsTextFields(props: any) {
                 )}
                 rules={{ required: 'Project constraints is required' }}
               />
-                      <Controller
+              <Controller
                 name="training"
                 control={control}
                 render={({ field: { onChange, value }, fieldState: { error } }) => (
