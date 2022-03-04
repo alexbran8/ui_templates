@@ -1,5 +1,6 @@
 const passport = require("passport");
 const AzureOAuth2Strategy = require('passport-azure-ad-oauth2')
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 const config = require('../config/config')
 
@@ -36,6 +37,23 @@ passport.use(
       )
   )
 )
+
+passport.use(new LinkedInStrategy({
+  clientID: process.env.LINKEDIN_KEY,
+  clientSecret: process.env.LINKEDIN_SECRET,
+  callbackURL: "http://localhost:4000/auth/linkedin/callback",
+  scope: ['r_emailaddress', 'r_liteprofile'],
+}, (accessToken, refreshToken, params, profile, done) =>
+linkedinStrategy(
+  accessToken,
+  refreshToken,
+  params,
+  profile,
+  done
+)
+
+
+));
 // passport.use(
 //   new TwitterStrategy(
 //     {
@@ -67,6 +85,7 @@ passport.use(
 
 
 const adfsStrategy = require('./passport-adfs')
+const linkedinStrategy = require('./passport-linkedin')
 // module.exports = function (passport) {
 //   passport.serializeUser((profile, done) => {
 //     done(null, profile)

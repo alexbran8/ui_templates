@@ -140,11 +140,12 @@ export const Header = () => {
 
   useEffect(() => {
     login();
+    console.log(user.auth)
   }, [])
 
   // gets login details
   function login() {
-    fetch(config.baseURL + config.baseLOCATION + "/auth/login/success/", {
+    fetch(config.baseURL + config.baseLOCATION + "/auth/login/linkedin", {
       method: "GET",
       // body: JSON.stringify({ start: performance.now() }),
       credentials: "include",
@@ -166,7 +167,6 @@ export const Header = () => {
           sessionStorage.setItem('exp', responseJson.user.exp);
           sessionStorage.setItem('token_refresh', responseJson.user.token_refresh);
           sessionStorage.setItem('userEmail', responseJson.user.email);
-          sessionStorage.setItem('upalu', responseJson.user.upalu);
           sessionStorage.setItem('userName', responseJson.user.userName);
           sessionStorage.setItem('name', responseJson.user.first_name);
           sessionStorage.setItem('token', responseJson.user.token);
@@ -179,7 +179,6 @@ export const Header = () => {
               userName: responseJson.user.userName,
               name: responseJson.user.first_name,
               email: responseJson.user.email,
-              upalu: responseJson.user.upalu,
               token: responseJson.user.token
             }
           }
@@ -232,11 +231,22 @@ export const Header = () => {
       });
   }
 
+
+  const _handleSignInClick = () => {
+    // check if user is student or nokia employee
+    // Authenticate using via passport api in the backend
+    // Open Twitter login page
+    // Upon successful login, a cookie session will be stored in the client
+    user.auth.type === "student" ? setModalLoginShow(true) :    
+    window.open(config.baseURL + config.baseLOCATION + "/auth/linkedin", "_self");
+  };
+
+  
   const body = (
     <div>
             <List component="nav" className={classes.root} aria-label="mailbox-folders">
              <h5>Please login in order to continue:</h5>
-             <Button variant="contained" color="primary">
+             <Button variant="contained" onClick={_handleSignInClick} color="primary">
                <LinkedInIcon />LinkedIn
              </Button>
              <div className="container">
@@ -249,15 +259,6 @@ export const Header = () => {
            </List>
     </div>
   );
-
-  const _handleSignInClick = () => {
-    // check if user is student or nokia employee
-    // Authenticate using via passport api in the backend
-    // Open Twitter login page
-    // Upon successful login, a cookie session will be stored in the client
-    user.auth.type === "student" ? setModalLoginShow(true) :    
-    window.open(config.baseURL + config.baseLOCATION + "/auth/azure", "_self");
-  };
 
   const _handleLogoutClick = () => {
     // Logout using Twitter passport api
@@ -286,7 +287,7 @@ export const Header = () => {
           </Typography>
           {(state && state.authenticated) ? (
             <div className="avatar">
-              {pic ?
+              {/* {pic ? */}
                 <div className='icon'>
                   <IconButton
                     aria-label="account of current user"
@@ -301,7 +302,7 @@ export const Header = () => {
                       src={pic} /> <div className='avatar-name'>{state.user.first_name}</div>
                   </IconButton>
                 </div>
-                : null}
+                {/* : null} */}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}

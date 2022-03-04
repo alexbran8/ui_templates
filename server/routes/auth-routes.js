@@ -31,6 +31,27 @@ router.get("/login/success",authorizeApi, (req, res) => {
 );
 
 
+router.get("/login/linkedin", (req, res) => {
+  console.log(req)
+  if (req.isAuthenticated()  || req.user) {
+    
+    res.json({
+      success: true,
+      message: "user has successfully been authenticated",
+      user: req.user,
+      cookies: req.cookies
+    });             
+    
+  } else {
+    console.log('here')
+    res.status(401).json({
+      message : "User Not Authenticated",
+      user : null,
+      success: false,
+    })
+  }
+});
+
 // when login failed, send failed msg
 router.get("/login/failed", (req, res) => {
   res.status(401).json({
@@ -56,5 +77,19 @@ router.get(
     failureRedirect: config.CLIENT_ERROR_URL
   })
 );
+
+
+router.get('/linkedin',
+  passport.authenticate('linkedin', { state: 'SOME STATE'  }),
+  function(req, res){
+    console.log(req)
+    // The request will be redirected to LinkedIn for authentication, so this
+    // function will not be called.
+  });
+
+  router.get('/linkedin/callback', passport.authenticate('linkedin', {
+    successRedirect: config.CLIENT_HOME_PAGE_URL,
+    failureRedirect: config.CLIENT_ERROR_URL
+  }));
 
 module.exports = router;
