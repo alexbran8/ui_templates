@@ -41,7 +41,7 @@ passport.use(
 passport.use(new LinkedInStrategy({
   clientID: process.env.LINKEDIN_KEY,
   clientSecret: process.env.LINKEDIN_SECRET,
-  callbackURL: "http://localhost:4000/auth/linkedin/callback",
+  callbackURL:  process.env.NODE_ENV === `development` ? "http://localhost:4000/auth/linkedin/callback": "https://ecosystem.eecloud.dynamic.nsn-net.net/auth/linkedin/callback",
   scope: ['r_emailaddress', 'r_liteprofile'],
 }, (accessToken, refreshToken, params, profile, done) =>
 linkedinStrategy(
