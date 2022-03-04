@@ -148,10 +148,14 @@ app.use("/", express.static(path.resolve(__dirname, "../client/public")));
 //     cookies: req.cookies
 //   });
 // });
+const port = 4000;
+const options = {
+  port: 4000,
+  bodyParserOptions: { limit: "10mb", type: "application/json" },
+};
 
 
-apolloServer.applyMiddleware({ app, path: "/graphql" });
-
-
-// connect react to nodejs express server
-app.listen(process.env.SERVER_PORT, () => console.log(`Server is running on port ${process.env.SERVER_PORT}!`));
+apolloServer.start().then(res => {
+  apolloServer.applyMiddleware({ app, path: "/graphql" });
+  app.listen(options, () => console.log(`Server is running on port ${port}!`));
+ })
