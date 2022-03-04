@@ -31,26 +31,26 @@ router.get("/login/success",authorizeApi, (req, res) => {
 );
 
 
-router.get("/login/linkedin", (req, res) => {
-  console.log(req)
-  if (req.isAuthenticated()  || req.user) {
+// router.get("/login/linkedin", (req, res) => {
+//   console.log(req)
+//   if (req.isAuthenticated()  || req.user) {
     
-    res.json({
-      success: true,
-      message: "user has successfully been authenticated",
-      user: req.user,
-      cookies: req.cookies
-    });             
+//     res.json({
+//       success: true,
+//       message: "user has successfully been authenticated",
+//       user: req.user,
+//       cookies: req.cookies
+//     });             
     
-  } else {
-    console.log('here')
-    res.status(401).json({
-      message : "User Not Authenticated",
-      user : null,
-      success: false,
-    })
-  }
-});
+//   } else {
+//     console.log('here')
+//     res.status(401).json({
+//       message : "User Not Authenticated",
+//       user : null,
+//       success: false,
+//     })
+//   }
+// });
 
 // when login failed, send failed msg
 router.get("/login/failed", (req, res) => {

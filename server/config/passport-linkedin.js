@@ -10,12 +10,12 @@ module.exports = function (
   done
 ) {
   try {
-  console.log(`**Passport ADFS strategy ...`)
+  console.log(`**Passport LINKEDIN strategy ...`)
   // const userProfile = jwt.decode(params.id_token, '', true)
   // New user
-  console.log(`**New ADFS user...`)
+  console.log(params)
+  console.log(`**New LINKEDIN user...`)
 
-  console.log(profile.name.givenName)
 
   var user = {
     token: accessToken,
@@ -28,9 +28,9 @@ module.exports = function (
     userName: profile.emails[0].value,
     // check how to add multiple roles
     // provider: 'adfs',
-    // exp: new Date(1000*userProfile.exp)
+    exp: new Date(1000*params.expires_in)
   }
-  console.log(`**ADFS user added...`)
+  console.log(`**ADFS LINKEDIN added...`)
   return done(null, user)
 }
 catch {

@@ -14,7 +14,7 @@ export default OriginalComponent => {
           sessionStorage.removeItem('name')
           sessionStorage.removeItem('token')
           sessionStorage.removeItem('roles')
-          window.open(config.baseURL + config.baseLOCATION + "/auth/logout", "_self");
+          // window.open(config.baseURL + config.baseLOCATION + "/auth/logout", "_self");
         } 
       
       

@@ -52,10 +52,11 @@ const apolloServer = new ApolloServer({
     // try to retrieve a user with the token
     // const user = getUser(token);
     var decoded = jwt.decode(token)
-    console.log(new Date(1000 * decoded.exp));
-    console.log(new Date());
-
-    if (new Date(1000 * decoded.exp) < new Date() )throw new AuthenticationError('token has expired');
+    console.log(decoded)
+    // console.log(new Date(1000 * decoded.exp));
+    // console.log(new Date());
+// FIXME: check if token is valid
+    // if (new Date(1000 * decoded.exp) < new Date() )throw new AuthenticationError('token has expired');
    
     // optionally block the user
     // we could also check user roles/permissions here

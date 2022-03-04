@@ -59,13 +59,13 @@ export const Header = () => {
   const [auth, setAuth] = React.useState(true);
   const classes = useStyles();
   const [state, setState] = useState();
-  const [modalLoginShow, setModalLoginShow] = useState<boolean>(false);
+  const [modalLoginShow, setModalLoginShow] = useState < boolean > (false);
   const [pic, setPic] = useState();
 
   const { t, i18n } = useTranslation();
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [anchorElMenu, setAnchorElMenu] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState < null | HTMLElement > (null);
+  const [anchorElMenu, setAnchorElMenu] = React.useState < null | HTMLElement > (null);
   const open = Boolean(anchorEl);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +94,7 @@ export const Header = () => {
       overflowY: 'auto'
     };
   }
-  
+
 
   const handleModal = () => {
     setModalLoginShow(!modalLoginShow)
@@ -145,7 +145,7 @@ export const Header = () => {
 
   // gets login details
   function login() {
-    fetch(config.baseURL + config.baseLOCATION + "/auth/login/linkedin", {
+    fetch(config.baseURL + config.baseLOCATION + "/auth/login/success", {
       method: "GET",
       // body: JSON.stringify({ start: performance.now() }),
       credentials: "include",
@@ -237,26 +237,31 @@ export const Header = () => {
     // Authenticate using via passport api in the backend
     // Open Twitter login page
     // Upon successful login, a cookie session will be stored in the client
-    user.auth.type === "student" ? setModalLoginShow(true) :    
-    window.open(config.baseURL + config.baseLOCATION + "/auth/linkedin", "_self");
+    if (user.auth.type === "student") {
+      window.open(config.baseURL + config.baseLOCATION + "/auth/linkedin", "_self");
+    }
+    else {
+      window.open(config.baseURL + config.baseLOCATION + "/auth/azure", "_self");
+    }
+
   };
 
-  
+
   const body = (
     <div>
-            <List component="nav" className={classes.root} aria-label="mailbox-folders">
-             <h5>Please login in order to continue:</h5>
-             <Button variant="contained" onClick={_handleSignInClick} color="primary">
-               <LinkedInIcon />LinkedIn
-             </Button>
-             <div className="container">
-               <div className="border" />
-               <span className="content">
-                or
-               </span>
-               <div className="border" />
-             </div>
-           </List>
+      <List component="nav" className={classes.root} aria-label="mailbox-folders">
+        <h5>Please login in order to continue:</h5>
+        <Button variant="contained" onClick={() => { _handleSignInClick }} color="primary">
+          <LinkedInIcon />LinkedIn
+        </Button>
+        <div className="container">
+          <div className="border" />
+          <span className="content">
+            or
+          </span>
+          <div className="border" />
+        </div>
+      </List>
     </div>
   );
 
@@ -277,9 +282,9 @@ export const Header = () => {
   return (
     <div className={classes.root}>
       <AppBar className="nav-bar" position="fixed">
-    
-        <Toolbar  className={classes.customizeToolbar}>
-        { user.auth.type !== "student" ? <Sidebar /> : null }
+
+        <Toolbar className={classes.customizeToolbar}>
+          {user.auth.type !== "student" ? <Sidebar /> : null}
           <Typography variant="h6" className={classes.title}>
             <Link className="navbar-brand text-white" to={config.baseLOCATION + "/"}>
               <b>NOKIA</b> {config.AppName} {user.auth.type === 'student' ? <div className="header-title"> {t("navbar.students")} </div> : null}
@@ -288,21 +293,21 @@ export const Header = () => {
           {(state && state.authenticated) ? (
             <div className="avatar">
               {/* {pic ? */}
-                <div className='icon'>
-                  <IconButton
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    className="icon"
-                    onClick={handleMenu}
-                    color="inherit"
-                  >
-                    <Avatar alt="avatar Sharp"
-                      // className={classes.small}
-                      src={pic} /> <div className='avatar-name'>{state.user.first_name}</div>
-                  </IconButton>
-                </div>
-                {/* : null} */}
+              <div className='icon'>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  className="icon"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <Avatar alt="avatar Sharp"
+                    // className={classes.small}
+                    src={pic} /> <div className='avatar-name'>{state.user.first_name}</div>
+                </IconButton>
+              </div>
+              {/* : null} */}
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
@@ -323,19 +328,19 @@ export const Header = () => {
               </Menu>
 
             </div>
-          ) : (<div><Button variant="text"  onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
+          ) : (<div><Button variant="text" onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
         </Toolbar>
       </AppBar>
       {modalLoginShow ?
-      <GenericModal
-      open={modalLoginShow}
-      getModalStyle={getModalStyle}
-      title="Sign In Methods"
-      handleModal={handleModal}
-      handleClose={handleClose}
-      body={body}
-      /> : null
-}
+        <GenericModal
+          open={modalLoginShow}
+          getModalStyle={getModalStyle}
+          title="Sign In Methods"
+          handleModal={handleModal}
+          handleClose={handleClose}
+          body={body}
+        /> : null
+      }
     </div>
 
   );

@@ -104,7 +104,7 @@ const ProjectsList = () => {
   const history = useHistory();
 
   const user = useSelector((state) => ({ auth: state.auth }));
-  const isStudent = user.auth.roles === 'student' ? true : false
+  const isStudent = user.auth.role === 'student' ? true : false
   const { t, i18n } = useTranslation();
   const classes = useStyles();
   const [weekList, setuWeeksList] = useState([]);
