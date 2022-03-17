@@ -328,7 +328,9 @@ export const Header = () => {
               </Menu>
 
             </div>
-          ) : (<div><Button variant="text" onClick={_handleSignInClick}><span title="log in">{t("login.label")}</span></Button></div>)}
+          ) : (
+          <div><Button variant="text" onClick={_handleSignInClick}><span title="log in">{user.auth.type === "student" ? <LinkedInIcon /> : null}{t("login.label")}</span></Button></div>
+          )}
         </Toolbar>
       </AppBar>
       {modalLoginShow ?

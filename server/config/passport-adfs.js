@@ -23,16 +23,16 @@ module.exports = function (
     first_name: userProfile.given_name,
     last_name: userProfile.family_name,
     // check how to add multiple roles
-    roles: userProfile.roles[0],
+    roles: userProfile.roles ? userProfile.roles[0] : 'user',
     provider: 'adfs',
     exp: new Date(1000*userProfile.exp)
   }
-  console.log(userProfile.roles[0])
+  // console.log(userProfile.roles[0])
   console.log(`**ADFS user added...`)
   return done(null, user)
 }
-catch {
-  console.log('error');
+catch (error) {
+  console.log('error', error);
   return done(null, null)
 }
 }
